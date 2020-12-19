@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)http://demo.workdemo.xyz/quinable/public/api/v1/nurse_email_verify/48 -->
+<html lang="en" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>Caribbean Report</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Caribbean Export Data" name="description">
+        <meta content="ThemeDesign" name="Virtual height">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+        <link href="./index_files/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="./index_files/icons.css" rel="stylesheet" type="text/css">
+        <link href="./index_files/style.css" rel="stylesheet" type="text/css">
+
+    <style type="text/css"> #cdac_container { font-family: Arial, sans-serif !important; font-size: 12px !important; min-width: 300px !important;max-width: 600px !important; text-align: inherit !important;	background: #e8f9ff !important;	border: solid 5px #B40404 !important;	color: #000 !important; -webkit-border-radius: 5px !important;	border-radius: 5px !important;} #cdac_title { display: inherit !important; font-family: inherit !important; font-size: 14px !important; font-weight: bold !important; 	text-align: left !important; line-height: 1.75em !important; color: #FFF !important; text-shadow: inherit !important; height:inherit !important; width:inherit !important; 	position:static !important; background: #B40404 repeat-x center top !important; border: solid 1px #B40404 !important; border-bottom: solid 1px #B40404 !important; cursor: default !important; padding: 0em !important; margin: 0em !important; float: none !important; } .cdac_inputred { background: none !important; background-color:#E6E6E6 !important; color:#DF3A01 !important; font-weight: bold;} .cdac_inputgreen { background: none !important; background-color: #E6E6E6 !important; color:#298A08 !important; font-weight: bold;} #cdac_content { padding: 1em 1.75em !important; margin: 0em !important; } #cdac_message { padding-left: 48px !important; color: #000 !important; } #cdac_panel { text-align: center !important; margin: 1em 0em 0em 1em !important; } #cdac_prompt { margin: .5em 0em !important; }#cdac_content.confirm { background:16px 16px no-repeat url(cdac18.png) !important;}
+	.chosen-select {
+  width: 100%;
+}
+.chosen-select-deselect {
+  width: 100%;
+}
+.chosen-container {
+  display: inline-block;
+  font-size: 14px;
+  position: relative;
+  vertical-align: middle;
+}
+.chosen-container .chosen-drop {
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -webkit-box-shadow: 0 8px 8px rgba(0, 0, 0, .25);
+  box-shadow: 0 8px 8px rgba(0, 0, 0, .25);
+  margin-top: -1px;
+  position: absolute;
+  top: 100%;
+  left: -9000px;
+  z-index: 1060;
+}
+.chosen-container.chosen-with-drop .chosen-drop {
+  left: 0;
+  right: 0;
+}
+.chosen-container .chosen-results {
+  color: #555555;
+  margin: 0 4px 4px 0;
+  max-height: 240px;
+  padding: 0 0 0 4px;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.chosen-container .chosen-results li {
+  display: none;
+  line-height: 1.42857143;
+  list-style: none;
+  margin: 0;
+  padding: 5px 6px;
+}
+.chosen-container .chosen-results li em {
+  background: #feffde;
+  font-style: normal;
+}
+.chosen-container .chosen-results li.group-result {
+  display: list-item;
+  cursor: default;
+  color: #999;
+  font-weight: bold;
+}
+.chosen-container .chosen-results li.group-option {
+  padding-left: 15px;
+}
+.chosen-container .chosen-results li.active-result {
+  cursor: pointer;
+  display: list-item;
+}
+.chosen-container .chosen-results li.highlighted {
+  background-color: #428bca;
+  background-image: none;
+  color: white;
+}
+.chosen-container .chosen-results li.highlighted em {
+  background: transparent;
+}
+.chosen-container .chosen-results li.disabled-result {
+  display: list-item;
+  color: #777777;
+}
+.chosen-container .chosen-results .no-results {
+  background: #eeeeee;
+  display: list-item;
+}
+.chosen-container .chosen-results-scroll {
+  background: white;
+  margin: 0 4px;
+  position: absolute;
+  text-align: center;
+  width: 321px;
+  z-index: 1;
+}
+.chosen-container .chosen-results-scroll span {
+  display: inline-block;
+  height: 1.42857143;
+  text-indent: -5000px;
+  width: 9px;
+}
+.chosen-container .chosen-results-scroll-down {
+  bottom: 0;
+}
+.chosen-container-single .chosen-single {
+  background-color: #ffffff;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  border: 1px solid #cccccc;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  color: #555555;
+  display: block;
+  height: 34px;
+  overflow: hidden;
+  line-height: 34px;
+  padding: 0 0 0 8px;
+  position: relative;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.chosen-container-single .chosen-search input[type="text"] {
+  border: 1px solid #cccccc;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  margin: 1px 0;
+  padding: 4px 20px 4px 4px;
+  width: 100%;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-resolution: 144dpi) {
+  .chosen-rtl .chosen-search input[type="text"],
+  .chosen-container-single .chosen-single abbr,
+  .chosen-container-single .chosen-single div b,
+  .chosen-container-single .chosen-search input[type="text"],
+  .chosen-container-multi .chosen-choices .search-choice .search-choice-close,
+  .chosen-container .chosen-results-scroll-down span,
+  .chosen-container .chosen-results-scroll-up span {
+    background-image: url("chosen-sprite@2x.png") !important;
+    background-size: 52px 37px !important;
+    background-repeat: no-repeat !important;
+  }
+}
+	</style></head>
+
+
+    <body>
+
+        <!-- Begin page -->
+        <div class="accountbg"></div>
+        <div class="wrapper-page">
+            <div class="card card-pages">
+
+                <div class="card-body">
+                    <h4 class="text-muted text-center m-t-0"><b style="color:Black;">CARIBBEAN  REPORT</b></h4>
+
+                    <form class="form-horizontal" action="csv.php" style="margin-top: 30px;">
+					<div class="row">
+					
+   
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label>From Date</label>
+								<div class="input-group">
+									<input type="text" class="form-control" type="text" id="start_date" readonly required="" name="start_date" placeholder="From">
+									<div class="input-group-append">
+										<span class="input-group-text b-0"><i class="mdi mdi-calendar"></i></span>
+									</div>
+								</div>
+								<span style="color:red" id="sdateerror"></span>
+							</div>
+							<div class="form-group">
+								<label>Role</label>
+								<select class="form-control" id="role">
+								<option value = "">All Roles</option>
+								<option value = "0">Tenant Only</option>
+								<option value = "1">Owner Only</option>
+								</select>  
+							</div>
+							<div class="form-group">
+								<label>Block</label>
+								<select data-placeholder="Choose a Block" id="block" name="block" class="chosen-select-deselect">
+									<option value="">All Block</option>
+								</select>
+								<!--<input class="form-control" type="text" id="block" name="block" placeholder="Block">-->
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label>To Date</label>
+								<div class="input-group">
+									<input class="form-control" type="text" id="end_date" readonly required=""  name="end_date" placeholder="To">
+									<div class="input-group-append">
+									<span class="input-group-text b-0"><i class="mdi mdi-calendar"></i></span>
+									</div>
+								</div>
+								<span style="color:red" id="edateerror"></span>
+							</div>
+							<div class="form-group">
+								<label>Status</label>
+								<select class="form-control" id="status">
+								<option value = "">All Status</option>
+								<option value = "t">Active</option>
+								<option value = "f">Inactive</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Unit</label>
+								<select data-placeholder="Choose a Unit"  id="unit" name="unit" class="chosen-select-deselect" tabindex="2">
+									<option value="">All Unit</option>
+								</select>
+								<!--<input class="form-control" type="text" id="unit" name="unit" placeholder="Unit">-->
+							</div>
+						</div>
+					</div>
+                        
+						
+                        <div class="row" id="rsdiv">
+                            <div class="col-12">
+                                <button class="btn btn-success btn-block btn-lg waves-effect waves-light" style="background: #44AF59 !important" id="btnsubmit" type="button" onclick="gettotalcountoffile()">Export</button>
+								
+								<a href='#' id="reset" style="display:none;" class="btn btn-primary btn-block btn-lg waves-effect waves-light" onclick="location.reload();">Reset</a>
+								<img src="images/200.gif" style="display:none;"  class="btn-block">
+								<span style="color:red;float:right;" id="dataerror" ></span>
+							</div>
+							
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <!-- jQuery  -->
+        <script src="./index_files/jquery.min.js.download"></script>
+         <script src="./index_files/bootstrap.bundle.min.js.download"></script>
+        <script src="./index_files/modernizr.min.js.download"></script>
+        <script src="./index_files/detect.js.download"></script>
+        <script src="./index_files/fastclick.js.download"></script>
+        <script src="./index_files/jquery.slimscroll.js.download"></script>
+        <script src="./index_files/jquery.blockUI.js.download"></script>
+        <script src="./index_files/waves.js.download"></script>
+        <script src="./index_files/wow.min.js.download"></script>
+        <script src="./index_files/jquery.nicescroll.js.download"></script>
+        <script src="./index_files/jquery.scrollTo.min.js.download"></script>
+
+        <script src="./index_files/app.js.download"></script>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.js"></script>
+    <script type='text/javascript'>
+	var allCount = 0;
+    $(document).ready(function () {
+        $("#start_date").datepicker({
+            dateFormat: "dd-mm-yy",
+            changeMonth: true,
+            changeYear: true,
+            maxDate:new Date(),
+            onSelect: function () {
+                var end_date = $('#end_date');
+
+                var minDate = $(this).datepicker('getDate');
+
+                end_date.datepicker('option', 'minDate', minDate);
+            }
+        });
+        $('#end_date').datepicker({
+            dateFormat: "dd-mm-yy",
+            changeMonth: true,
+            changeYear: true,
+            maxDate:new Date(),
+        });
+    });
+	function gettotalcountoffile(){
+	$("#dataerror").html('');
+		var allCount = 0;
+		var sdate =$("#start_date").val();
+		var edate =$("#end_date").val();
+		$("#edateerror").html("");
+		$("#sdateerror").html("");
+		var status =$("#status").val();
+		var role =$("#role").val();
+		var block =$("#block").val();
+		var unit =$("#unit").val();
+		if(sdate != "" && edate != ""){
+$("#btnsubmit").html('Please Wait...');
+	//$("#btnsubmit").prop('disabled', true);
+	//$("#btnsubmit").hide();
+			$.ajax({
+				url : 'gettotalcountoffile.php?start_date='+sdate+'&end_date='+edate+'&rand=&role='+role+'&status='+status+'&block='+block+'&unit='+unit,
+				type : 'get',
+				success : function(response){
+					console.log(response);
+					if(parseInt(response) > 0){
+					$("#btnsubmit").hide();
+						if(parseInt(response) > 350){
+							var folder = parseInt(response)/350;
+							if(Math.round(folder) < folder){
+								folder = Math.round(folder) + 1;
+							}
+							console.log(folder);
+							for (j = 0; j < folder; j++) {
+								var length = 6;
+								var rand           = '';
+								var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+								var charactersLength = characters.length;
+								for ( var i = 0; i <= folder; i++ ) {
+									rand += characters.charAt(Math.floor(Math.random() * charactersLength));
+								}
+								//runprocess(j);
+								var fileno = 350;
+								if(parseInt(response) < ((j+1)*350)){
+								console.log((j+1)*350);
+								fileno = (350-(((j+1)*350)-parseInt(response)));
+								}
+								rand = j;
+								var div = '<div class="form-group text-center m-t-40 row col-12" id="processimge'+rand+'"><div class="col-md-5"><a href="#" target="_blank" id="downloadbtn'+rand+'"  style="background: #44AF59 !important" class="btn btn-primary btn-block btn-lg waves-effect waves-light"> Please Wait...</a></div><div class="col-md-7"><div class="progress"><div id="progress-bar'+rand+'" class="progress-bar progress-bar-primary progress-bar-striped  progress-bar-animated" role="progressbar" aria-valuenow="81" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span class="sr-only">81% Complete</span></div></div><span style="color:green;float:right;" id="counterspan'+rand+'"  >(0/'+fileno+')  CSV generated</span></div></div>';
+								$("#rsdiv").append(div);
+							} 
+							
+						}else{
+							var length = 6;
+							var rand           = '';
+							var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+							var charactersLength = characters.length;
+							for ( var i = 0; i < length; i++ ) {
+								rand += characters.charAt(Math.floor(Math.random() * charactersLength));
+							}
+							rand = 0;
+							var div = '<div class="form-group text-center m-t-40 row col-12" id="processimge'+rand+'"><div class="col-md-5"><a href="#" target="_blank" id="downloadbtn'+rand+'"  style="background: #44AF59 !important" class="btn btn-primary btn-block btn-lg waves-effect waves-light"> Please Wait...</a></div><div class="col-md-7"><div class="progress"><div id="progress-bar'+rand+'" class="progress-bar progress-bar-primary progress-bar-striped  progress-bar-animated" role="progressbar" aria-valuenow="81" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span class="sr-only">81% Complete</span></div></div><span style="color:green;float:right;" id="counterspan'+rand+'"  >(0/'+response+')  CSV generated</span></div></div>';
+							$("#rsdiv").append(div);
+						}
+						runprocess(0);
+					}else{
+						$("#btnsubmit").html('Export');
+						$("#dataerror").html('No record available.');
+						return false;
+					}
+				}
+			});
+//		stratcount(rand,role,status,block,unit);
+		//return false;
+		}else{
+		if(sdate == ""){
+			$("#sdateerror").html("Required.");
+		}
+		if(edate == ""){
+			$("#edateerror").html("Required.");
+		}
+		return false;
+		}
+		return false;
+	}
+	function runprocess(start){
+	
+	var allCount = 0;
+	var sdate =$("#start_date").val();
+	var edate =$("#end_date").val();
+	$("#edateerror").html("");
+	$("#sdateerror").html("");
+	if(sdate != "" && edate != ""){
+	var role =$("#role").val();
+	var status =$("#status").val();
+	var block =$("#block").val();
+	var unit =$("#unit").val();
+	
+	$("#processimge").show();
+	$("#downloadbtn").hide();
+	$("#reset").hide();
+	
+	var length = 6;
+	var rand           = '';
+	var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	var charactersLength = characters.length;
+	for ( var i = 0; i <= length; i++ ) {
+		rand += characters.charAt(Math.floor(Math.random() * charactersLength));
+	}
+	$("#progress-bar"+start).css("width", "0%");
+	
+   $.ajax({
+		url : 'csv.php?start_date='+sdate+'&end_date='+edate+'&rand='+rand+'&role='+role+'&status='+status+'&block='+block+'&unit='+unit+'&start='+start,
+		type : 'get',
+		success : function(response){
+			console.log(response);
+		}
+	});
+	stratcount(rand,role,status,block,unit,start);
+	//return false;
+	}else{
+	if(sdate == ""){
+		$("#sdateerror").html("Required.");
+	}
+	if(edate == ""){
+		$("#edateerror").html("Required.");
+	}
+	return false;
+	}
+	}
+	function getfilecount(rand,role,status,block,unit,start){
+		$.ajax({
+				url : 'file_count.php?directory='+rand+'&role='+role+'&status='+status+'&block='+block+'&unit='+unit+'&start='+start,
+				type : 'get',
+				success : function(response){
+					console.log("directory="+rand+"         i"+start+response);
+					var data = JSON.parse(response);
+					$("#counterspan"+start).html('('+data["createdFile"]+'/'+data["totalrow"]+') CSV generated');
+					if(parseInt(data["totalrow"]) == parseInt(data["createdFile"])){
+					//$("#btnsubmit").html('Export');
+					$("#btnsubmit").hide();
+					if(parseInt(data["totalrow"]) == 0){
+					$("#btnsubmit").html('Export');
+					$("#btnsubmit").show();
+					$("#btnsubmit").prop('disabled', false);
+					$("#processimge"+start).hide();
+					//$("#dataerror").html('No record available.');
+					}else{
+					
+						$("#downloadbtn"+start).attr("href", "csv/"+rand+".zip");
+						$("#downloadbtn"+start).show();
+						$("#downloadbtn"+start).html('<i class="ion ion-md-download"></i> Download');
+						$("#reset").show();
+						
+						$("#counterspan"+start).hide();
+						$("#progress-bar"+start).hide();
+						runprocess(parseInt(start)+1);
+						$("#reset").show();
+					}
+					}else{
+						allCount = parseInt(data["createdFile"]);
+						$("#counterspan"+start).show();
+						var pre = (parseInt(data["createdFile"]*100))/(data["totalrow"]);
+						
+						$("#progress-bar"+start).css("width", pre+"%");
+						
+						 setTimeout(function(){
+						getfilecount(rand,role,status,block,unit,start);
+						},5000);
+					}
+				}
+			});
+	}
+	function stratcount(rand,role,status,block,unit,start){
+	getfilecount(rand,role,status,block,unit,start);
+	
+	}
+	      $(function() {
+        $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+      });
+	function getunit(){
+	   $.ajax({
+		url : 'get_unit.php',
+		type : 'get',
+		success : function(response){
+			var data = JSON.parse(response);
+			$(data).each(function( index,value ) {
+			  console.log( value );
+			  $("#unit").append("<option value='"+value+"'>"+value+"<option>");
+			});
+			$('#unit').trigger("chosen:updated");
+		}
+		
+		});
+	}
+	getunit();
+		function getblock(){
+	   $.ajax({
+		url : 'get_block.php',
+		type : 'get',
+		success : function(response){
+			var data = JSON.parse(response);
+			$(data).each(function( index,value ) {
+			  console.log( value );
+			  $("#block").append("<option value='"+value+"'>"+value+"<option>");
+			});
+			$('#block').trigger("chosen:updated");
+		}
+		
+		});
+	}
+	getblock();
+</script>
+</body></html>
