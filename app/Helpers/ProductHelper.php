@@ -49,6 +49,11 @@ class ProductHelper{
 		$query = Product::where('delete_flag','N')->where('id',$id)->first();
 		return $query;
 	}
+	
+	public static function getAllList(){
+		$query = Product::where('delete_flag','N')->get();
+		return $query;
+	}
 	public static function getProductByVendorType($vendor,$productType){
 		$query = Product::where('delete_flag','N')->where('vendor_id',$vendor)->where('product_type',$productType)->get();
 		return $query;

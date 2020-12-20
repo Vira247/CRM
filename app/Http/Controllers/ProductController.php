@@ -128,4 +128,14 @@ class ProductController extends Controller{
         $productList = ProductHelper::getProductByVendorType($vendor,$productType);
         return $productList;
     }
+    public function importSample(){
+        $productList = ProductHelper::getAllList();
+        echo "<pre>";
+        $accessiorSku  = DB::table('accessoires')->get();
+         
+        foreach($accessiorSku as $list){
+            $insertArray = array("name"=>$list->NAME,"product_type"=>"Accessory","sku"=>$list->SKU,"vendor_id"=>"3");
+            ProductHelper::insert($insertArray);
+        }
+    }
 }

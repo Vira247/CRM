@@ -38,4 +38,5 @@ Route::get('importSample', 'ProductController@importSample');
 Route::resource('order', 'OrderController');
 Route::get('/order/delete/{id}', 'OrderController@delete');
 Route::get('profile','ProfileController@profile');
-Route::post('/profi
+Route::post('/profile/change-password', 'ProfileController@changePassword');
+});
