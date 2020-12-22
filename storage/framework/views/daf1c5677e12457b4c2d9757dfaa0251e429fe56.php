@@ -1,7 +1,7 @@
-@include('layouts.header')
+<?php echo $__env->make('layouts.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <!-- Select2 -->
-<link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
-<link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+<link rel="stylesheet" href="<?php echo e(asset('plugins/select2/css/select2.min.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')); ?>">
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
@@ -21,8 +21,8 @@
 </div>
 <section class="content">
 <form role="form" method="post" action="<?php echo URL::to('/') ?>/order" enctype="multipart/form-data" onsubmit="return step9_validation();">
-    @method('POST')
-    @csrf
+    <?php echo method_field('POST'); ?>
+    <?php echo csrf_field(); ?>
 	<section class="content">
         <div class="row">
             <div id="step1" class=" card direct-chat direct-chat-primary col-md-12">
@@ -40,11 +40,11 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Site<span style="color:red;">*</span></label>
                                 <select  class="form-control " id="site"  name="site" >
-                                @foreach ($masterList as $master)
-                                    @if($master->type == 'Site')
-                                    <option value="{{$master->id}}">{{$master->value}}</option>
-                                    @endif
-                                @endforeach
+                                <?php $__currentLoopData = $masterList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $master): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if($master->type == 'Site'): ?>
+                                    <option value="<?php echo e($master->id); ?>"><?php echo e($master->value); ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                                 <span style="color:red;" id="site_error"></span>
                             </div>
@@ -53,11 +53,11 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Platform<span style="color:red;">*</span></label>
                                 <select  class="form-control " id="platform"  name="platform" >
-                                @foreach ($masterList as $master)
-                                    @if($master->type == 'Platform')
-                                    <option value="{{$master->id}}">{{$master->value}}</option>
-                                    @endif
-                                @endforeach
+                                <?php $__currentLoopData = $masterList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $master): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if($master->type == 'Platform'): ?>
+                                    <option value="<?php echo e($master->id); ?>"><?php echo e($master->value); ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                                 <span style="color:red;" id="platform_error"></span>
                             </div>
@@ -98,11 +98,11 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Order Status<span style="color:red;">*</span></label>
                                 <select  class="form-control " id="order_status" name="order_status">
-                                @foreach ($masterList as $master)
-                                    @if($master->type == 'Order Status')
-                                    <option value="{{$master->id}}">{{$master->value}}</option>
-                                    @endif
-                                @endforeach
+                                <?php $__currentLoopData = $masterList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $master): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if($master->type == 'Order Status'): ?>
+                                    <option value="<?php echo e($master->id); ?>"><?php echo e($master->value); ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                                 <span style="color:red;" id="order_status_error"></span>
                             </div>
@@ -299,11 +299,11 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Payment Method<span style="color:red;">*</span></label>
                                 <select  class="form-control " id="payment_method" name="payment_method">
-                                @foreach ($masterList as $master)
-                                    @if($master->type == 'Payment Method')
-                                    <option value="{{$master->id}}">{{$master->value}}</option>
-                                    @endif
-                                @endforeach
+                                <?php $__currentLoopData = $masterList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $master): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if($master->type == 'Payment Method'): ?>
+                                    <option value="<?php echo e($master->id); ?>"><?php echo e($master->value); ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                                 <span style="color:red;" id="payment_method_error"></span>
                             </div>
@@ -349,9 +349,9 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Vendor<span style="color:red;">*</span></label>
                                         <select  class="form-control " name="vendor[]">
-                                        @foreach ($vendorList as $vendor)
-                                            <option value="{{$vendor->id}}">{{$vendor->name}}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $vendorList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vendor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($vendor->id); ?>"><?php echo e($vendor->name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                 </div>
@@ -392,11 +392,11 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Paid Via<span style="color:red;">*</span></label>
                                         <select  class="form-control" name="vendor_paid_via[]">
-                                        @foreach ($masterList as $master)
-                                            @if($master->type == 'Payment Method')
-                                            <option value="{{$master->id}}">{{$master->value}}</option>
-                                            @endif
-                                        @endforeach
+                                        <?php $__currentLoopData = $masterList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $master): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($master->type == 'Payment Method'): ?>
+                                            <option value="<?php echo e($master->id); ?>"><?php echo e($master->value); ?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                 </div>
@@ -404,11 +404,11 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Broker<span style="color:red;">*</span></label>
                                         <select  class="form-control" name="broker[]">
-                                        @foreach ($masterList as $master)
-                                            @if($master->type == 'Broker')
-                                            <option value="{{$master->id}}">{{$master->value}}</option>
-                                            @endif
-                                        @endforeach
+                                        <?php $__currentLoopData = $masterList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $master): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($master->type == 'Broker'): ?>
+                                            <option value="<?php echo e($master->id); ?>"><?php echo e($master->value); ?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                 </div>
@@ -416,11 +416,11 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Carrier<span style="color:red;">*</span></label>
                                         <select  class="form-control" name="carrier[]">
-                                        @foreach ($masterList as $master)
-                                            @if($master->type == 'Carrier')
-                                            <option value="{{$master->id}}">{{$master->value}}</option>
-                                            @endif
-                                        @endforeach
+                                        <?php $__currentLoopData = $masterList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $master): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($master->type == 'Carrier'): ?>
+                                            <option value="<?php echo e($master->id); ?>"><?php echo e($master->value); ?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                 </div>
@@ -475,11 +475,11 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Paid Via<span style="color:red;">*</span></label>
                                         <select class="form-control" name="shipping_paid_via[]">
-                                        @foreach ($masterList as $master)
-                                            @if($master->type == 'Payment Method')
-                                            <option value="{{$master->id}}">{{$master->value}}</option>
-                                            @endif
-                                        @endforeach
+                                        <?php $__currentLoopData = $masterList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $master): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($master->type == 'Payment Method'): ?>
+                                            <option value="<?php echo e($master->id); ?>"><?php echo e($master->value); ?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                 </div>
@@ -529,19 +529,19 @@
                                         <td>
                                         <select class="form-control" id="selectvendor" onchange="getProductList()">
                                         <option value="">Select</option>
-                                            @foreach ($vendorList as $vendor)
-                                                <option value="{{$vendor->id}}">{{$vendor->name}}</option>
-                                            @endforeach
+                                            <?php $__currentLoopData = $vendorList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vendor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($vendor->id); ?>"><?php echo e($vendor->name); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                         </td>
                                         <td>
                                         <select class="form-control" id="selectproducttype" onchange="getProductList()">
                                         <option value="">Select</option>
-                                            @foreach ($masterList as $master)
-                                                @if($master->type == 'Product Type')
-                                                <option value="{{$master->value}}">{{$master->value}}</option>
-                                                @endif
-                                            @endforeach
+                                            <?php $__currentLoopData = $masterList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $master): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if($master->type == 'Product Type'): ?>
+                                                <option value="<?php echo e($master->value); ?>"><?php echo e($master->value); ?></option>
+                                                <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                         </td>
                                         <td>
@@ -673,9 +673,9 @@
                                 <label for="exampleInputEmail1">Vendor<span style="color:red;">*</span></label>
                                 <select class="form-control" id="vendor_claim" name="vendor_claim">
                                     <option value="">Select</option>
-                                    @foreach ($vendorList as $vendor)
-                                        <option value="{{$vendor->id}}">{{$vendor->name}}</option>
-                                    @endforeach
+                                    <?php $__currentLoopData = $vendorList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vendor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($vendor->id); ?>"><?php echo e($vendor->name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
                         </div>
@@ -684,11 +684,11 @@
                                 <label for="exampleInputEmail1">Shipping<span style="color:red;">*</span></label>
                                 <select class="form-control" id="shipping_claim" name="shipping_claim">
                                     <option value="">Select</option>
-                                    @foreach ($masterList as $master)
-                                        @if($master->type == 'Carrier')
-                                        <option value="{{$master->id}}">{{$master->value}}</option>
-                                        @endif
-                                    @endforeach
+                                    <?php $__currentLoopData = $masterList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $master): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php if($master->type == 'Carrier'): ?>
+                                        <option value="<?php echo e($master->id); ?>"><?php echo e($master->value); ?></option>
+                                        <?php endif; ?>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
                         </div>
@@ -723,9 +723,9 @@
 </div>
 </div>
 </div>
-@include('layouts.footer')
+<?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <!-- Select2 -->
-<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+<script src="<?php echo e(asset('plugins/select2/js/select2.full.min.js')); ?>"></script>
 <script>
 function same_as_shipping_action(){
     $("#billing_address_line_1").val('');
@@ -1065,4 +1065,4 @@ var vendordivcount = 0;
 $(function () {
     $('.select2').select2()
   });
-</script>
+</script><?php /**PATH C:\xamppnew\htdocs\laravel_demo\resources\views/order/create.blade.php ENDPATH**/ ?>
