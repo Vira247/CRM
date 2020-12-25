@@ -179,7 +179,7 @@
             </div>
             <div id="step4" class="card direct-chat direct-chat-primary col-md-12">
                 <div class="card-header bg-blue">
-                    <h3 class="card-title">Addresses</h3>
+                    <h3 class="card-title">Customer Address</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                     </div>
@@ -336,7 +336,7 @@
                     <div class="vendordiv0">
                         <div class="card-body" id="vendordiv">
                             <div class="row">
-                            <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Replacement<span style="color:red;">*</span></label>
                                         <select  class="form-control " name="vendor_replacement[]">
@@ -345,7 +345,16 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Delivery Type<span style="color:red;">*</span></label>
+                                        <select  class="form-control " name="vendor_replacement[]">
+                                        <option value="Residential with Liftgate/Delivery Appt">Residential with Liftgate/Delivery Appt</option>
+                                        <option value="Commercial">Commercial</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Vendor<span style="color:red;">*</span></label>
                                         <select  class="form-control " name="vendor[]">
@@ -357,7 +366,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Invoice Number<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Invoice Number</label>
                                         <input type="text" class="form-control" name="invoice_number[]">
                                     </div>
                                 </div>
@@ -369,19 +378,19 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Vendor Invoice Amount<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Vendor Invoice Amount</label>
                                         <input type="text" class="form-control" name="vendor_invoice_amount[]">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Sales Tax Amount<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Sales tax charged by Vendor</label>
                                         <input type="text" class="form-control" name="vendor_sales_tax_amount[]">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Invoice Paid<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Invoice Paid</label>
                                         <select  class="form-control" name="vendor_invoice_paid[]">
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
@@ -390,7 +399,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Paid Via<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Paid Via</label>
                                         <select  class="form-control" name="vendor_paid_via[]">
                                         <?php $__currentLoopData = $masterList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $master): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <?php if($master->type == 'Payment Method'): ?>
@@ -402,7 +411,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Broker<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Shipping Agent</label>
                                         <select  class="form-control" name="broker[]">
                                         <?php $__currentLoopData = $masterList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $master): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <?php if($master->type == 'Broker'): ?>
@@ -414,7 +423,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Carrier<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Carrier</label>
                                         <select  class="form-control" name="carrier[]">
                                         <?php $__currentLoopData = $masterList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $master): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <?php if($master->type == 'Carrier'): ?>
@@ -424,47 +433,41 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">BOL Number<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">BOL Number</label>
                                         <input type="text" class="form-control" name="bol_number[]">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Pick-up ZIP Code<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Pick-up ZIP Code</label>
                                         <input type="text" class="form-control" name="pick_up_zip_code[]">
                                         
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Delevery ZIP Code<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Delevery ZIP Code</label>
                                         <input type="text" class="form-control" name="delevery_zip_code[]">
                                         
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Total Weight<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Total Weight</label>
                                         <input type="text" class="form-control" name="total_weight[]">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-1">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Shipment<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" name="shipment[]">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Shipping Cost<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Shipping Cost</label>
                                         <input type="text" class="form-control" name="shipping_cost[]">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Shipping Paid<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Shipping Paid</label>
                                         <select class="form-control" name="shipping_paid_cost[]">
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
@@ -473,7 +476,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Paid Via<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Paid Via</label>
                                         <select class="form-control" name="shipping_paid_via[]">
                                         <?php $__currentLoopData = $masterList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $master): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <?php if($master->type == 'Payment Method'): ?>
@@ -485,9 +488,21 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Tracking#/PRO#<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Tracking#/PRO#</label>
                                         <input type="text" class="form-control" name="tracking_number[]">
                                         <span style="color:red;" id="tracking_number_error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Pick-up Remarks</label>
+                                        <input type="text" class="form-control" name="shipment[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Delivery Remarks</label>
+                                        <input type="text" class="form-control" name="shipment[]">
                                     </div>
                                 </div>
                             </div> 
