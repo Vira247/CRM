@@ -119,14 +119,14 @@
                     
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">VAT Tax Amount<span style="color:red;">*</span></label>
+                            <label for="exampleInputEmail1">VAT Tax Amount</label>
                             <input type="text" class="form-control" id="vat_tax_amount" name="vat_tax_amount" value="<?php echo e($orderDetail->vat_tax_amount); ?>">
                             <span style="color:red;" id="vat_tax_amount_error"></span>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Comission/Other Charges<span style="color:red;">*</span></label>
+                            <label for="exampleInputEmail1">Comission/Other Charges</label>
                             <input type="text" class="form-control" id="comission_other_charges" name="comission_other_charges" value="<?php echo e($orderDetail->comission_other_charges); ?>">
                             <span style="color:red;" id="comission_other_charges_error"></span>
                         </div>
@@ -160,14 +160,14 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Phone Number<span style="color:red;">*</span></label>
+                            <label for="exampleInputEmail1">Phone Number</label>
                             <input type="text" class="form-control" id="phone_number" name="phone_number" value="<?php echo e($orderDetail->phone_number); ?>">
                             <span style="color:red;" id="phone_number_error"></span>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email<span style="color:red;">*</span></label>
+                            <label for="exampleInputEmail1">Email</label>
                             <input type="email" name="email" id="email" class="form-control" value="<?php echo e($orderDetail->email); ?>">
                             <span style="color:red;" id="email_error"></span>
                         </div>
@@ -184,7 +184,7 @@
 
         <div id="step4" class="card direct-chat direct-chat-primary col-md-12">
             <div class="card-header bg-blue">
-                <h3 class="card-title">Addresses</h3>
+                <h3 class="card-title">Customer Address</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                 </div>
@@ -201,7 +201,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Shipping Address Line 2<span style="color:red;">*</span></label>
+                            <label for="exampleInputEmail1">Shipping Address Line 2</label>
                             <input type="text" class="form-control" id="shipping_address_line_2" name="shipping_address_line_2" value="<?php echo e($orderDetail->shipping_address_line_2); ?>">
                             <span style="color:red;" id="shipping_address_line_2_error"></span>
                         </div>
@@ -234,7 +234,12 @@
                             <span style="color:red;" id="shipping_country_error"></span>
                         </div>
                     </div>
-
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Same as Shiiping Address</label>
+                            <input type="checkbox" id="same_as_shipping" name="same_as_shipping" value="Yes" onclick="same_as_shipping_action();">
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Billing Address Line 1<span style="color:red;">*</span></label>
@@ -968,6 +973,22 @@
 <?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <script src="<?php echo e(asset('plugins/select2/js/select2.full.min.js')); ?>"></script>
 <script>
+function same_as_shipping_action(){
+    $("#billing_address_line_1").val('');
+    $("#billing_address_line_2").val('');
+    $("#billing_city").val('');
+    $("#billing_state").val('');
+    $("#billing_zip_code").val('');
+    $("#billing_country").val('');
+    if($("#same_as_shipping").prop('checked') == true){
+        $("#billing_address_line_1").val($("#shipping_address_line_1").val());
+        $("#billing_address_line_2").val($("#shipping_address_line_2").val());
+        $("#billing_city").val($("#shipping_city").val());
+        $("#billing_state").val($("#shipping_state").val());
+        $("#billing_zip_code").val($("#shipping_zip_code").val());
+        $("#billing_country").val($("#shipping_country").val());
+    }
+}
 var itemcount = parseInt('<?php echo e($itemcount); ?>');
 function change_claim_against(){
     var claimtype = $("#claim_against").val();
@@ -1097,7 +1118,7 @@ function step1_validation(){
     }
 }
 function step2_validation(){
-    var validation_array = ["order_date", "order_id","order_status","order_amount","vat_tax_amount","comission_other_charges"];
+    var validation_array = ["order_date", "order_id","order_status","order_amount"];
 	var i = 0;
 	validation_array.forEach(function(validation_name) {
 		var validation_field= $('#'+validation_name).val();
@@ -1122,7 +1143,7 @@ function step2_validation(){
     }
 }
 function step3_validation(){
-    var validation_array = ["customer_name", "phone_number","email",];
+    var validation_array = ["customer_name"];
 	var i = 0;
 	validation_array.forEach(function(validation_name) {
 		var validation_field= $('#'+validation_name).val();

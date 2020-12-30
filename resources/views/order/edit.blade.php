@@ -118,14 +118,14 @@
                     
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">VAT Tax Amount<span style="color:red;">*</span></label>
+                            <label for="exampleInputEmail1">VAT Tax Amount</label>
                             <input type="text" class="form-control" id="vat_tax_amount" name="vat_tax_amount" value="{{$orderDetail->vat_tax_amount}}">
                             <span style="color:red;" id="vat_tax_amount_error"></span>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Comission/Other Charges<span style="color:red;">*</span></label>
+                            <label for="exampleInputEmail1">Comission/Other Charges</label>
                             <input type="text" class="form-control" id="comission_other_charges" name="comission_other_charges" value="{{$orderDetail->comission_other_charges}}">
                             <span style="color:red;" id="comission_other_charges_error"></span>
                         </div>
@@ -159,14 +159,14 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Phone Number<span style="color:red;">*</span></label>
+                            <label for="exampleInputEmail1">Phone Number</label>
                             <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{$orderDetail->phone_number}}">
                             <span style="color:red;" id="phone_number_error"></span>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email<span style="color:red;">*</span></label>
+                            <label for="exampleInputEmail1">Email</label>
                             <input type="email" name="email" id="email" class="form-control" value="{{$orderDetail->email}}">
                             <span style="color:red;" id="email_error"></span>
                         </div>
@@ -183,7 +183,7 @@
 
         <div id="step4" class="card direct-chat direct-chat-primary col-md-12">
             <div class="card-header bg-blue">
-                <h3 class="card-title">Addresses</h3>
+                <h3 class="card-title">Customer Address</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                 </div>
@@ -200,7 +200,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Shipping Address Line 2<span style="color:red;">*</span></label>
+                            <label for="exampleInputEmail1">Shipping Address Line 2</label>
                             <input type="text" class="form-control" id="shipping_address_line_2" name="shipping_address_line_2" value="{{$orderDetail->shipping_address_line_2}}">
                             <span style="color:red;" id="shipping_address_line_2_error"></span>
                         </div>
@@ -233,7 +233,12 @@
                             <span style="color:red;" id="shipping_country_error"></span>
                         </div>
                     </div>
-
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Same as Shiiping Address</label>
+                            <input type="checkbox" id="same_as_shipping" name="same_as_shipping" value="Yes" onclick="same_as_shipping_action();">
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Billing Address Line 1<span style="color:red;">*</span></label>
@@ -311,7 +316,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Transaction ID<span style="color:red;">*</span></label>
+                            <label for="exampleInputEmail1">Transaction ID</label>
                             <input type="text" class="form-control" id="transaction_id" name="transaction_id" value="{{$orderDetail->transaction_id}}">
                             <span style="color:red;" id="transaction_id_error"></span>
                         </div>
@@ -329,7 +334,7 @@
 
         <div id="step6" class="card direct-chat direct-chat-primary col-md-12">
             <div class="card-header bg-blue">
-                <h3 class="card-title">Shipping Details</h3>
+                <h3 class="card-title">Vendor & Shipping Details</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                 </div>
@@ -370,7 +375,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Invoice Number<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Invoice Number</label>
                                         <input type="text" class="form-control" name="invoice_number[]" value="{{$vendors->invoice_number}}">
                                     </div>
                                 </div>
@@ -383,19 +388,19 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Vendor Invoice Amount<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Vendor Invoice Amount</label>
                                         <input type="text" class="form-control" name="vendor_invoice_amount[]" value="{{$vendors->vendor_invoice_amount}}">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Sales tax charged by Vendor<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Sales tax charged by Vendor</label>
                                         <input type="text" class="form-control" name="vendor_sales_tax_amount[]" value="{{$vendors->vendor_sales_tax_amount}}">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Invoice Paid<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Invoice Paid</label>
                                         <select  class="form-control" name="vendor_invoice_paid[]" value="{{$vendors->vendor_invoice_paid}}">
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
@@ -404,7 +409,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Paid Via<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Paid Via</label>
                                         <select  class="form-control" name="vendor_paid_via[]">
                                         @foreach ($masterList as $master)
                                             @if($master->type == 'Payment Method')
@@ -416,7 +421,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Shipping Agent<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Shipping Agent</label>
                                         <select  class="form-control" name="broker[]">
                                         @foreach ($masterList as $master)
                                             @if($master->type == 'Broker')
@@ -428,7 +433,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Carrier<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Carrier</label>
                                         <select  class="form-control" name="carrier[]">
                                         @foreach ($masterList as $master)
                                             @if($master->type == 'Carrier')
@@ -440,20 +445,20 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">BOL Number<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">BOL Number</label>
                                         <input type="text" class="form-control" name="bol_number[]" value="{{$vendors->bol_number}}">
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Pick-up ZIP Code<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Pick-up ZIP Code</label>
                                         <input type="text" class="form-control" name="pick_up_zip_code[]" value="{{$vendors->pick_up_zip_code}}">
                                         
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Delevery ZIP Code<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Delevery ZIP Code</label>
                                         <input type="text" class="form-control" name="delevery_zip_code[]" value="{{$vendors->delevery_zip_code}}">
                                         
                                     </div>
@@ -467,21 +472,21 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Total Weight<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Total Weight</label>
                                         <input type="text" class="form-control" name="total_weight[]" value="{{$vendors->total_weight}}">
                                         
                                     </div>
                                 </div>
                                 <div class="col-md-1">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Shipping Cost<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Shipping Cost</label>
                                         <input type="text" class="form-control" name="shipping_cost[]" value="{{$vendors->shipping_cost}}">
                                         
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Shipping Paid<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Shipping Paid</label>
                                         <select class="form-control" name="shipping_paid_cost[]">
                                         <option value="Yes" <?php if("Yes" == $vendors->shipping_paid_cost){ echo "selected"; }?>>Yes</option>
                                         <option value="No" <?php if("No" == $vendors->shipping_paid_cost){ echo "selected"; }?>>No</option>
@@ -491,7 +496,7 @@
                                 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Paid Via<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Paid Via</label>
                                         <select class="form-control" name="shipping_paid_via[]">
                                         @foreach ($masterList as $master)
                                             @if($master->type == 'Payment Method')
@@ -503,14 +508,14 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Tracking#/PRO#<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Tracking#/PRO#</label>
                                         <input type="text" class="form-control" name="tracking_number[]" value="{{$vendors->tracking_number}}">
                                         <span style="color:red;" id="tracking_number_error"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Pick-up Remarks<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Pick-up Remarks</label>
                                         <input type="text" class="form-control" name="shipment[]" value="{{$vendors->shipment}}">
                                         
                                     </div>
@@ -758,8 +763,10 @@
                                 <label for="exampleInputEmail1">Claim status<span style="color:red;">*</span></label>
                                 <select class="form-control" id="claim_status" name="claim_status">
                                     <option value="">Select</option>
-                                    <option value="Yes" @if("Yes" == $orderDetail->claim_status) selected @endif >Yes</option>
-                                    <option value="No"  @if("Yes" == $orderDetail->claim_status) selected @endif >No</option>
+                                    <option value="Lodged" @if("Lodged" == $orderDetail->claim_status) selected @endif >Lodged</option>
+                                    <option value="Processing"  @if("Processing" == $orderDetail->claim_status) selected @endif >Processing</option>
+                                    <option value="Completed"  @if("Completed" == $orderDetail->claim_status) selected @endif >Completed</option>
+                                    
                                 </select>
                             </div>
                         </div>
@@ -967,6 +974,22 @@
 @include('layouts.footer')
 <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <script>
+function same_as_shipping_action(){
+    $("#billing_address_line_1").val('');
+    $("#billing_address_line_2").val('');
+    $("#billing_city").val('');
+    $("#billing_state").val('');
+    $("#billing_zip_code").val('');
+    $("#billing_country").val('');
+    if($("#same_as_shipping").prop('checked') == true){
+        $("#billing_address_line_1").val($("#shipping_address_line_1").val());
+        $("#billing_address_line_2").val($("#shipping_address_line_2").val());
+        $("#billing_city").val($("#shipping_city").val());
+        $("#billing_state").val($("#shipping_state").val());
+        $("#billing_zip_code").val($("#shipping_zip_code").val());
+        $("#billing_country").val($("#shipping_country").val());
+    }
+}
 var itemcount = parseInt('{{$itemcount}}');
 function change_claim_against(){
     var claimtype = $("#claim_against").val();
@@ -1096,7 +1119,7 @@ function step1_validation(){
     }
 }
 function step2_validation(){
-    var validation_array = ["order_date", "order_id","order_status","order_amount","vat_tax_amount","comission_other_charges"];
+    var validation_array = ["order_date", "order_id","order_status","order_amount"];
 	var i = 0;
 	validation_array.forEach(function(validation_name) {
 		var validation_field= $('#'+validation_name).val();
@@ -1121,7 +1144,7 @@ function step2_validation(){
     }
 }
 function step3_validation(){
-    var validation_array = ["customer_name", "phone_number","email",];
+    var validation_array = ["customer_name"];
 	var i = 0;
 	validation_array.forEach(function(validation_name) {
 		var validation_field= $('#'+validation_name).val();
@@ -1172,7 +1195,7 @@ function step4_validation(){
     }
 }
 function step5_validation(){
-    var validation_array = ["payment_method","transaction_id"];
+    var validation_array = ["payment_method"];
 	var i = 0;
 	validation_array.forEach(function(validation_name) {
 		var validation_field= $('#'+validation_name).val();

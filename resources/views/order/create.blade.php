@@ -725,8 +725,9 @@
                                 <label for="exampleInputEmail1">Claim status<span style="color:red;">*</span></label>
                                 <select class="form-control" id="claim_status" name="claim_status">
                                     <option value="">Select</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
+                                    <option value="Lodged">Lodged</option>
+                                    <option value="Processing">Processing</option>
+                                    <option value="Completed">Completed</option>
                                 </select>
                             </div>
                         </div>
