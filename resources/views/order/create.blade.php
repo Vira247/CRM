@@ -409,7 +409,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Shipping Agent</label>
                                         <select  class="form-control" name="broker[]">
@@ -421,7 +421,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Carrier</label>
                                         <select  class="form-control" name="carrier[]">
@@ -450,6 +450,13 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Delevery ZIP Code</label>
                                         <input type="text" class="form-control" name="delevery_zip_code[]">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Travelling Distance (Miles):</label>
+                                        <input type="text" class="form-control" name="distance[]">
                                         
                                     </div>
                                 </div>
@@ -502,7 +509,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Delivery Remarks</label>
-                                        <input type="text" class="form-control" name="shipment[]">
+                                        <input type="text" class="form-control" name="delivery_remark[]">
                                     </div>
                                 </div>
                             </div> 

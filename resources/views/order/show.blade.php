@@ -389,7 +389,7 @@
 						  <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Vendor</label>
 							<div class="col-sm-10">
-                            {{$vendorList[$orderDetail->vendor_claim]}}
+                            @if(isset($vendorList[$orderDetail->vendor_claim])) {{$vendorList[$orderDetail->vendor_claim]}} @endif
 							</div>
 						  </div>
 						  @endif

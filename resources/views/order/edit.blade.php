@@ -340,7 +340,7 @@
                     <div class="vendordiv{{$cnt}}">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Replacement<span style="color:red;">*</span></label>
                                         <select  class="form-control " name="vendor_replacement[]">
@@ -349,7 +349,16 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Delivery Type<span style="color:red;">*</span></label>
+                                        <select  class="form-control " name="vendor_replacement[]">
+                                        <option value="Residential with Liftgate/Delivery Appt" <?php if("Residential with Liftgate/Delivery Appt"==$vendors->delivery_remark){ echo "selected"; }?>  >Residential with Liftgate/Delivery Appt</option>
+                                        <option value="Commercial"  <?php if("Commercial"==$vendors->delivery_remark){ echo "selected"; }?> >Commercial</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Vendor<span style="color:red;">*</span></label>
                                         <select  class="form-control " name="vendor[]">
@@ -380,7 +389,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Sales Tax Amount<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Sales tax charged by Vendor<span style="color:red;">*</span></label>
                                         <input type="text" class="form-control" name="vendor_sales_tax_amount[]" value="{{$vendors->vendor_sales_tax_amount}}">
                                     </div>
                                 </div>
@@ -405,9 +414,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Broker<span style="color:red;">*</span></label>
+                                        <label for="exampleInputEmail1">Shipping Agent<span style="color:red;">*</span></label>
                                         <select  class="form-control" name="broker[]">
                                         @foreach ($masterList as $master)
                                             @if($master->type == 'Broker')
@@ -417,7 +426,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Carrier<span style="color:red;">*</span></label>
                                         <select  class="form-control" name="carrier[]">
@@ -429,41 +438,41 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">BOL Number<span style="color:red;">*</span></label>
                                         <input type="text" class="form-control" name="bol_number[]" value="{{$vendors->bol_number}}">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Pick-up ZIP Code<span style="color:red;">*</span></label>
                                         <input type="text" class="form-control" name="pick_up_zip_code[]" value="{{$vendors->pick_up_zip_code}}">
                                         
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Delevery ZIP Code<span style="color:red;">*</span></label>
                                         <input type="text" class="form-control" name="delevery_zip_code[]" value="{{$vendors->delevery_zip_code}}">
                                         
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Travelling Distance (Miles):</label>
+                                        <input type="text" class="form-control" name="distance[]" value="{{$vendors->distance}}">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Total Weight<span style="color:red;">*</span></label>
                                         <input type="text" class="form-control" name="total_weight[]" value="{{$vendors->total_weight}}">
                                         
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Shipment<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" name="shipment[]" value="{{$vendors->shipment}}">
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
+                                <div class="col-md-1">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Shipping Cost<span style="color:red;">*</span></label>
                                         <input type="text" class="form-control" name="shipping_cost[]" value="{{$vendors->shipping_cost}}">
@@ -499,6 +508,19 @@
                                         <span style="color:red;" id="tracking_number_error"></span>
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Pick-up Remarks<span style="color:red;">*</span></label>
+                                        <input type="text" class="form-control" name="shipment[]" value="{{$vendors->shipment}}">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Delivery Remarks</label>
+                                        <input type="text" class="form-control" name="delivery_remark[]" value="{{$vendors->delivery_remark}}">
+                                    </div>
+                                </div>
                             </div> 
                         </div>
                     </div>
@@ -507,15 +529,14 @@
                             <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="removemorevendor({{$cnt}});">Remove <i class="fa fa-pluse" aria-hidden="true"></i></button>
                         </div>
                     <?php } ?>
-                    <?php $cnt++; } ?>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                    <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="return step6_validation();">Next <i class="fa fa-forward" aria-hidden="true"></i></button>
-                    <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="addmorevendor();">Add more <i class="fa fa-pluse" aria-hidden="true"></i></button>
-                </div>
-                <!-- /.card-footer-->
+                <?php $cnt++; } ?>
             </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="return step6_validation();">Next <i class="fa fa-forward" aria-hidden="true"></i></button>
+                <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="addmorevendor();">Add more <i class="fa fa-pluse" aria-hidden="true"></i></button>
+            </div>
+                <!-- /.card-footer-->
         </div>
 
             <div id="step7" class="card direct-chat direct-chat-primary col-md-12">
@@ -764,167 +785,184 @@
 
 </div>
         <div class="card-body" id="vendordiv" style="display:none;">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Replacement<span style="color:red;">*</span></label>
-                        <select  class="form-control " name="vendor_replacement[]">
-                        <option value="No">No</option>
-                        <option value="Yes">Yes</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Vendor<span style="color:red;">*</span></label>
-                        <select  class="form-control " name="vendor[]">
-                        @foreach ($vendorList as $vendor)
-                            <option value="{{$vendor->id}}">{{$vendor->name}}</option>
-                        @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Invoice Number<span style="color:red;">*</span></label>
-                        <input type="text" class="form-control" name="invoice_number[]">
-                    </div>
-                </div>
-                
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Sales/Pick-up Reference<span style="color:red;">*</span></label>
-                        <input type="text" class="form-control" name="vendor_pick_up_reference[]">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Vendor Invoice Amount<span style="color:red;">*</span></label>
-                        <input type="text" class="form-control" name="vendor_invoice_amount[]">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Sales Tax Amount<span style="color:red;">*</span></label>
-                        <input type="text" class="form-control" name="vendor_sales_tax_amount[]">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Invoice Paid<span style="color:red;">*</span></label>
-                        <select  class="form-control" name="vendor_invoice_paid[]">
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Paid Via<span style="color:red;">*</span></label>
-                        <select  class="form-control" name="vendor_paid_via[]">
-                        @foreach ($masterList as $master)
-                            @if($master->type == 'Payment Method')
-                            <option value="{{$master->id}}">{{$master->value}}</option>
-                            @endif
-                        @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Broker<span style="color:red;">*</span></label>
-                        <select  class="form-control" name="broker[]">
-                        @foreach ($masterList as $master)
-                            @if($master->type == 'Broker')
-                            <option value="{{$master->id}}">{{$master->value}}</option>
-                            @endif
-                        @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Carrier<span style="color:red;">*</span></label>
-                        <select  class="form-control" name="carrier[]">
-                        @foreach ($masterList as $master)
-                            @if($master->type == 'Carrier')
-                            <option value="{{$master->id}}">{{$master->value}}</option>
-                            @endif
-                        @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">BOL Number<span style="color:red;">*</span></label>
-                        <input type="text" class="form-control" name="bol_number[]">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Pick-up ZIP Code<span style="color:red;">*</span></label>
-                        <input type="text" class="form-control" name="pick_up_zip_code[]">
-                        
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Delevery ZIP Code<span style="color:red;">*</span></label>
-                        <input type="text" class="form-control" name="delevery_zip_code[]">
-                        
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Total Weight<span style="color:red;">*</span></label>
-                        <input type="text" class="form-control" name="total_weight[]">
-                        
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Shipment<span style="color:red;">*</span></label>
-                        <input type="text" class="form-control" name="shipment[]">
-                        
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Shipping Cost<span style="color:red;">*</span></label>
-                        <input type="text" class="form-control" name="shipping_cost[]">
-                        
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Shipping Paid<span style="color:red;">*</span></label>
-                        <select class="form-control" name="shipping_paid_cost[]">
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Paid Via<span style="color:red;">*</span></label>
-                        <select class="form-control" name="shipping_paid_via[]">
-                        @foreach ($masterList as $master)
-                            @if($master->type == 'Payment Method')
-                            <option value="{{$master->id}}">{{$master->value}}</option>
-                            @endif
-                        @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Tracking#/PRO#<span style="color:red;">*</span></label>
-                        <input type="text" class="form-control" name="tracking_number[]">
-                        <span style="color:red;" id="tracking_number_error"></span>
-                    </div>
-                </div>
-            </div> 
+        <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Replacement<span style="color:red;">*</span></label>
+                                        <select  class="form-control " name="vendor_replacement[]">
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Delivery Type<span style="color:red;">*</span></label>
+                                        <select  class="form-control " name="vendor_replacement[]">
+                                        <option value="Residential with Liftgate/Delivery Appt">Residential with Liftgate/Delivery Appt</option>
+                                        <option value="Commercial">Commercial</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Vendor<span style="color:red;">*</span></label>
+                                        <select  class="form-control " name="vendor[]">
+                                        @foreach ($vendorList as $vendor)
+                                            <option value="{{$vendor->id}}">{{$vendor->name}}</option>
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Invoice Number</label>
+                                        <input type="text" class="form-control" name="invoice_number[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Sales/Pick-up Reference<span style="color:red;">*</span></label>
+                                        <input type="text" class="form-control" name="vendor_pick_up_reference[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Vendor Invoice Amount</label>
+                                        <input type="text" class="form-control" name="vendor_invoice_amount[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Sales tax charged by Vendor</label>
+                                        <input type="text" class="form-control" name="vendor_sales_tax_amount[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Invoice Paid</label>
+                                        <select  class="form-control" name="vendor_invoice_paid[]">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Paid Via</label>
+                                        <select  class="form-control" name="vendor_paid_via[]">
+                                        @foreach ($masterList as $master)
+                                            @if($master->type == 'Payment Method')
+                                            <option value="{{$master->id}}">{{$master->value}}</option>
+                                            @endif
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Shipping Agent</label>
+                                        <select  class="form-control" name="broker[]">
+                                        @foreach ($masterList as $master)
+                                            @if($master->type == 'Broker')
+                                            <option value="{{$master->id}}">{{$master->value}}</option>
+                                            @endif
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Carrier</label>
+                                        <select  class="form-control" name="carrier[]">
+                                        @foreach ($masterList as $master)
+                                            @if($master->type == 'Carrier')
+                                            <option value="{{$master->id}}">{{$master->value}}</option>
+                                            @endif
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">BOL Number</label>
+                                        <input type="text" class="form-control" name="bol_number[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Pick-up ZIP Code</label>
+                                        <input type="text" class="form-control" name="pick_up_zip_code[]">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Delevery ZIP Code</label>
+                                        <input type="text" class="form-control" name="delevery_zip_code[]">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Travelling Distance (Miles):</label>
+                                        <input type="text" class="form-control" name="distance[]">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Total Weight</label>
+                                        <input type="text" class="form-control" name="total_weight[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Shipping Cost</label>
+                                        <input type="text" class="form-control" name="shipping_cost[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Shipping Paid</label>
+                                        <select class="form-control" name="shipping_paid_cost[]">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Paid Via</label>
+                                        <select class="form-control" name="shipping_paid_via[]">
+                                        @foreach ($masterList as $master)
+                                            @if($master->type == 'Payment Method')
+                                            <option value="{{$master->id}}">{{$master->value}}</option>
+                                            @endif
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Tracking#/PRO#</label>
+                                        <input type="text" class="form-control" name="tracking_number[]">
+                                        <span style="color:red;" id="tracking_number_error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Pick-up Remarks</label>
+                                        <input type="text" class="form-control" name="shipment[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Delivery Remarks</label>
+                                        <input type="text" class="form-control" name="delivery_remark[]">
+                                    </div>
+                                </div>
+                            </div> 
         </div>
 @include('layouts.footer')
 <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>

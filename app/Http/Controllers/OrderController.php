@@ -73,7 +73,8 @@ class OrderController extends Controller{
         $trackingNumberList = $request->input('tracking_number');
         $vendor_replacement = $request->input('vendor_replacement');
         $itemunit = $request->input('itemunit');
-        
+        $distance = $request->input('distance');
+        $delivery_remark = $request->input('delivery_remark');
 		$user_data = auth()->user();
         //$insert_array = $request->all();
         $insert_array = array("site"=>$request->input('site'),
@@ -130,10 +131,12 @@ class OrderController extends Controller{
                     "delevery_zip_code"=>$deleveryZipCodeList[$cnt],
                     "total_weight"=>$totalWeightList[$cnt],
                     "shipment"=>$shipmentList[$cnt],
+                    "delivery_remark"=>$delivery_remark[$cnt],
                     "shipping_cost"=>$shippingCostList[$cnt],
                     "shipping_paid_cost"=>$shippingPaidCostList[$cnt],
                     "shipping_paid_via"=>$shippingPaidViaList[$cnt],
                     "tracking_number"=>$trackingNumberList[$cnt],
+                    "distance"=>$distance[$cnt],
                 );
                 $cnt++;
                 OrderVendorDetailHelper::insert($inserArray);
@@ -245,8 +248,11 @@ class OrderController extends Controller{
         $shippingPaidCostList = $request->input('shipping_paid_cost');
         $shippingPaidViaList = $request->input('shipping_paid_via');
         $trackingNumberList = $request->input('tracking_number');
+        $distance = $request->input('distance');
+        //echo "<pre>"; print_r($distance); die;
         $vendor_replacement = $request->input('vendor_replacement');
         $itemunit = $request->input('itemunit');
+        $delivery_remark = $request->input('delivery_remark');
 		$user_data = auth()->user();
         //$insert_array = $request->all();
         $update_array = array("site"=>$request->input('site'),
@@ -305,10 +311,12 @@ class OrderController extends Controller{
                     "delevery_zip_code"=>$deleveryZipCodeList[$cnt],
                     "total_weight"=>$totalWeightList[$cnt],
                     "shipment"=>$shipmentList[$cnt],
+                    "delivery_remark"=>$delivery_remark[$cnt],
                     "shipping_cost"=>$shippingCostList[$cnt],
                     "shipping_paid_cost"=>$shippingPaidCostList[$cnt],
                     "shipping_paid_via"=>$shippingPaidViaList[$cnt],
                     "tracking_number"=>$trackingNumberList[$cnt],
+                    "distance"=>$distance[$cnt],
                 );
                 $cnt++;
                 OrderVendorDetailHelper::insert($inserArray);
