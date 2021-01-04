@@ -72,459 +72,6 @@
             </div>
             <div id="step2" class="card direct-chat direct-chat-primary col-md-12">
                 <div class="card-header bg-blue">
-                    <h3 class="card-title">Order Details</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                    </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Order Date<span style="color:red;">*</span></label>
-                                <input type="date" class="form-control" id="order_date" name="order_date">
-                                <span style="color:red;" id="order_date_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Order ID<span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="order_id" name="order_id">
-                                <span style="color:red;" id="order_id_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Order Status<span style="color:red;">*</span></label>
-                                <select  class="form-control " id="order_status" name="order_status">
-                                @foreach ($masterList as $master)
-                                    @if($master->type == 'Order Status')
-                                    <option value="{{$master->id}}">{{$master->value}}</option>
-                                    @endif
-                                @endforeach
-                                </select>
-                                <span style="color:red;" id="order_status_error"></span>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Order Amount<span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="order_amount" name="order_amount">
-                                <span style="color:red;" id="order_amount_error"></span>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Sales tax charged to Customer</label>
-                                <input type="text" class="form-control" id="vat_tax_amount" name="vat_tax_amount">
-                                <span style="color:red;" id="vat_tax_amount_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Comission/Other Charges</label>
-                                <input type="text" class="form-control" id="comission_other_charges" name="comission_other_charges">
-                                <span style="color:red;" id="comission_other_charges_error"></span>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                    <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="return step2_validation();">Next <i class="fa fa-forward" aria-hidden="true"></i></button>
-                </div>
-                <!-- /.card-footer-->
-            </div>
-            <div id="step3" class="card direct-chat direct-chat-primary col-md-12">
-                <div class="card-header bg-blue">
-                    <h3 class="card-title">Customer Details</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                    </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Customer Name<span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="customer_name" name="customer_name">
-                                <span style="color:red;" id="customer_name_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Phone Number</label>
-                                <input type="text" class="form-control" id="phone_number" name="phone_number">
-                                <span style="color:red;" id="phone_number_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" name="email" id="email" class="form-control">
-                                <span style="color:red;" id="email_error"></span>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                    <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="return step3_validation();">Next <i class="fa fa-forward" aria-hidden="true"></i></button>
-                </div>
-                <!-- /.card-footer-->
-            </div>
-            <div id="step4" class="card direct-chat direct-chat-primary col-md-12">
-                <div class="card-header bg-blue">
-                    <h3 class="card-title">Customer Address</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                    </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Shipping Address Line 1<span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="shipping_address_line_1" name="shipping_address_line_1">
-                                <span style="color:red;" id="shipping_address_line_1_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Shipping Address Line 2</label>
-                                <input type="text" class="form-control" id="shipping_address_line_2" name="shipping_address_line_2">
-                                <span style="color:red;" id="shipping_address_line_2_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">City<span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="shipping_city" name="shipping_city">
-                                <span style="color:red;" id="shipping_city_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">State<span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="shipping_state" name="shipping_state">
-                                <span style="color:red;" id="shipping_state_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Zip code<span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="shipping_zip_code" name="shipping_zip_code">
-                                <span style="color:red;" id="shipping_zip_code_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Country<span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="shipping_country" name="shipping_country">
-                                <span style="color:red;" id="shipping_country_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Same as Shiiping Address</label>
-                                <input type="checkbox" id="same_as_shipping" name="same_as_shipping" value="Yes" onclick="same_as_shipping_action();">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Billing Address Line 1<span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="billing_address_line_1" name="billing_address_line_1">
-                                <span style="color:red;" id="billing_address_line_1_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Billing Address Line 2</label>
-                                <input type="text" class="form-control" id="billing_address_line_2" name="billing_address_line_2">
-                                <span style="color:red;" id="billing_address_line_2_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">City<span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="billing_city" name="billing_city">
-                                <span style="color:red;" id="billing_city_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">State<span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="billing_state" name="billing_state">
-                                <span style="color:red;" id="billing_state_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Zip code<span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="billing_zip_code" name="billing_zip_code">
-                                <span style="color:red;" id="billing_zip_code_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Country<span style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="billing_country" name="billing_country">
-                                <span style="color:red;" id="billing_country_error"></span>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                    <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="return step4_validation();">Next <i class="fa fa-forward" aria-hidden="true"></i></button>
-                </div>
-                <!-- /.card-footer-->
-            </div>
-            <div id="step5" class="card direct-chat direct-chat-primary col-md-12">
-                <div class="card-header bg-blue">
-                    <h3 class="card-title">Payment Info</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                    </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Payment Method<span style="color:red;">*</span></label>
-                                <select  class="form-control " id="payment_method" name="payment_method">
-                                @foreach ($masterList as $master)
-                                    @if($master->type == 'Payment Method')
-                                    <option value="{{$master->id}}">{{$master->value}}</option>
-                                    @endif
-                                @endforeach
-                                </select>
-                                <span style="color:red;" id="payment_method_error"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Transaction ID</label>
-                                <input type="text" class="form-control" id="transaction_id" name="transaction_id">
-                                <span style="color:red;" id="transaction_id_error"></span>
-                            </div>
-                        </div>
-                        
-                    </div> 
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                    <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="return step5_validation();">Next <i class="fa fa-forward" aria-hidden="true"></i></button>
-                </div>
-                <!-- /.card-footer-->
-            </div>
-            <div id="step6" class="card direct-chat direct-chat-primary col-md-12">
-                <div class="card-header bg-blue">
-                    <h3 class="card-title">Vendor & Shipping Details</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                    </div>
-                </div>
-                <!-- /.card-header -->
-                <div id="vendordivlist">
-                    <div class="vendordiv0">
-                        <div class="card-body" id="vendordiv">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Replacement<span style="color:red;">*</span></label>
-                                        <select  class="form-control " name="vendor_replacement[]">
-                                        <option value="No">No</option>
-                                        <option value="Yes">Yes</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Delivery Type<span style="color:red;">*</span></label>
-                                        <select  class="form-control " name="vendor_replacement[]">
-                                        <option value="Residential with Liftgate/Delivery Appt">Residential with Liftgate/Delivery Appt</option>
-                                        <option value="Commercial">Commercial</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Vendor<span style="color:red;">*</span></label>
-                                        <select  class="form-control " name="vendor[]">
-                                        @foreach ($vendorList as $vendor)
-                                            <option value="{{$vendor->id}}">{{$vendor->name}}</option>
-                                        @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Invoice Number</label>
-                                        <input type="text" class="form-control" name="invoice_number[]">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Sales/Pick-up Reference<span style="color:red;">*</span></label>
-                                        <input type="text" class="form-control" name="vendor_pick_up_reference[]">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Vendor Invoice Amount</label>
-                                        <input type="text" class="form-control" name="vendor_invoice_amount[]">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Sales tax charged by Vendor</label>
-                                        <input type="text" class="form-control" name="vendor_sales_tax_amount[]">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Invoice Paid</label>
-                                        <select  class="form-control" name="vendor_invoice_paid[]">
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Paid Via</label>
-                                        <select  class="form-control" name="vendor_paid_via[]">
-                                        @foreach ($masterList as $master)
-                                            @if($master->type == 'Payment Method')
-                                            <option value="{{$master->id}}">{{$master->value}}</option>
-                                            @endif
-                                        @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Shipping Agent</label>
-                                        <select  class="form-control" name="broker[]">
-                                        @foreach ($masterList as $master)
-                                            @if($master->type == 'Broker')
-                                            <option value="{{$master->id}}">{{$master->value}}</option>
-                                            @endif
-                                        @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Carrier</label>
-                                        <select  class="form-control" name="carrier[]">
-                                        @foreach ($masterList as $master)
-                                            @if($master->type == 'Carrier')
-                                            <option value="{{$master->id}}">{{$master->value}}</option>
-                                            @endif
-                                        @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">BOL Number</label>
-                                        <input type="text" class="form-control" name="bol_number[]">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Pick-up ZIP Code</label>
-                                        <input type="text" class="form-control" name="pick_up_zip_code[]">
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Delevery ZIP Code</label>
-                                        <input type="text" class="form-control" name="delevery_zip_code[]">
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Travelling Distance (Miles):</label>
-                                        <input type="text" class="form-control" name="distance[]">
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Total Weight</label>
-                                        <input type="text" class="form-control" name="total_weight[]">
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Shipping Cost</label>
-                                        <input type="text" class="form-control" name="shipping_cost[]">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Shipping Paid</label>
-                                        <select class="form-control" name="shipping_paid_cost[]">
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Paid Via</label>
-                                        <select class="form-control" name="shipping_paid_via[]">
-                                        @foreach ($masterList as $master)
-                                            @if($master->type == 'Payment Method')
-                                            <option value="{{$master->id}}">{{$master->value}}</option>
-                                            @endif
-                                        @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Tracking#/PRO#</label>
-                                        <input type="text" class="form-control" name="tracking_number[]">
-                                        <span style="color:red;" id="tracking_number_error"></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Pick-up Remarks</label>
-                                        <input type="text" class="form-control" name="shipment[]">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Delivery Remarks</label>
-                                        <input type="text" class="form-control" name="delivery_remark[]">
-                                    </div>
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                    <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="return step6_validation();">Next <i class="fa fa-forward" aria-hidden="true"></i></button>
-                    <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="addmorevendor();">Add more <i class="fa fa-pluse" aria-hidden="true"></i></button>
-                </div>
-                <!-- /.card-footer-->
-            </div>
-            <div id="step7" class="card direct-chat direct-chat-primary col-md-12">
-                <div class="card-header bg-blue">
                     <h3 class="card-title">Order Item</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -631,7 +178,468 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
+                    <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="return step2_validation();">Next <i class="fa fa-forward" aria-hidden="true"></i></button>
+                </div>
+                <!-- /.card-footer-->
+            </div>
+            <div id="step3" class="card direct-chat direct-chat-primary col-md-12">
+                <div class="card-header bg-blue">
+                    <h3 class="card-title">Order Details</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Order Date<span style="color:red;">*</span></label>
+                                <input type="date" class="form-control" id="order_date" name="order_date">
+                                <span style="color:red;" id="order_date_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Order ID<span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" id="order_id" name="order_id">
+                                <span style="color:red;" id="order_id_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Order Status<span style="color:red;">*</span></label>
+                                <select  class="form-control " id="order_status" name="order_status">
+                                @foreach ($masterList as $master)
+                                    @if($master->type == 'Order Status')
+                                    <option value="{{$master->id}}">{{$master->value}}</option>
+                                    @endif
+                                @endforeach
+                                </select>
+                                <span style="color:red;" id="order_status_error"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Order Amount<span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" id="order_amount" name="order_amount">
+                                <span style="color:red;" id="order_amount_error"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Sales tax charged to Customer</label>
+                                <input type="text" class="form-control" id="vat_tax_amount" name="vat_tax_amount">
+                                <span style="color:red;" id="vat_tax_amount_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Comission/Other Charges</label>
+                                <input type="text" class="form-control" id="comission_other_charges" name="comission_other_charges">
+                                <span style="color:red;" id="comission_other_charges_error"></span>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="return step3_validation();">Next <i class="fa fa-forward" aria-hidden="true"></i></button>
+                </div>
+                <!-- /.card-footer-->
+            </div>
+            <div id="step4" class="card direct-chat direct-chat-primary col-md-12">
+                <div class="card-header bg-blue">
+                    <h3 class="card-title">Customer Details</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Customer Name<span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" id="customer_name" name="customer_name">
+                                <span style="color:red;" id="customer_name_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Phone Number</label>
+                                <input type="text" class="form-control" id="phone_number" name="phone_number">
+                                <span style="color:red;" id="phone_number_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="email" name="email" id="email" class="form-control">
+                                <span style="color:red;" id="email_error"></span>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="return step4_validation();">Next <i class="fa fa-forward" aria-hidden="true"></i></button>
+                </div>
+                <!-- /.card-footer-->
+            </div>
+            <div id="step5" class="card direct-chat direct-chat-primary col-md-12">
+                <div class="card-header bg-blue">
+                    <h3 class="card-title">Customer Address</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Shipping Address Line 1<span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" id="shipping_address_line_1" name="shipping_address_line_1">
+                                <span style="color:red;" id="shipping_address_line_1_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Shipping Address Line 2</label>
+                                <input type="text" class="form-control" id="shipping_address_line_2" name="shipping_address_line_2">
+                                <span style="color:red;" id="shipping_address_line_2_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">City<span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" id="shipping_city" name="shipping_city">
+                                <span style="color:red;" id="shipping_city_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">State<span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" id="shipping_state" name="shipping_state">
+                                <span style="color:red;" id="shipping_state_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Zip code<span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" id="shipping_zip_code" name="shipping_zip_code">
+                                <span style="color:red;" id="shipping_zip_code_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Country<span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" id="shipping_country" name="shipping_country">
+                                <span style="color:red;" id="shipping_country_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Same as Shiiping Address</label>
+                                <input type="checkbox" id="same_as_shipping" name="same_as_shipping" value="Yes" onclick="same_as_shipping_action();">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Billing Address Line 1<span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" id="billing_address_line_1" name="billing_address_line_1">
+                                <span style="color:red;" id="billing_address_line_1_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Billing Address Line 2</label>
+                                <input type="text" class="form-control" id="billing_address_line_2" name="billing_address_line_2">
+                                <span style="color:red;" id="billing_address_line_2_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">City<span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" id="billing_city" name="billing_city">
+                                <span style="color:red;" id="billing_city_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">State<span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" id="billing_state" name="billing_state">
+                                <span style="color:red;" id="billing_state_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Zip code<span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" id="billing_zip_code" name="billing_zip_code">
+                                <span style="color:red;" id="billing_zip_code_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Country<span style="color:red;">*</span></label>
+                                <input type="text" class="form-control" id="billing_country" name="billing_country">
+                                <span style="color:red;" id="billing_country_error"></span>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="return step5_validation();">Next <i class="fa fa-forward" aria-hidden="true"></i></button>
+                </div>
+                <!-- /.card-footer-->
+            </div>
+            <div id="step6" class="card direct-chat direct-chat-primary col-md-12">
+                <div class="card-header bg-blue">
+                    <h3 class="card-title">Payment Info</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Payment Method<span style="color:red;">*</span></label>
+                                <select  class="form-control " id="payment_method" name="payment_method">
+                                @foreach ($masterList as $master)
+                                    @if($master->type == 'Payment Method')
+                                    <option value="{{$master->id}}">{{$master->value}}</option>
+                                    @endif
+                                @endforeach
+                                </select>
+                                <span style="color:red;" id="payment_method_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Transaction ID</label>
+                                <input type="text" class="form-control" id="transaction_id" name="transaction_id">
+                                <span style="color:red;" id="transaction_id_error"></span>
+                            </div>
+                        </div>
+                        
+                    </div> 
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="return step6_validation();">Next <i class="fa fa-forward" aria-hidden="true"></i></button>
+                </div>
+                <!-- /.card-footer-->
+            </div>
+            <div id="step7" class="card direct-chat direct-chat-primary col-md-12">
+                <div class="card-header bg-blue">
+                    <h3 class="card-title">Vendor & Shipping Details</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div id="vendordivlist">
+                    <div class="vendordiv0">
+                        <div class="card-body" id="vendordiv">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Replacement<span style="color:red;">*</span></label>
+                                        <select  class="form-control " name="vendor_replacement[]">
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Vendor<span style="color:red;">*</span></label>
+                                        <select  class="form-control " name="vendor[]">
+                                        @foreach ($vendorList as $vendor)
+                                            <option value="{{$vendor->id}}">{{$vendor->name}}</option>
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Invoice Number</label>
+                                        <input type="text" class="form-control" name="invoice_number[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Vendor Invoice Amount</label>
+                                        <input type="text" class="form-control" name="vendor_invoice_amount[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Sales tax charged by Vendor</label>
+                                        <input type="text" class="form-control" name="vendor_sales_tax_amount[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Invoice Paid</label>
+                                        <select  class="form-control" name="vendor_invoice_paid[]">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Paid Via</label>
+                                        <select  class="form-control" name="vendor_paid_via[]">
+                                        @foreach ($masterList as $master)
+                                            @if($master->type == 'Payment Method')
+                                            <option value="{{$master->id}}">{{$master->value}}</option>
+                                            @endif
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" >
+                                    <div class="form-group" style="display:none;">
+                                        <label for="exampleInputEmail1">Replacement Date</label>
+                                        <input type="text" class="form-control" name="replacement_date[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="border: 2px solid;"></div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Shipping Agent</label>
+                                        <select  class="form-control" name="broker[]">
+                                        @foreach ($masterList as $master)
+                                            @if($master->type == 'Broker')
+                                            <option value="{{$master->id}}">{{$master->value}}</option>
+                                            @endif
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Carrier</label>
+                                        <select  class="form-control" name="carrier[]">
+                                        @foreach ($masterList as $master)
+                                            @if($master->type == 'Carrier')
+                                            <option value="{{$master->id}}">{{$master->value}}</option>
+                                            @endif
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">BOL Number</label>
+                                        <input type="text" class="form-control" name="bol_number[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Delivery Type<span style="color:red;">*</span></label>
+                                        <select  class="form-control " name="vendor_replacement[]">
+                                        <option value="Residential with Liftgate/Delivery Appt">Residential with Liftgate/Delivery Appt</option>
+                                        <option value="Commercial">Commercial</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Pick-up ZIP Code</label>
+                                        <input type="text" class="form-control" name="pick_up_zip_code[]">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Delevery ZIP Code</label>
+                                        <input type="text" class="form-control" name="delevery_zip_code[]">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Travelling Distance (Miles):</label>
+                                        <input type="text" class="form-control" name="distance[]">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Total Weight</label>
+                                        <input type="text" class="form-control" name="total_weight[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Shipping Cost</label>
+                                        <input type="text" class="form-control" name="shipping_cost[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Shipping Paid</label>
+                                        <select class="form-control" name="shipping_paid_cost[]">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Paid Via</label>
+                                        <select class="form-control" name="shipping_paid_via[]">
+                                        @foreach ($masterList as $master)
+                                            @if($master->type == 'Payment Method')
+                                            <option value="{{$master->id}}">{{$master->value}}</option>
+                                            @endif
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Tracking#/PRO#</label>
+                                        <input type="text" class="form-control" name="tracking_number[]">
+                                        <span style="color:red;" id="tracking_number_error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Pick-up Remarks</label>
+                                        <input type="text" class="form-control" name="shipment[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Delivery Remarks</label>
+                                        <input type="text" class="form-control" name="delivery_remark[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Tracking link<span style="color:red;">*</span></label>
+                                        <input type="text" class="form-control" name="vendor_pick_up_reference[]">
+                                    </div>
+                                </div>
+                                
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
                     <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="return step7_validation();">Next <i class="fa fa-forward" aria-hidden="true"></i></button>
+                    <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="addmorevendor();">Add more <i class="fa fa-pluse" aria-hidden="true"></i></button>
                 </div>
                 <!-- /.card-footer-->
             </div>
@@ -893,34 +901,8 @@ function step1_validation(){
 		 return 0;
     }
 }
-function step2_validation(){
-    var validation_array = ["order_date", "order_id","order_status","order_amount"];
-	var i = 0;
-	validation_array.forEach(function(validation_name) {
-		var validation_field= $('#'+validation_name).val();
-		$('#'+validation_name+'_error').html("");
-		if(validation_field.trim() == ""){
-			$('#'+validation_name+'_error').html("Required");
-			i++;
-		}
-	});
-    if(i != 0){
-        return false;
-    }else{
-        $('#step1').CardWidget('collapse');  
-		$('#step2').CardWidget('collapse');
-		$('#step3').CardWidget('expand');  
-		$('#step4').CardWidget('collapse'); 
-		$('#step5').CardWidget('collapse'); 
-		$('#step6').CardWidget('collapse'); 
-		$('#step7').CardWidget('collapse');
-        $('#step8').CardWidget('collapse');
-    $('#step9').CardWidget('collapse');
-		 return 0;
-    }
-}
 function step3_validation(){
-    var validation_array = ["customer_name"];
+    var validation_array = ["order_date", "order_id","order_status","order_amount"];
 	var i = 0;
 	validation_array.forEach(function(validation_name) {
 		var validation_field= $('#'+validation_name).val();
@@ -946,8 +928,7 @@ function step3_validation(){
     }
 }
 function step4_validation(){
-    var validation_array = ["shipping_address_line_1", "shipping_city","shipping_city","shipping_state","shipping_zip_code","shipping_country",
-    "billing_address_line_1","billing_city","billing_city","billing_state","billing_zip_code","billing_country"];
+    var validation_array = ["customer_name"];
 	var i = 0;
 	validation_array.forEach(function(validation_name) {
 		var validation_field= $('#'+validation_name).val();
@@ -969,12 +950,12 @@ function step4_validation(){
 		$('#step7').CardWidget('collapse');
         $('#step8').CardWidget('collapse');
     $('#step9').CardWidget('collapse');
-
 		 return 0;
     }
 }
 function step5_validation(){
-    var validation_array = ["payment_method"];
+    var validation_array = ["shipping_address_line_1", "shipping_city","shipping_city","shipping_state","shipping_zip_code","shipping_country",
+    "billing_address_line_1","billing_city","billing_city","billing_state","billing_zip_code","billing_country"];
 	var i = 0;
 	validation_array.forEach(function(validation_name) {
 		var validation_field= $('#'+validation_name).val();
@@ -1001,14 +982,41 @@ function step5_validation(){
     }
 }
 function step6_validation(){
+    var validation_array = ["payment_method"];
+	var i = 0;
+	validation_array.forEach(function(validation_name) {
+		var validation_field= $('#'+validation_name).val();
+		$('#'+validation_name+'_error').html("");
+		if(validation_field.trim() == ""){
+			$('#'+validation_name+'_error').html("Required");
+			i++;
+		}
+	});
+    if(i != 0){
+        return false;
+    }else{
+        $('#step1').CardWidget('collapse');  
+		$('#step2').CardWidget('collapse');
+		$('#step3').CardWidget('collapse');  
+		$('#step4').CardWidget('collapse'); 
+		$('#step5').CardWidget('collapse'); 
+		$('#step6').CardWidget('collapse'); 
+		$('#step7').CardWidget('expand');
+        $('#step8').CardWidget('collapse');
+    $('#step9').CardWidget('collapse');
+
+		 return 0;
+    }
+}
+function step7_validation(){
     $('#step1').CardWidget('collapse');  
     $('#step2').CardWidget('collapse');
     $('#step3').CardWidget('collapse');  
     $('#step4').CardWidget('collapse'); 
     $('#step5').CardWidget('collapse'); 
     $('#step6').CardWidget('collapse'); 
-    $('#step7').CardWidget('expand');
-    $('#step8').CardWidget('collapse');
+    $('#step7').CardWidget('collapse');
+    $('#step8').CardWidget('expand');
     $('#step9').CardWidget('collapse');
 
         return 0;
@@ -1036,15 +1044,15 @@ function step6_validation(){
 		 return 0;
     }
 }
-function step7_validation(){
+function step2_validation(){
     $('#step1').CardWidget('collapse');  
     $('#step2').CardWidget('collapse');
-    $('#step3').CardWidget('collapse');  
+    $('#step3').CardWidget('expand');  
     $('#step4').CardWidget('collapse'); 
     $('#step5').CardWidget('collapse'); 
     $('#step6').CardWidget('collapse'); 
     $('#step7').CardWidget('collapse'); 
-    $('#step8').CardWidget('expand');
+    $('#step8').CardWidget('collapse');
     $('#step9').CardWidget('collapse');
     return 0;
 }

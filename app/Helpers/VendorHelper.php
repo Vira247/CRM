@@ -122,4 +122,8 @@ class VendorHelper {
 		$getData = Vendor::where('delete_flag','N')->pluck('name','id')->all();
 		return $getData;
 	}
+	public static function getByTypePluckName(){
+		$getData = Vendor::where('delete_flag','N')->pluck('id','name')->all();
+		return $getData;
+	}
 }

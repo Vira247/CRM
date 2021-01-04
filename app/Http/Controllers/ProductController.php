@@ -129,13 +129,31 @@ class ProductController extends Controller{
         return $productList;
     }
     public function importSample(){
-        $productList = ProductHelper::getAllList();
+        $VendorLists = VendorHelper::getByTypePluckName();
+        $VendorList = array();
+        foreach($VendorLists as $key=>$value){
+            echo $key =  str_replace(" ","",$key);
+            echo "<br>";
+            $VendorList[$key] = $value;
+        }
         echo "<pre>";
-        $accessiorSku  = DB::table('accessoires')->get();
+        $accessiorSku  = DB::table('crm_accessoires_products___product')->where('updateflag','N')->get();
          
         foreach($accessiorSku as $list){
-            $insertArray = array("name"=>$list->NAME,"product_type"=>"Accessory","sku"=>$list->SKU,"vendor_id"=>"3");
+            //
+            $vndorname = trim(str_replace(" ","",$list->vendors));
+           
+           // \print_r($VendorList[$vndorname]); die;  
+            if(isset($VendorList[$vndorname])){
+               
+            $insertArray = array("name"=>$list->name,"product_type"=>$list->type,"sku"=>$list->sku,"vendor_id"=>$VendorList[$vndorname]);
             ProductHelper::insert($insertArray);
+                DB::table('crm_accessoires_products___product')
+            ->where('id', $list->id)
+            ->update(['vendors' => $vndorname,'updateflag'=>'Y']);
+            }else{
+                echo $vndorname; die;
+            }
         }
     }
 }
