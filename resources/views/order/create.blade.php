@@ -122,6 +122,7 @@
                                         <select class="form-control" id="itemunit">
                                             <option value="Sqft">Sqft</option>
                                             <option value="Pallet">Pallet</option>
+                                            <option value="Pisces">Pisces</option>
                                         </select>
                                         </td>
                                         <td><input type="text" id="quantity" class="form-control"></td>
@@ -507,9 +508,9 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3" >
-                                    <div class="form-group" style="display:none;">
+                                    <div class="form-group">
                                         <label for="exampleInputEmail1">Replacement Date</label>
-                                        <input type="text" class="form-control" name="replacement_date[]">
+                                        <input type="date" class="form-control" name="replacement_date[]">
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="border: 2px solid;"></div>
@@ -546,7 +547,7 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Delivery Type<span style="color:red;">*</span></label>
-                                        <select  class="form-control " name="vendor_replacement[]">
+                                        <select  class="form-control " name="delivery_type[]">
                                         <option value="Residential with Liftgate/Delivery Appt">Residential with Liftgate/Delivery Appt</option>
                                         <option value="Commercial">Commercial</option>
                                         </select>
@@ -631,7 +632,6 @@
                                         <input type="text" class="form-control" name="vendor_pick_up_reference[]">
                                     </div>
                                 </div>
-                                
                             </div> 
                         </div>
                     </div>

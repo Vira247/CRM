@@ -75,6 +75,8 @@ class OrderController extends Controller{
         $itemunit = $request->input('itemunit');
         $distance = $request->input('distance');
         $delivery_remark = $request->input('delivery_remark');
+        $delivery_type = $request->input('delivery_type');
+        $replacement_date = $request->input('replacement_date');
 		$user_data = auth()->user();
         //$insert_array = $request->all();
         $insert_array = array("site"=>$request->input('site'),
@@ -137,6 +139,8 @@ class OrderController extends Controller{
                     "shipping_paid_via"=>$shippingPaidViaList[$cnt],
                     "tracking_number"=>$trackingNumberList[$cnt],
                     "distance"=>$distance[$cnt],
+                    "delivery_type"=>$delivery_type[$cnt],
+                    "replacement_date"=>$replacement_date[$cnt],
                 );
                 $cnt++;
                 OrderVendorDetailHelper::insert($inserArray);
@@ -249,6 +253,8 @@ class OrderController extends Controller{
         $shippingPaidViaList = $request->input('shipping_paid_via');
         $trackingNumberList = $request->input('tracking_number');
         $distance = $request->input('distance');
+        $delivery_type = $request->input('delivery_type');
+        $replacement_date = $request->input('replacement_date');
         //echo "<pre>"; print_r($distance); die;
         $vendor_replacement = $request->input('vendor_replacement');
         $itemunit = $request->input('itemunit');
@@ -317,6 +323,8 @@ class OrderController extends Controller{
                     "shipping_paid_via"=>$shippingPaidViaList[$cnt],
                     "tracking_number"=>$trackingNumberList[$cnt],
                     "distance"=>$distance[$cnt],
+                    "delivery_type"=>$delivery_type[$cnt],
+                    "replacement_date"=>$replacement_date[$cnt],
                 );
                 $cnt++;
                 OrderVendorDetailHelper::insert($inserArray);

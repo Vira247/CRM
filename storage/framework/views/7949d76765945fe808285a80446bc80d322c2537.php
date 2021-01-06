@@ -1,4 +1,4 @@
-@include('layouts.header')
+<?php echo $__env->make('layouts.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <style>
 	.error{
@@ -29,16 +29,17 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-	  @if(Session::has('success'))     
+	  <?php if(Session::has('success')): ?>     
         <div class="alert alert-success" role="alert">                                      
-            <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>{{ Session::get('success') }}
+            <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button><?php echo e(Session::get('success')); ?>
+
         </div> 
-        @endif
-        @if(Session::has('error') )                          
+        <?php endif; ?>
+        <?php if(Session::has('error') ): ?>                          
         <div class="alert alert-danger"> 
-            <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>{{ Session::get('error') }}    
+            <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button><?php echo e(Session::get('error')); ?>    
         </div>                            
-        @endif
+        <?php endif; ?>
         <div class="row">
          
           <!-- /.col -->
@@ -63,7 +64,7 @@
 				  ?>
 				  <li class="nav-item"><a class="nav-link btn btn-block btn-<?php if($profite > 0){ ?>success<?php }else{?>danger<?php } ?> btn-sm" href="#logs44" data-toggle="tab" style="color:white;">
 				  <?php /*{{$orderDetail->order_amount}}-{{$orderDetail->vat_tax_amount}}-{{$orderDetail->comission_other_charges}}-{{$vedoramount}}-{{$shipin_Amount}}-{{$orderDetail->refund_amount}}+{{$orderDetail->shipping_claim_amount}}
-				  <br>*/?>Profit/Lost : {{$profite}}				  
+				  <br>*/?>Profit/Lost : <?php echo e($profite); ?>				  
 				  </a></li>
                 </ul>
               </div><!-- /.card-header -->
@@ -78,13 +79,15 @@
 						  <div class="form-group row">
 							<label for="inputName" class="col-sm-2">Site</label>
 							<div class="col-sm-10">
-							  {{$master_list[$orderDetail->site]}}
+							  <?php echo e($master_list[$orderDetail->site]); ?>
+
 							</div>
 						  </div>
 						  <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Platform</label>
 							<div class="col-sm-10">
-                            {{$master_list[$orderDetail->platform]}}
+                            <?php echo e($master_list[$orderDetail->platform]); ?>
+
 							</div>
 						  </div>
 					</div>
@@ -92,37 +95,42 @@
                         <div class="form-group row">
 							<label for="inputName" class="col-sm-2">Order Date</label>
 							<div class="col-sm-10">
-							  @if($orderDetail->order_date != "") {{date('m/d/Y',strtotime($orderDetail->order_date))}} @endif
+							  <?php if($orderDetail->order_date != ""): ?> <?php echo e(date('m/d/Y',strtotime($orderDetail->order_date))); ?> <?php endif; ?>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Order ID</label>
 							<div class="col-sm-10">
-                                {{$orderDetail->order_id}}
+                                <?php echo e($orderDetail->order_id); ?>
+
 							</div>
 						</div>
                         <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Order Status</label>
 							<div class="col-sm-10">
-                                {{$master_list[$orderDetail->order_status]}}
+                                <?php echo e($master_list[$orderDetail->order_status]); ?>
+
 							</div>
 						</div>
                         <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Order Amount</label>
 							<div class="col-sm-10">
-                            {{$orderDetail->order_amount}}
+                            <?php echo e($orderDetail->order_amount); ?>
+
 							</div>
 						</div>
                         <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">VAT Tax Amount</label>
 							<div class="col-sm-10">
-                                {{$orderDetail->vat_tax_amount}}
+                                <?php echo e($orderDetail->vat_tax_amount); ?>
+
 							</div>
 						</div>
                         <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Comission/Other Charges</label>
 							<div class="col-sm-10">
-                            {{$orderDetail->comission_other_charges}}
+                            <?php echo e($orderDetail->comission_other_charges); ?>
+
 							</div>
 						  </div>
 					    </div>
@@ -131,19 +139,22 @@
                         <div class="form-group row">
 							<label for="inputName" class="col-sm-2">Customer Name</label>
 							<div class="col-sm-10">
-							  {{$orderDetail->customer_name}}
+							  <?php echo e($orderDetail->customer_name); ?>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Phone Number</label>
 							<div class="col-sm-10">
-                                {{$orderDetail->phone_number}}
+                                <?php echo e($orderDetail->phone_number); ?>
+
 							</div>
 						</div>
                         <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Email</label>
 							<div class="col-sm-10">
-                                {{$orderDetail->email}}
+                                <?php echo e($orderDetail->email); ?>
+
 							</div>
 						</div>
                     </div>
@@ -152,74 +163,86 @@
                         <div class="form-group row">
 							<label for="inputName" class="col-sm-2">Shipping Address Line 1</label>
 							<div class="col-sm-10">
-							  {{$orderDetail->shipping_address_line_1}}
+							  <?php echo e($orderDetail->shipping_address_line_1); ?>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Shipping Address Line 2</label>
 							<div class="col-sm-10">
-                                {{$orderDetail->shipping_address_line_2}}
+                                <?php echo e($orderDetail->shipping_address_line_2); ?>
+
 							</div>
 						</div>
                         <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">City</label>
 							<div class="col-sm-10">
-                                {{$orderDetail->shipping_city}}
+                                <?php echo e($orderDetail->shipping_city); ?>
+
 							</div>
 						</div>
                         <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">State</label>
 							<div class="col-sm-10">
-                                {{$orderDetail->shipping_state}}
+                                <?php echo e($orderDetail->shipping_state); ?>
+
 							</div>
 						</div>
                         <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Zip code</label>
 							<div class="col-sm-10">
-                                {{$orderDetail->shipping_zip_code}}
+                                <?php echo e($orderDetail->shipping_zip_code); ?>
+
 							</div>
 						</div>
                         <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Country</label>
 							<div class="col-sm-10">
-                                {{$orderDetail->shipping_country}}
+                                <?php echo e($orderDetail->shipping_country); ?>
+
 							</div>
 						</div>
 
                         <div class="form-group row">
 							<label for="inputName" class="col-sm-2">Billing  Address Line 1</label>
 							<div class="col-sm-10">
-							  {{$orderDetail->billing_address_line_1}}
+							  <?php echo e($orderDetail->billing_address_line_1); ?>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Billing  Address Line 2</label>
 							<div class="col-sm-10">
-                                {{$orderDetail->billing_address_line_2}}
+                                <?php echo e($orderDetail->billing_address_line_2); ?>
+
 							</div>
 						</div>
                         <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">City</label>
 							<div class="col-sm-10">
-                                {{$orderDetail->billing_city}}
+                                <?php echo e($orderDetail->billing_city); ?>
+
 							</div>
 						</div>
                         <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">State</label>
 							<div class="col-sm-10">
-                                {{$orderDetail->billing_state}}
+                                <?php echo e($orderDetail->billing_state); ?>
+
 							</div>
 						</div>
                         <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Zip code</label>
 							<div class="col-sm-10">
-                                {{$orderDetail->billing_zip_code}}
+                                <?php echo e($orderDetail->billing_zip_code); ?>
+
 							</div>
 						</div>
                         <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Country</label>
 							<div class="col-sm-10">
-                                {{$orderDetail->billing_country}}
+                                <?php echo e($orderDetail->billing_country); ?>
+
 							</div>
 						</div>
                     </div>
@@ -228,13 +251,15 @@
                         <div class="form-group row">
 							<label for="inputName" class="col-sm-2">Payment Method</label>
 							<div class="col-sm-10">
-							  {{$master_list[$orderDetail->payment_method]}}
+							  <?php echo e($master_list[$orderDetail->payment_method]); ?>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Transaction ID</label>
 							<div class="col-sm-10">
-                                {{$orderDetail->transaction_id}}
+                                <?php echo e($orderDetail->transaction_id); ?>
+
 							</div>
 						</div>
                     </div>
@@ -244,120 +269,141 @@
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Shipping Agent</label>
 							<div class="col-sm-4">
-							{{$master_list[$vendor->broker]}}
+							<?php echo e($master_list[$vendor->broker]); ?>
+
 							</div>
 							<label for="inputName" class="col-sm-2">Replacement</label>
 							<div class="col-sm-4">
-							{{$vendor->vendor_replacement}}
+							<?php echo e($vendor->vendor_replacement); ?>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Carrier</label>
 							<div class="col-sm-4">
-							{{$master_list[$vendor->carrier]}}
+							<?php echo e($master_list[$vendor->carrier]); ?>
+
 							</div>
 							<label for="inputName" class="col-sm-2">Invoice Number</label>
 							<div class="col-sm-4">
-							{{$vendor->invoice_number}}
+							<?php echo e($vendor->invoice_number); ?>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">BOL Number</label>
 							<div class="col-sm-4">
-							{{$vendor->bol_number}}
+							<?php echo e($vendor->bol_number); ?>
+
 							</div>
 							<label for="inputName" class="col-sm-2">Vendor Invoice Amount</label>
 							<div class="col-sm-4">
-							{{$vendor->vendor_invoice_amount}}
+							<?php echo e($vendor->vendor_invoice_amount); ?>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Delivery Type</label>
 							<div class="col-sm-4">
-							{{$vendor->delivery_type}}
+							<?php echo e($vendor->delivery_type); ?>
+
 							</div>
 							<label for="inputName" class="col-sm-2">Sales tax charged by Vendor</label>
 							<div class="col-sm-4">
-							{{$vendor->vendor_sales_tax_amount}}
+							<?php echo e($vendor->vendor_sales_tax_amount); ?>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Pick-up ZIP Code</label>
 							<div class="col-sm-4">
-							{{$vendor->pick_up_zip_code}}
+							<?php echo e($vendor->pick_up_zip_code); ?>
+
 							</div>
 							<label for="inputName" class="col-sm-2">Invoice Paid</label>
 							<div class="col-sm-4">
-							{{$vendor->vendor_invoice_paid}}
+							<?php echo e($vendor->vendor_invoice_paid); ?>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Delevery ZIP Code</label>
 							<div class="col-sm-4">
-							{{$vendor->delevery_zip_code}}
+							<?php echo e($vendor->delevery_zip_code); ?>
+
 							</div>
 							<label for="inputName" class="col-sm-2">Paid Via</label>
 							<div class="col-sm-4">
-							{{$master_list[$vendor->vendor_paid_via]}}
+							<?php echo e($master_list[$vendor->vendor_paid_via]); ?>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Travelling Distance (Miles)</label>
 							<div class="col-sm-4">
-							{{$vendor->distance}}
+							<?php echo e($vendor->distance); ?>
+
 							</div>
 							<label for="inputName" class="col-sm-2">Replacement Date</label>
 							<div class="col-sm-4">
-							@if($orderDetail->replacement_date == ""){{date('m-d-Y',strtotime($vendor->replacement_date))}}@endif
+							<?php if($orderDetail->replacement_date == ""): ?><?php echo e(date('m-d-Y',strtotime($vendor->replacement_date))); ?><?php endif; ?>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Total Weight</label>
 							<div class="col-sm-4">
-							{{$vendor->total_weight}}
+							<?php echo e($vendor->total_weight); ?>
+
 							</div>
 						</div>
 						
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Shipping Cost</label>
 							<div class="col-sm-4">
-							{{$vendor->shipping_cost}}
+							<?php echo e($vendor->shipping_cost); ?>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Shipping Paid</label>
 							<div class="col-sm-4">
-							{{$vendor->shipping_paid_cost}}
+							<?php echo e($vendor->shipping_paid_cost); ?>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Paid Via</label>
 							<div class="col-sm-4">
-							{{$master_list[$vendor->shipping_paid_via]}}
+							<?php echo e($master_list[$vendor->shipping_paid_via]); ?>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Tracking#/PRO#</label>
 							<div class="col-sm-4">
-							{{$vendor->tracking_number}}
+							<?php echo e($vendor->tracking_number); ?>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Pick-up Remarks</label>
 							<div class="col-sm-4">
-							{{$vendor->shipment}}
+							<?php echo e($vendor->shipment); ?>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Delivery Remarks</label>
 							<div class="col-sm-4">
-							{{$vendor->delivery_remark}}
+							<?php echo e($vendor->delivery_remark); ?>
+
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Tracking link</label>
 							<div class="col-sm-4">
-							{{$vendor->shipment}}
+							<?php echo e($vendor->shipment); ?>
+
 							</div>
 						</div>
 						<hr>
@@ -379,16 +425,16 @@
 									</tr>
 								</thead>
 								<tbody>
-								@foreach ($orderItemDetail as $list)
+								<?php $__currentLoopData = $orderItemDetail; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 									<tr>
-									<td>{{$list->vendorname}}</td>
-									<td>{{$list->productname}}</td>
-									<td>{{$list->itemunit}}</td>
-									<td>{{$list->quantity}}</td>
-									<td>{{$list->price}}</td>
-									<td>{{$list->amount}}</td>
+									<td><?php echo e($list->vendorname); ?></td>
+									<td><?php echo e($list->productname); ?></td>
+									<td><?php echo e($list->itemunit); ?></td>
+									<td><?php echo e($list->quantity); ?></td>
+									<td><?php echo e($list->price); ?></td>
+									<td><?php echo e($list->amount); ?></td>
 									</tr>
-								@endforeach
+								<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 								</tbody>
 								</table>
 							</div>
@@ -398,13 +444,15 @@
 						  <div class="form-group row">
 							<label for="inputName" class="col-sm-2">Claim</label>
 							<div class="col-sm-10">
-							  {{$orderDetail->claim_refund}}
+							  <?php echo e($orderDetail->claim_refund); ?>
+
 							</div>
 						  </div>
 						  <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Refund Amount</label>
 							<div class="col-sm-10">
-                            {{$orderDetail->refund_amount}}
+                            <?php echo e($orderDetail->refund_amount); ?>
+
 							</div>
 						  </div>
 					</div>
@@ -412,36 +460,40 @@
 						  <div class="form-group row">
 							<label for="inputName" class="col-sm-2">Claim</label>
 							<div class="col-sm-10">
-							  {{$orderDetail->claim_against}}
+							  <?php echo e($orderDetail->claim_against); ?>
+
 							</div>
 						  </div>
-						  @if($orderDetail->claim_against == "Vendor")
+						  <?php if($orderDetail->claim_against == "Vendor"): ?>
 						  <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Vendor</label>
 							<div class="col-sm-10">
-                            @if(isset($vendorList[$orderDetail->vendor_claim])) {{$vendorList[$orderDetail->vendor_claim]}} @endif
+                            <?php if(isset($vendorList[$orderDetail->vendor_claim])): ?> <?php echo e($vendorList[$orderDetail->vendor_claim]); ?> <?php endif; ?>
 							</div>
 						  </div>
-						  @endif
-						  @if($orderDetail->claim_against == "Shipping Company")
+						  <?php endif; ?>
+						  <?php if($orderDetail->claim_against == "Shipping Company"): ?>
 						  <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Shipping Company</label>
 							<div class="col-sm-10">
-                            {{$master_list[$orderDetail->shipping_claim]}}
+                            <?php echo e($master_list[$orderDetail->shipping_claim]); ?>
+
 							</div>
 						  </div>
-						  @endif
+						  <?php endif; ?>
 						  <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Amount</label>
 							<div class="col-sm-10">
-                            {{$orderDetail->shipping_claim_amount}}
+                            <?php echo e($orderDetail->shipping_claim_amount); ?>
+
 							</div>
 						  </div>
 						  
 						  <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Claim status</label>
 							<div class="col-sm-10">
-                            {{$orderDetail->claim_status}}
+                            <?php echo e($orderDetail->claim_status); ?>
+
 							</div>
 						  </div>
 					</div>
@@ -459,11 +511,11 @@
 									</tr>
 								</thead>
 								<tbody>
-								@foreach ($logList as $list)
+								<?php $__currentLoopData = $logList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 									<tr>
-									<td>{{$list->name}}</td>
-									<td>{{date('m/d/Y h:i A',strtotime($list->created_at))}}</td>
-									<td>{{$list->message}}</td>
+									<td><?php echo e($list->name); ?></td>
+									<td><?php echo e(date('m/d/Y h:i A',strtotime($list->created_at))); ?></td>
+									<td><?php echo e($list->message); ?></td>
 									<td><?php if(isset($list->old_data)){
 										$array = unserialize($list->old_data);
 										foreach($array as $key=>$value){
@@ -477,7 +529,7 @@
 										}
 									} ?></td>
 									</tr>
-								@endforeach
+								<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 								</tbody>
 								</table>
 							</div>
@@ -499,4 +551,4 @@
   </div>
   <!-- /.content-wrapper -->
   <!-- /.content-wrapper -->
-  @include('layouts.footer')
+  <?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xamppnew\htdocs\laravel_demo\resources\views/order/show.blade.php ENDPATH**/ ?>

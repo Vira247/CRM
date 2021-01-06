@@ -546,7 +546,7 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Delivery Type<span style="color:red;">*</span></label>
-                                        <select  class="form-control " name="vendor_replacement[]">
+                                        <select  class="form-control " name="delivery_type[]">
                                         <option value="Residential with Liftgate/Delivery Appt">Residential with Liftgate/Delivery Appt</option>
                                         <option value="Commercial">Commercial</option>
                                         </select>
@@ -631,7 +631,6 @@
                                         <input type="text" class="form-control" name="vendor_pick_up_reference[]">
                                     </div>
                                 </div>
-                                
                             </div> 
                         </div>
                     </div>
