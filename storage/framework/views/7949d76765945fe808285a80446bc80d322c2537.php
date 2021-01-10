@@ -60,9 +60,12 @@
                   <li class="nav-item"><a class="nav-link" href="#villohomeclaim" data-toggle="tab">Villohome's Claim</a></li>
                   <li class="nav-item"><a class="nav-link" href="#logs" data-toggle="tab">Logs</a></li>
 				  <?php $vedoramount = 0; $shipin_Amount = 0; foreach($orderVendorDetail as $vendor){ $shipin_Amount = $shipin_Amount + $vendor->shipping_cost; $vedoramount = $vedoramount + $vendor->vendor_invoice_amount; } 
-				 $profite = ($orderDetail->order_amount+$orderDetail->shipping_claim_amount)-($orderDetail->vat_tax_amount+$orderDetail->comission_other_charges+$vedoramount+$shipin_Amount+$orderDetail->refund_amount); 
+				 $profite = ($orderDetail->order_amount+$orderDetail->shipping_claim_amount)-($orderDetail->vat_tax_amount+$orderDetail->comission_other_charges+$vedoramount+$shipin_Amount+$orderDetail->refund_amount+$orderDetail->discount);
+				 if(isset($_GET['debug']) && $_GET['debug']=='1'){
+					 echo '('.$orderDetail->order_amount.'+'.$orderDetail->shipping_claim_amount.')-('.$orderDetail->vat_tax_amount.'+'.$orderDetail->comission_other_charges.'+'.$vedoramount.'+'.$shipin_Amount.'+'.$orderDetail->refund_amount.'+'.$orderDetail->discount.')';
+				 } 
 				  ?>
-				  <li class="nav-item"><a class="nav-link btn btn-block btn-<?php if($profite > 0){ ?>success<?php }else{?>danger<?php } ?> btn-sm" href="#logs44" data-toggle="tab" style="color:white;">
+				  <li class="nav-item"><a class="nav-link btn btn-block btn-<?php if($profite > 0){ ?>success<?php }else{?>danger<?php } ?> btn-sm" href="#logs44rtyuiokpl[;'" data-toggle="tab" style="color:white;">
 				  <?php /*{{$orderDetail->order_amount}}-{{$orderDetail->vat_tax_amount}}-{{$orderDetail->comission_other_charges}}-{{$vedoramount}}-{{$shipin_Amount}}-{{$orderDetail->refund_amount}}+{{$orderDetail->shipping_claim_amount}}
 				  <br>*/?>Profit/Lost : <?php echo e($profite); ?>				  
 				  </a></li>
@@ -116,6 +119,13 @@
 							<label for="inputEmail" class="col-sm-2">Order Amount</label>
 							<div class="col-sm-10">
                             <?php echo e($orderDetail->order_amount); ?>
+
+							</div>
+						</div>
+                        <div class="form-group row">
+							<label for="inputEmail" class="col-sm-2">Discount</label>
+							<div class="col-sm-10">
+                            <?php echo e($orderDetail->discount); ?>
 
 							</div>
 						</div>

@@ -124,6 +124,7 @@
                                 <select class="form-control" id="itemunit">
                                     <option value="Sqft">Sqft</option>
                                     <option value="Pallet">Pallet</option>
+                                    <option value="Pieces">Pieces</option>
                                 </select>
                                 </td>
                                 <td><input type="text" id="quantity" class="form-control"></td>
@@ -239,22 +240,28 @@
                             <span style="color:red;" id="order_status_error"></span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Order Amount<span style="color:red;">*</span></label>
                             <input type="text" class="form-control" id="order_amount" name="order_amount"  value="<?php echo e($orderDetail->order_amount); ?>">
                             <span style="color:red;" id="order_amount_error"></span>
                         </div>
                     </div>
-                    
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Discount<span style="color:red;">*</span></label>
+                            <input type="text" class="form-control" id="discount" name="discount"  value="<?php echo e($orderDetail->discount); ?>">
+                            <span style="color:red;" id="order_amount_error"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="exampleInputEmail1">VAT Tax Amount</label>
                             <input type="text" class="form-control" id="vat_tax_amount" name="vat_tax_amount" value="<?php echo e($orderDetail->vat_tax_amount); ?>">
                             <span style="color:red;" id="vat_tax_amount_error"></span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Comission/Other Charges</label>
                             <input type="text" class="form-control" id="comission_other_charges" name="comission_other_charges" value="<?php echo e($orderDetail->comission_other_charges); ?>">
@@ -465,7 +472,7 @@
 
         <div id="step7" class="card direct-chat direct-chat-primary col-md-12">
             <div class="card-header bg-blue">
-                <h3 class="card-title">Vendor & Shipping Details</h3>
+                <h3 class="card-title">Vendor Details & Shipping Details</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                 </div>
@@ -496,13 +503,13 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Invoice Number</label>
+                                        <label for="exampleInputEmail1">Invoice #/ SO#</label>
                                         <input type="text" class="form-control" name="invoice_number[]" value="<?php echo e($vendors->invoice_number); ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Vendor Invoice Amount</label>
+                                        <label for="exampleInputEmail1">Vendor Invoice Amount (Inc. Sales tax)</label>
                                         <input type="text" class="form-control" name="vendor_invoice_amount[]" value="<?php echo e($vendors->vendor_invoice_amount); ?>">
                                     </div>
                                 </div>
@@ -667,8 +674,8 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="return step8_validation();">Next <i class="fa fa-forward" aria-hidden="true"></i></button>
-                <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="addmorevendor();">Add more <i class="fa fa-pluse" aria-hidden="true"></i></button>
+                <button type="button" id="step_btn1" class="btn btn-primary float-right" onclick="return step8_validation();">Next <i class="fa fa-forward" aria-hidden="true"></i></button>&nbsp;&nbsp;
+                <button type="button" id="step_btn1" class="btn btn-warning float-left" onclick="addmorevendor();">Add more <i class="fa fa-pluse" aria-hidden="true"></i></button>
             </div>
                 <!-- /.card-footer-->
         </div>
