@@ -42,7 +42,7 @@ class ProductHelper{
 		->leftjoin('vendor','vendor.id','product.vendor_id')
 		->where('vendor.delete_flag','N')
 		->where('product.delete_flag','N');
-		$query = $query->orderBy('id','desc')->paginate(10);
+		$query = $query->orderBy('id','desc')->paginate(50);
 		return $query;
 	}
 	public static function getByid($id){

@@ -67,7 +67,7 @@
                   foreach($table_list as $key){
                   ?>
                   <tr>
-                    <td><?=$cnt++?></td>
+                    <td><?=++$i?></td>
                     <td><?php echo $key->name;?></td>
                     <td><?php echo $key->sku;?></td>
                     <td><?php echo $key->vendorname;?></td>

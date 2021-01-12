@@ -91,7 +91,7 @@ class VendorHelper {
 	public static function getPaginateData(){
 
 		$query = Vendor::where('delete_flag','N');
-		$query = $query->orderBy('id','desc')->paginate(10);
+		$query = $query->orderBy('id','desc')->paginate(50);
 
 		return $query;
 

@@ -1,4 +1,4 @@
-@include('layouts.header')
+<?php echo $__env->make('layouts.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Vendor</h1>
+            <h1 class="m-0 text-dark">Product</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo URL::to('/');?>/home">Home</a></li>
-              <li class="breadcrumb-item active">Vendor</li>
+              <li class="breadcrumb-item active">Product</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -20,16 +20,17 @@
     <!-- /.content-header -->
     <section class="content">
       <div class="container-fluid">
-	  @if(Session::has('success'))     
+	  <?php if(Session::has('success')): ?>     
         <div class="alert alert-success" role="alert">                                      
-            <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>{{ Session::get('success') }}
+            <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button><?php echo e(Session::get('success')); ?>
+
         </div> 
-        @endif
-        @if(Session::has('error') )                          
+        <?php endif; ?>
+        <?php if(Session::has('error') ): ?>                          
         <div class="alert alert-danger"> 
-            <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>{{ Session::get('error') }}    
+            <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button><?php echo e(Session::get('error')); ?>    
         </div>                            
-        @endif
+        <?php endif; ?>
         <div class="row">
         
           <div class="col-md-12">
@@ -38,10 +39,10 @@
 			
 			<div class="card">
               <div class="card-header">
-                <h3 class="card-title">Vendor List</h3>
-                @can('vendor-create')
-                <a style="float:right;" href="{{ route('vendor.create') }}" class="btn btn-success">Add New Vendor</a>
-                @endcan 
+                <h3 class="card-title">Product List</h3>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('product-create')): ?>
+                <a style="float:right;" href="<?php echo e(route('product.create')); ?>" class="btn btn-success">Add New Product</a>
+                <?php endif; ?> 
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -50,6 +51,8 @@
                     <tr>
                         <th style="width: 10px">#</th>
                         <th>Name</th>
+                        <th>SKU</th>
+                        <th>Vendor</th>
                         <th style="width: 40px">Action</th>
                       
                     </tr>
@@ -57,25 +60,32 @@
                   <tbody>
                   <?php 
                   if(count($table_list) >0){
+                  if(isset($page) && $page !=1){
+                  $cnt =($page *50) -49;
+                  }else{
+                  $cnt =1;
+                  }
                   foreach($table_list as $key){
                   ?>
                   <tr>
                     <td><?=++$i?></td>
                     <td><?php echo $key->name;?></td>
+                    <td><?php echo $key->sku;?></td>
+                    <td><?php echo $key->vendorname;?></td>
                     <td>
-                    @can('vendor-edit')
-                    <a href="<?php echo URL::to('/');?>/vendor/<?php echo $key->id;?>/edit" title="Edit" ><i class="fa fa-edit"></i></a> 
-                    @endcan
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('vendor-edit')): ?>
+                    <a href="<?php echo URL::to('/');?>/product/<?php echo $key->id;?>/edit" title="Edit" ><i class="fa fa-edit"></i></a> 
+                    <?php endif; ?>
 
-                    @can('vendor-delete')
-                    <a href="<?php echo URL::to('/');?>/vendor/delete/<?php echo $key->id;?>" title="Delete" onclick="return confirm('Are you sure remove this record?')"><i class="fa fa-trash"></i></a>
-                    @endcan
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('vendor-delete')): ?>
+                    <a href="<?php echo URL::to('/');?>/product/delete/<?php echo $key->id;?>" title="Delete" onclick="return confirm('Are you sure remove this record?')"><i class="fa fa-trash"></i></a>
+                    <?php endif; ?>
                     </td>
                   </tr>
                   <?php }
                   }
                     if(count($table_list) ==0){  ?>
-                      <tr> <td colspan="3">No record available</td></tr>
+                      <tr> <td colspan="5">No record available</td></tr>
                     <?php } ?>
                   </tbody>
                 </table>
@@ -99,4 +109,4 @@
     </section>
   </div>
   <!-- /.content-wrapper -->
-  @include('layouts.footer')
+  <?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xamppnew\htdocs\laravel_demo\resources\views/product/index.blade.php ENDPATH**/ ?>

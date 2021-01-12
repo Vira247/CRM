@@ -154,7 +154,7 @@
                         </div>
                         <!-- /.col -->
                     </div>
-                    <div class="row">
+                    <div class="row" style="display:none">
                         <!-- accepted payments column -->
                         <div class="col-md-9">
                         </div>

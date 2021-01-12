@@ -4,6 +4,12 @@
 	.error{
 		color:red
 	}
+	.red{
+    background-color: #ff8787;
+}
+.green{
+    background-color: #7fc77f;
+}
 </style>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -58,15 +64,21 @@
                   <li class="nav-item"><a class="nav-link" href="#claim" data-toggle="tab">Customer's Claim</a></li>
                   <li class="nav-item"><a class="nav-link" href="#villohomeclaim" data-toggle="tab">Villohome's Claim</a></li>
                   <li class="nav-item"><a class="nav-link" href="#logs" data-toggle="tab">Logs</a></li>
-				  <?php $vedoramount = 0; $shipin_Amount = 0; foreach($orderVendorDetail as $vendor){ $shipin_Amount = $shipin_Amount + $vendor->shipping_cost; $vedoramount = $vedoramount + $vendor->vendor_invoice_amount; } 
-				 $profite = ($orderDetail->order_amount+$orderDetail->shipping_claim_amount)-($orderDetail->vat_tax_amount+$orderDetail->comission_other_charges+$vedoramount+$shipin_Amount+$orderDetail->refund_amount+$orderDetail->discount);
+				  <?php
+				 	$totalrevenue = $orderDetail->order_amount - $orderDetail->vat_tax_amount - $orderDetail->comission_other_charges;
+				 	$orderSubTotal = $orderDetail->order_amount + $orderDetail->discount - $orderDetail->vat_tax_amount;
+					$vedoramount = 0;
+					$shipin_Amount = 0;
+					$vendor_vat=0;
+					foreach($orderVendorDetail as $vendor){ $vendor_vat = $vendor_vat + $vendor->vendor_sales_tax_amount; $shipin_Amount = $shipin_Amount + $vendor->shipping_cost; $vedoramount = $vedoramount + $vendor->vendor_invoice_amount; } 
+				 	$profite = ($orderDetail->order_amount+$vendor_vat)-($orderDetail->comission_other_charges+$orderDetail->vat_tax_amount+$vedoramount+$shipin_Amount+$orderDetail->refund_amount);
 				 if(isset($_GET['debug']) && $_GET['debug']=='1'){
-					 echo '('.$orderDetail->order_amount.'+'.$orderDetail->shipping_claim_amount.')-('.$orderDetail->vat_tax_amount.'+'.$orderDetail->comission_other_charges.'+'.$vedoramount.'+'.$shipin_Amount.'+'.$orderDetail->refund_amount.'+'.$orderDetail->discount.')';
+					 echo '('.$orderDetail->order_amount.'+'.$orderDetail->shipping_claim_amount.')-('.$orderDetail->vat_tax_amount.'+'.$orderDetail->comission_other_charges.'+'.$vedoramount.'+'.$shipin_Amount.'+'.$orderDetail->refund_amount.')';
 				 } 
 				  ?>
-				  <li class="nav-item"><a class="nav-link btn btn-block btn-<?php if($profite > 0){ ?>success<?php }else{?>danger<?php } ?> btn-sm" href="#logs44rtyuiokpl[;'" data-toggle="tab" style="color:white;">
+				  <li class="nav-item"><a class="nav-link btn btn-block btn-<?php if($profite > 0){ ?>success<?php }else{?>danger<?php } ?> btn-sm" href="#profitloss" data-toggle="tab" style="color:white;">
 				  <?php /*{{$orderDetail->order_amount}}-{{$orderDetail->vat_tax_amount}}-{{$orderDetail->comission_other_charges}}-{{$vedoramount}}-{{$shipin_Amount}}-{{$orderDetail->refund_amount}}+{{$orderDetail->shipping_claim_amount}}
-				  <br>*/?>Profit/Lost : {{$profite}}				  
+				  <br>*/?>Net Profit / Net Loss : {{$profite}}				  
 				  </a></li>
                 </ul>
               </div><!-- /.card-header -->
@@ -164,12 +176,14 @@
 							  {{$orderDetail->shipping_address_line_1}}
 							</div>
 						</div>
+						@if($orderDetail->shipping_address_line_2 != "")
 						<div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Shipping Address Line 2</label>
 							<div class="col-sm-10">
                                 {{$orderDetail->shipping_address_line_2}}
 							</div>
 						</div>
+						@endif
                         <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">City</label>
 							<div class="col-sm-10">
@@ -201,12 +215,14 @@
 							  {{$orderDetail->billing_address_line_1}}
 							</div>
 						</div>
+						@if($orderDetail->billing_address_line_2 != "")
 						<div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Billing  Address Line 2</label>
 							<div class="col-sm-10">
                                 {{$orderDetail->billing_address_line_2}}
 							</div>
 						</div>
+						@endif
                         <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">City</label>
 							<div class="col-sm-10">
@@ -240,12 +256,14 @@
 							  {{$master_list[$orderDetail->payment_method]}}
 							</div>
 						</div>
+						@if($orderDetail->transaction_id != "")
 						<div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Transaction ID</label>
 							<div class="col-sm-10">
                                 {{$orderDetail->transaction_id}}
 							</div>
 						</div>
+						@endif
                     </div>
                     <!-- /.tab-pane -->
                     <div class=" tab-pane" id="vendordetails">
@@ -315,10 +333,12 @@
 							<div class="col-sm-4">
 							{{$vendor->distance}}
 							</div>
+							@if($vendor->vendor_replacement == 'Yes')
 							<label for="inputName" class="col-sm-2">Replacement Date</label>
 							<div class="col-sm-4">
 							@if($orderDetail->replacement_date == ""){{date('m-d-Y',strtotime($vendor->replacement_date))}}@endif
 							</div>
+							@endif
 						</div>
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Total Weight</label>
@@ -488,6 +508,67 @@
 									</tr>
 								@endforeach
 								</tbody>
+								</table>
+							</div>
+						</div>
+						
+                    </div>
+
+					<div class=" tab-pane" id="profitloss">
+                        <div class="form-group row">
+							<div class="card-body table-responsive p-0">
+								<table class="table table-hover text-nowrap">
+								<thead>
+									<tr class="green">
+									<td><b>Order Sub Total</b></td>
+									<td>{{$orderSubTotal}}</td>
+								</tr>
+								<tr class="red">
+									<td><b>Discount</b></td>
+									<td>{{$orderDetail->discount}}</td>
+								</tr>
+								<tr class="red">
+									<td><b>Sales Tax</b></td>
+									<td>{{$orderDetail->vat_tax_amount}}</td>
+								</tr>
+								<tr  class="green">
+									<td><b>Total</b></td>
+									<td>{{$orderDetail->order_amount}}</td>
+								</tr>
+								<tr class="red">
+									<td><b>Comission/Other Charges</b></td>
+									<td>{{$orderDetail->comission_other_charges}}</td>
+								</tr>
+								<tr class="red">
+									<td><b>Sales Tax</b></td>
+									<td>{{$orderDetail->vat_tax_amount}}</td>
+								</tr>
+								<tr class="green">
+									<td><b>Total Net Revenue</b></td>
+									<td>{{$totalrevenue}}</td>
+								</tr>
+
+
+								
+								<tr class="red">
+									<td><b>Vendor Invoice Amount (Inc. Sales tax)</b></td>
+									<td>{{$vedoramount}}</td>
+								</tr>
+								<tr class="red">
+									<td><b>Sales tax charged by Vendor</b></td>
+									<td>{{$shipin_Amount}}</td>
+								</tr>
+								<tr class="red">
+									<td><b>Shipping Cost</b></td>
+									<td>{{$vendor_vat}}</td>
+								</tr>
+
+								
+								<tr style="background-color: #0000008a;color: white;">
+									<th>Net Profit / Net Loss</th>
+									<th>{{$profite}}</th>
+								</tr>
+								</thead>
 								</table>
 							</div>
 						</div>

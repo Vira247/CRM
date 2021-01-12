@@ -99,7 +99,7 @@ class MasterListHelper {
 			$query->where('value','Like','%'.$name.'%');
 		}
 		
-		$query = $query->orderBy('id','desc')->paginate(10);
+		$query = $query->orderBy('id','desc')->paginate(50);
 
 		return $query;
 

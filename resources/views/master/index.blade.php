@@ -105,15 +105,11 @@
                   <tbody>
                   <?php 
                   if(count($table_list) >0){
-                  if(isset($page) && $page !=1){
-                  $cnt =($page *50) -49;
-                  }else{
-                  $cnt =1;
-                  }
+                  
                   foreach($table_list as $key){
                   ?>
                   <tr>
-                    <td><?=$cnt++?></td>
+                    <td><?=++$i?></td>
                     <td><?php echo $key->value;?></td>
                     <td><?php echo $key->type;?></td>
                     <td>

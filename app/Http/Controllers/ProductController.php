@@ -28,6 +28,7 @@ class ProductController extends Controller{
      */
     public function index(Request $request){
         $data['table_list'] = ProductHelper::getPaginateData();
+        $data['i'] = ($request->input('page', 1) - 1) * 50;
         return view('product.index',$data);
     }
     /**
