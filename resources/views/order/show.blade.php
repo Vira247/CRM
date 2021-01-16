@@ -386,7 +386,7 @@
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Tracking link</label>
 							<div class="col-sm-4">
-							{{$vendor->shipment}}
+							<a href="{{$vendor->vendor_pick_up_reference}}" target="_blank">{{$vendor->vendor_pick_up_reference}}</a>
 							</div>
 						</div>
 						<hr>
@@ -564,7 +564,7 @@
 								</tr>
 
 								
-								<tr style="background-color: #0000008a;color: white;">
+								<tr style="background-color:@if($profite > 0) green @else red @endif;color: white;">
 									<th>Net Profit / Net Loss</th>
 									<th>{{$profite}}</th>
 								</tr>

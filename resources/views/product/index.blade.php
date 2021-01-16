@@ -20,7 +20,8 @@
     <!-- /.content-header -->
     <section class="content">
       <div class="container-fluid">
-	  @if(Session::has('success'))     
+      <div class="container-fluid">
+	      @if(Session::has('success'))     
         <div class="alert alert-success" role="alert">                                      
             <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>{{ Session::get('success') }}
         </div> 
@@ -30,6 +31,53 @@
             <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>{{ Session::get('error') }}    
         </div>                            
         @endif
+          <div class="row">
+          <div class="col-md-12">
+          <div class="card">
+          <div class="card-header">
+          <h3 class="card-title">
+          <i class="fa fa-search"></i>
+          Product Search
+          </h3>
+          </div>
+          <form method="get" action="" name="searchPrduct" role="form" id="searchPrduct" enctype="multipart/form-data" class="form-horizontal">
+          <div class="card-body">
+            <div class="form-group row mb-2">
+              <label for="inputName" class="col-sm-1">SKU</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="sku" name="sku" placeholder="SKU" value="<?php if(isset($sku)){ echo $sku; }?>">
+              </div>
+              <label for="inputName" class="col-sm-1">Type</label>
+              <div class="col-sm-2">
+                <select class="form-control" name="type" >
+                <option value="">Select Type</option>
+                @foreach ($masterList as $master)
+                      @if($master->type == 'Product Type')
+                      <option value="{{$master->value}}" @if($type == $master->value) selected @endif>{{$master->value}}</option>
+                      @endif
+                  @endforeach
+                </select>
+              </div>
+              <label for="inputName" class="col-sm-1">Vendor</label>
+              <div class="col-sm-2">
+                <select class="form-control" name="vendors" >
+                <option value="">Select Type</option>
+                <?php foreach($vendorList as $vendor){ ?>
+                <option value="{{$vendor->id}}" <?php if($vendor->id == $vendors){ echo "selected"; } ?>>{{$vendor->name}}</option>
+                <?php } ?>
+                </select>
+              </div>
+            </div>
+          </div>
+					<div class="card-footer clearfix">
+						<input type="submit" name="submit" value="Search" class="btn btn-primary">
+						<input type="button" name="button" value="Clear" class="btn btn-default" onclick="window.location.href='<?php echo URL::to('/');?>/product'">
+						@can('product-create')
+            <a href="{{ route('product.create') }}" class="btn btn-success">Add New Product</a>
+            @endcan 
+					</div>
+				</form>
+			</div>
         <div class="row">
         
           <div class="col-md-12">
@@ -38,10 +86,7 @@
 			
 			<div class="card">
               <div class="card-header">
-                <h3 class="card-title">Product List</h3>
-                @can('product-create')
-                <a style="float:right;" href="{{ route('product.create') }}" class="btn btn-success">Add New Product</a>
-                @endcan 
+                <h3 class="card-title">Product List ({{$table_list->toArray()['total']}})</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -51,6 +96,7 @@
                         <th style="width: 10px">#</th>
                         <th>Name</th>
                         <th>SKU</th>
+                        <th>Product Type</th>
                         <th>Vendor</th>
                         <th style="width: 40px">Action</th>
                       
@@ -70,6 +116,7 @@
                     <td><?=++$i?></td>
                     <td><?php echo $key->name;?></td>
                     <td><?php echo $key->sku;?></td>
+                    <td><?php echo $key->product_type;?></td>
                     <td><?php echo $key->vendorname;?></td>
                     <td>
                     @can('vendor-edit')

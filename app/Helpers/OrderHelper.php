@@ -54,7 +54,7 @@ class OrderHelper{
 		$query = Order::select('order_master.*','vendor.name as vendor_name')
 		->leftjoin('vendor','vendor.id','order_master.vendor')
 		->where('order_master.delete_flag','N');
-		$query = $query->orderBy('order_master.id','desc')->paginate(10);
+		$query = $query->orderBy('order_master.id','desc')->paginate(100);
 		return $query;
 	}
 	public static function getByid($id){

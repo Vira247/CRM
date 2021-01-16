@@ -45,32 +45,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="navbar-nav">
         @canany(['user-list', 'user-create','user-edit','user-delete'])							
         <li class="nav-item">
-          <a href="{{ route('users.index') }}" class="nav-link"> Users</a>
+          <a href="{{ route('users.index') }}" target="_blank" class="nav-link"> Users</a>
         </li>
         @endcanany
         @canany(['role-list', 'role-create','role-edit','role-delete'])					
         <li class="nav-item">
-          <a href="{{ route('roles.index') }}" class="nav-link"> Roles</a>
+          <a href="{{ route('roles.index') }}" target="_blank" class="nav-link"> Roles</a>
         </li>
         @endcanany
         @canany(['master-list', 'master-create','master-edit','master-delete'])					
         <li class="nav-item">
-          <a href="{{ route('master.index') }}" class="nav-link"> Master</a>
+          <a href="{{ route('master.index') }}" target="_blank" class="nav-link"> Master</a>
         </li>
         @endcanany
         @canany(['vendor-list', 'vendor-create','vendor-edit','vendor-delete'])					
         <li class="nav-item">
-          <a href="{{ route('vendor.index') }}" class="nav-link"> Vendor</a>
+          <a href="{{ route('vendor.index') }}" target="_blank" class="nav-link"> Vendor</a>
         </li>
         @endcanany
         @canany(['product-list', 'product-create','product-edit','product-delete'])					
         <li class="nav-item">
-          <a href="{{ route('product.index') }}" class="nav-link"> Product</a>
+          <a href="{{ route('product.index') }}" target="_blank" class="nav-link"> Product</a>
         </li>
         @endcanany
         @canany(['order-list', 'order-create','order-edit','order-delete'])					
         <li class="nav-item">
-          <a href="{{ route('order.index') }}" class="nav-link"> Order</a>
+          <a href="{{ route('order.index') }}" target="_blank" class="nav-link"> Order</a>
         </li>
         @endcanany
           <?php /*<li class="nav-item">

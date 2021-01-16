@@ -20,7 +20,7 @@
     <!-- /.content-header -->
     <section class="content">
       <div class="container-fluid">
-	  @if(Session::has('success'))     
+	      @if(Session::has('success'))     
         <div class="alert alert-success" role="alert">                                      
             <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>{{ Session::get('success') }}
         </div> 
@@ -30,57 +30,41 @@
             <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>{{ Session::get('error') }}    
         </div>                            
         @endif
-        <div class="row">
-        
+          <div class="row">
           <div class="col-md-12">
-            <div class="card">
-			
-			<div class="card-header">
-                <h3 class="card-title">
-                  <i class="fa fa-search"></i>
-                  Master Search
-                </h3>
+          <div class="card">
+          <div class="card-header">
+          <h3 class="card-title">
+          <i class="fa fa-search"></i>
+          Master Search
+          </h3>
+          </div>
+          <form method="get" action="" name="addAccount" role="form" id="addAccount" enctype="multipart/form-data" class="form-horizontal">
+          <div class="card-body">
+            <div class="form-group row mb-2">
+              <label for="inputName" class="col-sm-1">Name</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="<?php if(isset($name)){ echo $name;}?>">
               </div>
-			  
-				<form method="get" action="" name="addAccount" role="form" id="addAccount" enctype="multipart/form-data" class="form-horizontal">
-			  <div class="card-body">
-				
-					
-					<div class="form-group row mb-2">
-						<label for="inputName" class="col-sm-1">Name</label>
-						<div class="col-sm-2">
-						  <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="<?php if(isset($name)){ echo $name;}?>">
-							
-						</div>
-						
-						
-						<label for="inputName" class="col-sm-1">Type</label>
-						<div class="col-sm-2">
-						  <select class="form-control" name="type" >
-							<option value="">Select Type</option>
-								<?php foreach($type_list as $row){ ?>
-									<option value="<?=$row?>"><?=$row?></option>
-								<?php } ?>
-						  </select>
-							
-						</div>
-						
-					</div>
-					
-					
-					
-				</div>
-					
+              <label for="inputName" class="col-sm-1">Type</label>
+              <div class="col-sm-2">
+                <select class="form-control" name="type" >
+                <option value="">Select Type</option>
+                <?php foreach($type_list as $row){ ?>
+                <option value="<?=$row?>"><?=$row?></option>
+                <?php } ?>
+                </select>
+              </div>
+            </div>
+          </div>
 					<div class="card-footer clearfix">
 						<input type="submit" name="submit" value="Search" class="btn btn-primary">
 						<input type="button" name="button" value="Clear" class="btn btn-default" onclick="window.location.href='<?php echo URL::to('/');?>/master'">
 						@can('master-create')
 						<a href="{{ route('master.create') }}" class="btn btn-success">Add New Master</a>
 						@endcan
-						
 					</div>
 				</form>
-				
 			</div>
 			
 			<div class="card">

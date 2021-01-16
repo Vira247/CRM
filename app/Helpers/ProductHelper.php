@@ -37,11 +37,20 @@ class ProductHelper{
 		$update = Product::where($where)->update($data);
 		return $update;
 	}
-	public static function getPaginateData(){
-		$query = Product::select('product.id','product.name','product.sku','vendor.name as vendorname')
+	public static function getPaginateData($type,$sku,$vendors){
+		$query = Product::select('product.id','product.product_type','product.name','product.sku','vendor.name as vendorname')
 		->leftjoin('vendor','vendor.id','product.vendor_id')
 		->where('vendor.delete_flag','N')
 		->where('product.delete_flag','N');
+		if($type != ""){
+			$query->where('product.product_type',$type);
+		}
+		if($sku != ""){
+			$query->where('product.sku',$sku);
+		}
+		if($vendors != ""){
+			$query->where('product.vendor_id',$vendors);
+		}
 		$query = $query->orderBy('id','desc')->paginate(50);
 		return $query;
 	}

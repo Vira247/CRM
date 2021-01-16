@@ -432,8 +432,7 @@
 						<div class="form-group row">
 							<label for="inputName" class="col-sm-2">Tracking link</label>
 							<div class="col-sm-4">
-							<?php echo e($vendor->shipment); ?>
-
+							<a href="<?php echo e($vendor->vendor_pick_up_reference); ?>" target="_blank"><?php echo e($vendor->vendor_pick_up_reference); ?></a>
 							</div>
 						</div>
 						<hr>
@@ -617,7 +616,7 @@
 								</tr>
 
 								
-								<tr style="background-color: #0000008a;color: white;">
+								<tr style="background-color:<?php if($profite > 0): ?> green <?php else: ?> red <?php endif; ?>;color: white;">
 									<th>Net Profit / Net Loss</th>
 									<th><?php echo e($profite); ?></th>
 								</tr>

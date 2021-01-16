@@ -27,8 +27,13 @@ class ProductController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-        $data['table_list'] = ProductHelper::getPaginateData();
+        $data['type'] = $request->input('type');
+        $data['sku'] = $request->input('sku');
+        $data['vendors'] = $request->input('vendors');
+        $data['vendorList'] = VendorHelper::getList();
+        $data['table_list'] = ProductHelper::getPaginateData($data['type'],$data['sku'],$data['vendors']);
         $data['i'] = ($request->input('page', 1) - 1) * 50;
+        $data['masterList'] = MasterListHelper::getByMultipleTypes(array('Product Type'));
         return view('product.index',$data);
     }
     /**

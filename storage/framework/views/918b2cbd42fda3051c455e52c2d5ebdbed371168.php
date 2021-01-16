@@ -45,32 +45,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="navbar-nav">
         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['user-list', 'user-create','user-edit','user-delete'])): ?>							
         <li class="nav-item">
-          <a href="<?php echo e(route('users.index')); ?>" class="nav-link"> Users</a>
+          <a href="<?php echo e(route('users.index')); ?>" target="_blank" class="nav-link"> Users</a>
         </li>
         <?php endif; ?>
         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['role-list', 'role-create','role-edit','role-delete'])): ?>					
         <li class="nav-item">
-          <a href="<?php echo e(route('roles.index')); ?>" class="nav-link"> Roles</a>
+          <a href="<?php echo e(route('roles.index')); ?>" target="_blank" class="nav-link"> Roles</a>
         </li>
         <?php endif; ?>
         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['master-list', 'master-create','master-edit','master-delete'])): ?>					
         <li class="nav-item">
-          <a href="<?php echo e(route('master.index')); ?>" class="nav-link"> Master</a>
+          <a href="<?php echo e(route('master.index')); ?>" target="_blank" class="nav-link"> Master</a>
         </li>
         <?php endif; ?>
         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['vendor-list', 'vendor-create','vendor-edit','vendor-delete'])): ?>					
         <li class="nav-item">
-          <a href="<?php echo e(route('vendor.index')); ?>" class="nav-link"> Vendor</a>
+          <a href="<?php echo e(route('vendor.index')); ?>" target="_blank" class="nav-link"> Vendor</a>
         </li>
         <?php endif; ?>
         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['product-list', 'product-create','product-edit','product-delete'])): ?>					
         <li class="nav-item">
-          <a href="<?php echo e(route('product.index')); ?>" class="nav-link"> Product</a>
+          <a href="<?php echo e(route('product.index')); ?>" target="_blank" class="nav-link"> Product</a>
         </li>
         <?php endif; ?>
         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['order-list', 'order-create','order-edit','order-delete'])): ?>					
         <li class="nav-item">
-          <a href="<?php echo e(route('order.index')); ?>" class="nav-link"> Order</a>
+          <a href="<?php echo e(route('order.index')); ?>" target="_blank" class="nav-link"> Order</a>
         </li>
         <?php endif; ?>
           <?php /*<li class="nav-item">
