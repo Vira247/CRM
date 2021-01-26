@@ -31,8 +31,23 @@ class OrderController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
+        $data['date'] = $request->input('date');
+        $data['site'] = $request->input('site');
+        $data['status'] = $request->input('status');
+        $data['platform'] = $request->input('platform');
+        if($data['date'] != ""){
+            $dates =  explode("-",$request->input('date'));
+            $sdate = date('Y-m-d',strtotime($dates[0]));
+            $edate = date('Y-m-d',strtotime($dates[1]));
+        }else{
+            $sdate = date('Y-m-d');
+            $edate = date('Y-m-d');
+        }
+        $data['sdate'] = date('m/d/Y',strtotime($sdate));
+        $data['edate'] = date('m/d/Y',strtotime($edate));
         $data['master_list'] = MasterListHelper::getByTypePluck();
-        $data['table_list'] = OrderHelper::getPaginateData();
+        $data['table_list'] = OrderHelper::getPaginateData($sdate,$edate,$data['site'],$data['platform'],$data['status']);
+        $data['masterList'] = MasterListHelper::getByMultipleTypes(array('Site','Platform','Order Status'));
         return view('order.index',$data);
     }
     /**

@@ -134,6 +134,10 @@ class ProductController extends Controller{
         $productList = ProductHelper::getProductByVendorType($vendor,$productType);
         return $productList;
     }
+    public function getProductListByVendor($vendor){
+        $productList = ProductHelper::getProductByVendor($vendor);
+        return $productList;
+    }
     public function importSample(){
         $VendorLists = VendorHelper::getByTypePluckName();
         $VendorList = array();

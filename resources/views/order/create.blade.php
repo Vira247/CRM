@@ -666,6 +666,7 @@
                                     <option value="">Select</option>
                                     <option value="Replacement">Replacement</option>
                                     <option value="Refund">Refund</option>
+                                    <option value="Compensation">Compensation</option>
                                 </select>
                             </div>
                         </div>
@@ -696,7 +697,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Claim against<span style="color:red;">*</span></label>
+                                <label for="exampleInputEmail1">Claim against</label>
                                 <select class="form-control" id="claim_against" name="claim_against"  onchange="change_claim_against()">
                                     <option value="">Select</option>
                                     <option value="Vendor">Vendor</option>
@@ -706,7 +707,7 @@
                         </div>
                         <div class="col-md-4 claim_against" id="vendor_claim_div" style="display:none;">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Vendor<span style="color:red;">*</span></label>
+                                <label for="exampleInputEmail1">Vendor</label>
                                 <select class="form-control" id="vendor_claim" name="vendor_claim">
                                     <option value="">Select</option>
                                     @foreach ($vendorList as $vendor)
@@ -717,7 +718,7 @@
                         </div>
                         <div class="col-md-4 claim_against" id="shipping_claim_div" style="display:none;">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Shipping<span style="color:red;">*</span></label>
+                                <label for="exampleInputEmail1">Shipping</label>
                                 <select class="form-control" id="shipping_claim" name="shipping_claim">
                                     <option value="">Select</option>
                                     @foreach ($masterList as $master)
@@ -730,13 +731,13 @@
                         </div>
                         <div class="col-md-4 claim_against" id="shipping_claim_amount_div" style="display:none;">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Refund Amount<span style="color:red;">*</span></label>
+                                <label for="exampleInputEmail1">Refund Amount</label>
                                 <input type="text" class="form-control" id="shipping_claim_amount" name="shipping_claim_amount">
                             </div>
                         </div>
                         <div class="col-md-4 claim_against" id="claim_status_div"  style="display:none;">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Claim status<span style="color:red;">*</span></label>
+                                <label for="exampleInputEmail1">Claim status</label>
                                 <select class="form-control" id="claim_status" name="claim_status">
                                     <option value="">Select</option>
                                     <option value="Lodged">Lodged</option>
@@ -749,7 +750,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                <button type="submit" id="step_btn1" class="btn btn-primary float-right" >Next <i class="fa fa-forward" aria-hidden="true"></i></button>
+                <button type="submit" id="step_btn1" class="btn btn-primary float-right" >Save </button>
                 </div>
                 <!-- /.card-footer-->
             </div>
@@ -798,7 +799,6 @@ function change_claim_against(){
         $("#shipping_claim_amount_div").show();
         $("#claim_status_div").show();
     }
-    alert('hiii');
 }
 function removeItem(countid){
     $('#itemtr'+countid).remove();

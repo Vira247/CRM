@@ -50,10 +50,25 @@ class OrderHelper{
 		$update = Order::where($where)->update($data);
 		return $update;
 	}
-	public static function getPaginateData(){
+	public static function getPaginateData($sdate,$edate,$site,$platform,$status){
 		$query = Order::select('order_master.*','vendor.name as vendor_name')
 		->leftjoin('vendor','vendor.id','order_master.vendor')
 		->where('order_master.delete_flag','N');
+		if($sdate != ""){
+			$query->where('order_date','>=',$sdate);
+		}
+		if($edate != ""){
+			$query->where('order_date','<=',$edate);
+		}
+		if($site != ""){
+			$query->where('site',$site);
+		}
+		if($platform != ""){
+			$query->where('platform',$platform);
+		}
+		if($status != ""){
+			$query->where('order_status',$status);
+		}
 		$query = $query->orderBy('order_master.id','desc')->paginate(100);
 		return $query;
 	}

@@ -555,11 +555,11 @@
 									<td>{{$vedoramount}}</td>
 								</tr>
 								<tr class="red">
-									<td><b>Sales tax charged by Vendor</b></td>
+									<td><b>Shipping Cost</b></td>
 									<td>{{$shipin_Amount}}</td>
 								</tr>
 								<tr class="red">
-									<td><b>Shipping Cost</b></td>
+									<td><b>Sales tax charged by Vendor</b></td>
 									<td>{{$vendor_vat}}</td>
 								</tr>
 

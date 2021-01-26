@@ -698,10 +698,11 @@
                                     <option value="">Select</option>
                                     <option value="Replacement"  @if('Replacement' == $orderDetail->claim_refund) selected @endif>Replacement</option>
                                     <option value="Refund"  @if('Refund' == $orderDetail->claim_refund) selected @endif>Refund</option>
+                                    <option value="Compensation"  @if('Compensation' == $orderDetail->claim_refund) selected @endif>Compensation</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4">`
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Refund Amount<span style="color:red;">*</span></label>
                                 <input type="text" class="form-control" id="refund_amount" name="refund_amount" value="{{$orderDetail->refund_amount}}">
