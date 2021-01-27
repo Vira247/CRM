@@ -73,6 +73,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="<?php echo e(route('order.index')); ?>" target="_blank" class="nav-link"> Order</a>
         </li>
         <?php endif; ?>
+        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['inquiry-list', 'inquiry-create','inquiry-edit','inquiry-delete'])): ?>					
+        <li class="nav-item">
+          <a href="<?php echo e(route('inquiry.index')); ?>" target="_blank" class="nav-link"> Inquiry</a>
+        </li>
+        <?php endif; ?>
           <?php /*<li class="nav-item">
             <a href="index3.html" class="nav-link">Home</a>
           </li>

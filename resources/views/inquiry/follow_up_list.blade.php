@@ -6,12 +6,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Inquiry</h1>
+          <h1 class="m-0 text-dark">Inquiry Notes</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="<?php echo URL::to('/'); ?>/home">Home</a></li>
-            <li class="breadcrumb-item active">Inquiry</li>
+            <li class="breadcrumb-item active">Inquiry Notes</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -36,7 +36,7 @@
             <div class="card-header">
               <h3 class="card-title">
                 <i class="fa fa-search"></i>
-                Inquiry search
+                Inquiry Notes search
               </h3>
             </div>
             <form method="get" action="" name="searchPrduct" role="form" id="searchPrduct" enctype="multipart/form-data" class="form-horizontal">
@@ -46,42 +46,20 @@
                     <label for="exampleInputEmail1">Related To</label>
                     <select class="form-control" name="related_to">
                       <option value="">All</option>
-                      <option value="Me" @if($related_to=="Me" ) selected @endif>Me</option>
+                      @foreach($userList as $user)
+										<option value="{{$user->id}}" @if($related_to==$user->id ) selected @endif >{{$user->name}}</option>
+										@endforeach
                     </select>
                   </div>
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Follow UP Date</label>
                     <input type="date" class="form-control" id="date" name="date" placeholder="Date" value="{{$date}}">
                   </div>
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Status</label>
-                    <select class="form-control" name="status">
-                      <option value="">Select Status</option>
-                      <option value="Open" @if($status=="Open" ) selected @endif>Open</option>
-                      <option value="Sale" @if($status=="Sale" ) selected @endif>Sale</option>
-                      <option value="Close without Sale" @if($status=="Close without Sale" ) selected @endif>Close without Sale</option>
-                    </select>
-                  </div>
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{$name}}">
-                  </div>
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Phone</label>
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" value="{{$phone}}">
-                  </div>
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">EMail</label>
-                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="{{$email}}">
-                  </div>
                 </div>
+                
               </div>
               <div class="card-footer clearfix">
                 <input type="submit" name="submit" value="Search" class="btn btn-primary">
-                <input type="button" name="button" value="Clear" class="btn btn-default" onclick="window.location.href='<?php echo URL::to('/'); ?>/inquiry'">
-                @can('inquiry-create')
-                <a href="{{ route('inquiry.create') }}" class="btn btn-success">Add New Inquiry</a>
-                @endcan
               </div>
             </form>
           </div>
@@ -95,14 +73,10 @@
                 <thead>
                   <tr>
                     <th style="width: 10px">#</th>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Status</th>
-                    <th>Created BY</th>
-                    <th>Assigan TO</th>
-                    <th>Next Follow UP Date</th>
-                    <th style="width: 40px">Action</th>
+                    <th>Created By</th>
+                    <th>Created Date</th>
+                    <th>Notes</th>
+                    <th>Next Follow Up</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -113,25 +87,9 @@
                       <tr>
                         <td><?= ++$i ?></td>
                         <td><?php echo $key->name; ?></td>
-                        <td><?php echo $key->phone; ?></td>
-                        <td><?php echo $key->email; ?></td>
-                        <td>
-                          @if($key->status == 'Open')
-                          <span class="badge bg-info">{{$key->status}}</span>
-                          @elseif($key->status == 'Sale')
-                          <span class="badge bg-success">{{$key->status}}</span>
-                          @else
-                          <span class="badge bg-danger">{{$key->status}}</span>
-                          @endif
-                        </td>
-                        <td><?php echo $key->username; ?></td>
-                        <td><?php echo $key->assignname; ?></td>
-                        <td><?php echo date('m/d/Y', strtotime($key->follow_up_date)); ?></td>
-                        <td>
-                          @can('vendor-edit')
-                          <a href="<?php echo URL::to('/'); ?>/inquiry/<?php echo $key->id; ?>" title="Show" target="_blank"><i class="fa fa-eye"></i></a>
-                          @endcan
-                        </td>
+                        <td><?php echo date('m/d/Y h:i A',strtotime($key->created_at)); ?></td>
+                        <td><?php echo $key->description; ?></td>
+                        <td><?php if($key->follow_up_date != ""){ echo date('m/d/Y',strtotime($key->follow_up_date)); }?></td>
                       </tr>
                     <?php }
                   }

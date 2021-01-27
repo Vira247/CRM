@@ -73,6 +73,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="{{ route('order.index') }}" target="_blank" class="nav-link"> Order</a>
         </li>
         @endcanany
+        @canany(['inquiry-list', 'inquiry-create','inquiry-edit','inquiry-delete'])					
+        <li class="nav-item">
+          <a href="{{ route('inquiry.index') }}" target="_blank" class="nav-link"> Inquiry</a>
+        </li>
+        @endcanany
           <?php /*<li class="nav-item">
             <a href="index3.html" class="nav-link">Home</a>
           </li>

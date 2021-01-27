@@ -161,4 +161,12 @@ class InquiryController extends Controller{
         Session::flash('success', 'Status change successfully.');
 		return redirect()->back();
     }
+    public function followUpList(Request $request){
+        $data['related_to'] = $request->input('related_to');
+        $data['date'] = $request->input('date');
+        $data['userList'] = User::orderBy('name','ASC')->get();
+        $data['table_list'] = InquiryDataHelper::getPaginateData($data['related_to'],$data['date']);
+        $data['i'] = ($request->input('page', 1) - 1) * 50;
+        return view('inquiry.follow_up_list',$data);
+    }
 }

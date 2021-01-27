@@ -32,6 +32,7 @@ Route::resource('vendor', 'VendorController');
 Route::resource('inquiry', 'InquiryController');
 Route::post('add/inquiry-data/{id}', 'InquiryController@addFollowUp');
 Route::get('inquiry/chnage-status/{id}/{status}', 'InquiryController@changeStatus');
+Route::get('follow-up-list', 'InquiryController@followUpList');
 Route::get('importProductList', 'VendorController@importProductList');
 Route::get('/vendor/delete/{id}', 'VendorController@delete');
 Route::resource('product', 'ProductController');

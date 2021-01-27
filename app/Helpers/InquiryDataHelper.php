@@ -37,8 +37,15 @@ class InquiryDataHelper{
 		$update = InquiryData::where($where)->update($data);
 		return $update;
 	}
-	public static function getPaginateData(){
-		$query = InquiryData::where('delete_flag', 'N');
+	public static function getPaginateData($related_to,$date){
+		$query = InquiryData::select('inquiry_data.*','users.name')->where('delete_flag', 'N');
+		$query->join('users', 'users.id', '=', 'inquiry_data.created_by');
+		if($related_to != ""){
+			$query->whereDate('inquiry_data.created_by',$related_to);
+		}
+		if($date != ""){
+			$query->whereDate('inquiry_data.created_at',$date);
+		}
 		$query = $query->orderBy('id', 'desc')->paginate(50);
 		return $query;
 	}
