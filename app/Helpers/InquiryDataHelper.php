@@ -41,7 +41,7 @@ class InquiryDataHelper{
 		$query = InquiryData::select('inquiry_data.*','users.name')->where('delete_flag', 'N');
 		$query->join('users', 'users.id', '=', 'inquiry_data.created_by');
 		if($related_to != ""){
-			$query->whereDate('inquiry_data.created_by',$related_to);
+			$query->where('inquiry_data.created_by',$related_to);
 		}
 		if($date != ""){
 			$query->whereDate('inquiry_data.created_at',$date);

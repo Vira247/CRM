@@ -60,6 +60,7 @@
               </div>
               <div class="card-footer clearfix">
                 <input type="submit" name="submit" value="Search" class="btn btn-primary">
+                <input type="button" name="button" value="Clear" class="btn btn-default" onclick="window.location.href='<?php echo URL::to('/'); ?>/follow-up-list'">
               </div>
             </form>
           </div>

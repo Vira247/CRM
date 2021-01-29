@@ -84,6 +84,7 @@
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('inquiry-create')): ?>
                 <a href="<?php echo e(route('inquiry.create')); ?>" class="btn btn-success">Add New Inquiry</a>
                 <?php endif; ?>
+                <a href="<?php echo e(URL::TO('follow-up-list')); ?>" target="_blank" class="btn btn-info">View FolloW UP Notes</a>
               </div>
             </form>
           </div>

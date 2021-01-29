@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use Auth;
 class InquiryController extends Controller{
 	function __construct(){
          $this->middleware('permission:inquiry-list|inquiry-create|inquiry-edit|inquiry-delete', ['only' => ['index','store']]);
@@ -168,5 +169,18 @@ class InquiryController extends Controller{
         $data['table_list'] = InquiryDataHelper::getPaginateData($data['related_to'],$data['date']);
         $data['i'] = ($request->input('page', 1) - 1) * 50;
         return view('inquiry.follow_up_list',$data);
+    }
+    public function followCalendar(){
+        return view('inquiry.follow_calendar');
+    }
+    public function followDateList(Request $request){
+        $start = date('Y-m-d',strtotime($request->input('start')));
+        $end = date('Y-m-d',strtotime($request->input('end')));
+        $lists = InquiryHelper::getFollowUpByDate($start,$end);
+        $data = array();
+        foreach($lists as $list){
+            $data[] = array("id"=>$list->id,"title"=>$list->name.'-'.$list->assignname,"start"=>$list->follow_up_date);
+        }
+        return $data;
     }
 }

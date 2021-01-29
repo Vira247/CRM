@@ -82,6 +82,7 @@
                 @can('inquiry-create')
                 <a href="{{ route('inquiry.create') }}" class="btn btn-success">Add New Inquiry</a>
                 @endcan
+                <a href="{{ URL::TO('follow-up-list') }}" target="_blank" class="btn btn-info">View FolloW UP Notes</a>
               </div>
             </form>
           </div>

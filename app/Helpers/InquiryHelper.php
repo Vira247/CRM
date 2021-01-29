@@ -70,4 +70,13 @@ class InquiryHelper{
 		$detail = $query->first();
 		return $detail;
 	}
+	public static function getFollowUpByDate($start,$end){
+		$query = Inquiry::select('inquiry.*','u.name as assignname')
+		->where('inquiry.delete_flag', 'N')
+		->where('inquiry.follow_up_date','>=',$start)
+		->where('inquiry.follow_up_date','<=',$end);
+		$query->join('users as u', 'u.id', '=', 'inquiry.assign_to');
+		$detail = $query->get();
+		return $detail;
+	}
 }
