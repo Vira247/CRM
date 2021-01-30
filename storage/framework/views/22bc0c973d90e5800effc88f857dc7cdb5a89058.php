@@ -57,10 +57,11 @@
 										<label>Inquiry Type<span style="color:red;">*</span></label>
 										<select name="inquiry_type" id="inquiry_type" class="form-control" required >
 										<option value="Call">Call</option>
-										<option value="LVQ">LVQ</option>
 										<option value="Contact Us">Contact Us</option>
-										<option value="Product Discount">Product Discount</option>
 										<option value="General Inquiry">General Inquiry</option>
+										<option value="LVQ">LVQ</option>
+										<option value="Product Discount">Product Discount</option>
+										<option value="Special Order">Special Order</option>
 										</select>
 									</div>
 								</div>
@@ -103,8 +104,8 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label>Remark </label>
-										<textarea name="remark" id="remark" class="form-control" placeholder="Remark"><?php echo old('remark'); ?></textarea>
+										<label>Inquiry Subject </label>
+										<textarea name="remark" id="remark" class="form-control" placeholder="Inquiry Subject"><?php echo old('remark'); ?></textarea>
 										<span style="color:red" id="nerror"><?php echo $errors->first('remark'); ?></span>
 									</div>
 								</div>

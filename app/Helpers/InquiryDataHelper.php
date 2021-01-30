@@ -38,8 +38,10 @@ class InquiryDataHelper{
 		return $update;
 	}
 	public static function getPaginateData($related_to,$date){
-		$query = InquiryData::select('inquiry_data.*','users.name')->where('delete_flag', 'N');
+		$query = InquiryData::select('inquiry_data.*','users.name','inquiry.name as customer')
+		->where('inquiry_data.delete_flag', 'N')->where('inquiry.delete_flag', 'N');
 		$query->join('users', 'users.id', '=', 'inquiry_data.created_by');
+		$query->join('inquiry', 'inquiry.id', '=', 'inquiry_data.inquiry_id');
 		if($related_to != ""){
 			$query->where('inquiry_data.created_by',$related_to);
 		}

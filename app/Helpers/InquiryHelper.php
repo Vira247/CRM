@@ -53,12 +53,14 @@ class InquiryHelper{
 		if($date != ""){
 			$query->where('inquiry.follow_up_date',$date);
 		}
-		if($date != ""){
-			$query->Where(function($query) {
+		if($related_to != ""){
+			$user_data  = Auth::user();
+			$query->where('inquiry.assign_to',$user_data->id);
+			/*$query->Where(function($query) {
 				$user_data  = Auth::user();
 				$query->where('inquiry.created_by',$user_data->id)
 					->orWhere('inquiry.assign_to',$user_data->id);
-			});
+			});*/
 		}
 		$query = $query->orderBy('id', 'desc')->paginate(50);
 		return $query;
@@ -78,5 +80,9 @@ class InquiryHelper{
 		$query->join('users as u', 'u.id', '=', 'inquiry.assign_to');
 		$detail = $query->get();
 		return $detail;
+	}
+	public static function getFollowUpNotificationCount(){
+		$user = auth()->user();
+		return $query = Inquiry::whereDate('follow_up_date',date('Y-m-d'))->where('assign_to',$user->id)->count();
 	}
 }

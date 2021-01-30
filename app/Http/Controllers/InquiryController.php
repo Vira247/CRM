@@ -183,4 +183,9 @@ class InquiryController extends Controller{
         }
         return $data;
     }
+    public function getFollowUpNotificationCount(){
+        $user = auth()->user();
+        $count = InquiryHelper::getFollowUpNotificationCount();
+        return $count;
+    }
 }

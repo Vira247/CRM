@@ -47,4 +47,5 @@ Route::get('inquiry/chnage-status/{id}/{status}', 'InquiryController@changeStatu
 Route::get('follow-up-list', 'InquiryController@followUpList');
 Route::get('follow-calendar', 'InquiryController@followCalendar');
 Route::get('getfollowuplist', 'InquiryController@followDateList');
+Route::get('get-followUp-notification-count', 'InquiryController@getFollowUpNotificationCount');
 });

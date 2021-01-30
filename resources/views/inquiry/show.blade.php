@@ -43,13 +43,13 @@
 								<b>Phone :- </b> {{$detail->phone}}<br>
 								<b>Email :- </b> {{$detail->email}}<br>
 								@if($detail->remark != "")
-								<b>Remark :- </b> {{$detail->remark}}<br>
+								<b>Inquiry Subject :- </b> {{$detail->remark}}<br>
 								@endif
 								@if($productDetail)
 								<b>Product :- </b> {{$productDetail->name}} - {{$productDetail->sku}}<br>
 								@endif
 								<b>Created By :- </b> {{$detail->username}}<br>
-								<b>Created Date Time :- </b> {{date('m/d/Y',strtotime($detail->created_at))}}<br>
+								<b>Created Date Time :- </b> {{date('m/d/Y h:i A',strtotime($detail->created_at))}}<br>
 
 							</h6>
 						</div>

@@ -6,12 +6,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Inquiry Notes</h1>
+          <h1 class="m-0 text-dark">View All Follow-up Notes</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="<?php echo URL::to('/'); ?>/home">Home</a></li>
-            <li class="breadcrumb-item active">Inquiry Notes</li>
+            <li class="breadcrumb-item active">View All Follow-up Notes</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -47,8 +47,8 @@
                     <select class="form-control" name="related_to">
                       <option value="">All</option>
                       @foreach($userList as $user)
-										<option value="{{$user->id}}" @if($related_to==$user->id ) selected @endif >{{$user->name}}</option>
-										@endforeach
+                      <option value="{{$user->id}}" @if($related_to==$user->id ) selected @endif >{{$user->name}}</option>
+                      @endforeach
                     </select>
                   </div>
                   <div class="col-md-2">
@@ -56,7 +56,6 @@
                     <input type="date" class="form-control" id="date" name="date" placeholder="Date" value="{{$date}}">
                   </div>
                 </div>
-                
               </div>
               <div class="card-footer clearfix">
                 <input type="submit" name="submit" value="Search" class="btn btn-primary">
@@ -76,6 +75,7 @@
                     <th style="width: 10px">#</th>
                     <th>Created By</th>
                     <th>Created Date</th>
+                    <th>Customer Name</th>
                     <th>Notes</th>
                     <th>Next Follow Up</th>
                   </tr>
@@ -88,9 +88,12 @@
                       <tr>
                         <td><?= ++$i ?></td>
                         <td><?php echo $key->name; ?></td>
-                        <td><?php echo date('m/d/Y h:i A',strtotime($key->created_at)); ?></td>
+                        <td><?php echo date('m/d/Y h:i A', strtotime($key->created_at)); ?></td>
+                        <td><a href="{{URL::to('inquiry/'.$key->inquiry_id)}}" target="_blank"><?php echo $key->customer; ?></a></td>
                         <td><?php echo $key->description; ?></td>
-                        <td><?php if($key->follow_up_date != ""){ echo date('m/d/Y',strtotime($key->follow_up_date)); }?></td>
+                        <td><?php if ($key->follow_up_date != "") {
+                              echo date('m/d/Y', strtotime($key->follow_up_date));
+                            } ?></td>
                       </tr>
                     <?php }
                   }

@@ -43,13 +43,13 @@
 								<b>Phone :- </b> <?php echo e($detail->phone); ?><br>
 								<b>Email :- </b> <?php echo e($detail->email); ?><br>
 								<?php if($detail->remark != ""): ?>
-								<b>Remark :- </b> <?php echo e($detail->remark); ?><br>
+								<b>Inquiry Subject :- </b> <?php echo e($detail->remark); ?><br>
 								<?php endif; ?>
 								<?php if($productDetail): ?>
 								<b>Product :- </b> <?php echo e($productDetail->name); ?> - <?php echo e($productDetail->sku); ?><br>
 								<?php endif; ?>
 								<b>Created By :- </b> <?php echo e($detail->username); ?><br>
-								<b>Created Date Time :- </b> <?php echo e(date('m/d/Y',strtotime($detail->created_at))); ?><br>
+								<b>Created Date Time :- </b> <?php echo e(date('m/d/Y h:i A',strtotime($detail->created_at))); ?><br>
 
 							</h6>
 						</div>

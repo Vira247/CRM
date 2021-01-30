@@ -196,17 +196,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-bell"></i>
-            <span class="badge badge-warning navbar-badge">15</span>
+            <span class="badge badge-warning navbar-badge" id="allcount">0</span>
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-header">15 Notifications</span>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> 4 new messages
-              <span class="float-right text-muted text-sm">3 mins</span>
+          <?php /*<span class="dropdown-header">15 Notifications</span>
+            <div class="dropdown-divider"></div>*/ ?>
+            <a href="{{URL::to('inquiry?related_to=Me&date='.date('Y-m-d'))}}" class="dropdown-item" id="followupcount" target="_blank">
+              <i class="fa fa-calendar"></i> 0 Today Follow UP
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
+            <?php /*<a href="#" class="dropdown-item">
               <i class="fas fa-users mr-2"></i> 8 friend requests
               <span class="float-right text-muted text-sm">12 hours</span>
             </a>
@@ -216,7 +215,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <span class="float-right text-muted text-sm">2 days</span>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a> */ ?>
           </div>
         </li>
         <li class="nav-item">
@@ -250,4 +249,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </ul>
     </div>
   </nav>
+  <script>
+  function getFollowUpNotificationCount(){
+  $.ajax({
+			'url':"<?php echo URL::to('/');?>/get-followUp-notification-count",
+			'type':'GET',
+			success:function(response){
+        $("#followupcount").html('<i class="fa fa-calendar"></i> '+response+' Today Follow UP ');
+        $("#allcount").html(response);
+			}
+		})
+    }
+  </script>
   <!-- /.navbar -->
