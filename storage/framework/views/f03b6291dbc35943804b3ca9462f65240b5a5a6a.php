@@ -129,7 +129,7 @@
                         </td>
                         <td><?php echo $key->username; ?></td>
                         <td><?php echo $key->assignname; ?></td>
-                        <td><?php echo date('m/d/Y', strtotime($key->follow_up_date)); ?></td>
+                        <td><?php if($key->follow_up_date != ""){ echo date('m/d/Y', strtotime($key->follow_up_date)); } ?></td>
                         <td>
                           <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('vendor-edit')): ?>
                           <a href="<?php echo URL::to('/'); ?>/inquiry/<?php echo $key->id; ?>" title="Show" target="_blank"><i class="fa fa-eye"></i></a>

@@ -702,7 +702,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-4">`
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Refund Amount<span style="color:red;">*</span></label>
                                 <input type="text" class="form-control" id="refund_amount" name="refund_amount" value="{{$orderDetail->refund_amount}}">

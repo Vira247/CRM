@@ -135,7 +135,7 @@
 							</div>
 						</div>
                         <div class="form-group row">
-							<label for="inputEmail" class="col-sm-2">VAT Tax Amount</label>
+							<label for="inputEmail" class="col-sm-2">Sales Tax</label>
 							<div class="col-sm-10">
                                 {{$orderDetail->vat_tax_amount}}
 							</div>
@@ -525,11 +525,11 @@
 								</tr>
 								<tr class="red">
 									<td><b>Discount</b></td>
-									<td>{{$orderDetail->discount}}</td>
+									<td>+{{$orderDetail->discount}}</td>
 								</tr>
 								<tr class="red">
 									<td><b>Sales Tax</b></td>
-									<td>{{$orderDetail->vat_tax_amount}}</td>
+									<td>+{{$orderDetail->vat_tax_amount}}</td>
 								</tr>
 								<tr  class="green">
 									<td><b>Total</b></td>
@@ -537,11 +537,11 @@
 								</tr>
 								<tr class="red">
 									<td><b>Comission/Other Charges</b></td>
-									<td>{{$orderDetail->comission_other_charges}}</td>
+									<td>-{{$orderDetail->comission_other_charges}}</td>
 								</tr>
 								<tr class="red">
 									<td><b>Sales Tax</b></td>
-									<td>{{$orderDetail->vat_tax_amount}}</td>
+									<td>-{{$orderDetail->vat_tax_amount}}</td>
 								</tr>
 								<tr class="green">
 									<td><b>Total Net Revenue</b></td>
@@ -552,11 +552,11 @@
 								
 								<tr class="red">
 									<td><b>Vendor Invoice Amount (Inc. Sales tax)</b></td>
-									<td>{{$vedoramount}}</td>
+									<td>-{{$vedoramount}}</td>
 								</tr>
 								<tr class="red">
 									<td><b>Shipping Cost</b></td>
-									<td>{{$shipin_Amount}}</td>
+									<td>-{{$shipin_Amount}}</td>
 								</tr>
 								<tr class="red">
 									<td><b>Sales tax charged by Vendor</b></td>

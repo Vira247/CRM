@@ -201,7 +201,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <?php /*<span class="dropdown-header">15 Notifications</span>
             <div class="dropdown-divider"></div>*/ ?>
-            <a href="<?php echo e(URL::to('inquiry?related_to=Me&date='.date('Y-m-d'))); ?>" class="dropdown-item" id="followupcount">
+            <a href="<?php echo e(URL::to('inquiry?related_to=Me&date='.date('Y-m-d'))); ?>" class="dropdown-item" id="followupcount" target="_blank">
               <i class="fa fa-calendar"></i> 0 Today Follow UP
             </a>
             <div class="dropdown-divider"></div>
@@ -256,7 +256,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			'url':"<?php echo URL::to('/');?>/get-followUp-notification-count",
 			'type':'GET',
 			success:function(response){
-        $("#followupcount").html('<i class="fa fa-calendar"></i> '+response+' Today Follow UP');
+        $("#followupcount").html('<i class="fa fa-calendar"></i> '+response+' Today Follow UP ');
         $("#allcount").html(response);
 			}
 		})

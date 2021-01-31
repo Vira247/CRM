@@ -81,6 +81,10 @@
                       @endforeach
                     </select>
                   </div>
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Order Id</label>
+                    <input type="text" class="form-control" id="order_id" name="order_id" placeholder="Order ID" value="{{$order_id}}">
+                  </div>
                 </div>
               </div>
               <div class="card-footer clearfix">
