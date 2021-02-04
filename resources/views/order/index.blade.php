@@ -133,7 +133,7 @@
                           <td>@if($key->order_date != ""){{date('m/d/Y',strtotime($key->order_date))}}@endif</td>
                           <td>
                             @can('vendor-edit')
-                            <a href="<?php echo URL::to('/'); ?>/order/<?php echo $key->id; ?>/edit" title="Edit"><i class="fa fa-edit"></i></a>
+                            <a href="<?php echo URL::to('/'); ?>/order/<?php echo $key->id; ?>/edit" target="_blank" title="Edit"><i class="fa fa-edit"></i></a>
                             @endcan
                             @can('vendor-delete')
                             <a href="<?php echo URL::to('/'); ?>/order/delete/<?php echo $key->id; ?>" title="Delete" onclick="return confirm('Are you sure remove this record?')"><i class="fa fa-trash"></i></a>
@@ -172,7 +172,7 @@
 <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
 <script>
   $(function() {
-    var start = moment().subtract(29, 'days');
+    var start = moment().subtract(1, 'days');
     var end = moment();
     $('#date').daterangepicker({
       startDate: start,

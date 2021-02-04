@@ -85,6 +85,7 @@
                 <a href="<?php echo e(route('inquiry.create')); ?>" class="btn btn-success">Add New Inquiry</a>
                 <?php endif; ?>
                 <a href="<?php echo e(URL::TO('follow-up-list')); ?>" target="_blank" class="btn btn-info">View All Follow-up Notes</a>
+                <a href="<?php echo e(URL::TO('follow-calendar')); ?>" target="_blank" class="btn btn-info">Calendar</a>
               </div>
             </form>
           </div>
