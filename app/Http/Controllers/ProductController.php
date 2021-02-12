@@ -9,6 +9,7 @@ use App\Helpers\RoleHelper;
 use App\Helpers\ProductHelper;
 use App\Helpers\VendorHelper;
 use App\Helpers\MasterListHelper;
+use App\Helpers\OrderItemDetailHelper;
 use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Models\Role;
 use DB;
@@ -165,5 +166,28 @@ class ProductController extends Controller{
                 echo $vndorname; die;
             }
         }
+    }
+    public function productOrderByVendorDate(Request $request){
+        $vendorId = $request->input('vendor_id');
+        $date = $request->input('date');
+        $data['name'] = $name = $request->input('name');
+        if($date == ""){
+            $date = date('m/d/Y').'-'.date('m/d/Y');
+        }
+        $data['date'] = $date;
+        $data['vendor_id'] = $vendorId;
+        $data['vendorList'] = VendorHelper::getList();
+        $dates = explode("-",$date);
+        $data['lists'] = array();
+        $data['total'] = 0;
+        $sdates = explode("/",$dates[0]);
+        $edates = explode("/",$dates[1]);
+        $sdate = $sdates[2].'-'.$sdates[0].'-'.$sdates[1];
+        $edate = $edates[2].'-'.$edates[0].'-'.$edates[1];
+        $data['lists'] = OrderItemDetailHelper::productOrderByVendorDate($vendorId,$sdate,$edate,$name);
+        foreach($data['lists'] as $list){
+            $data['total'] = $data['total'] + $list->amount;;
+        }
+        return view('product.report-by-date-id',$data);
     }
 }

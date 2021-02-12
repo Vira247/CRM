@@ -42,6 +42,7 @@
                 @can('vendor-create')
                 <a style="float:right;" href="{{ route('vendor.create') }}" class="btn btn-success">Add New Vendor</a>
                 @endcan 
+                <a style="float:right;" href="{{ URL::to('vendor-report-gorup-by-month-year') }}" class="btn btn-info" target="_blank">Vendor Report</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">

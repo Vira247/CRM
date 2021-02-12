@@ -43,6 +43,7 @@
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('vendor-create')): ?>
                 <a style="float:right;" href="<?php echo e(route('vendor.create')); ?>" class="btn btn-success">Add New Vendor</a>
                 <?php endif; ?> 
+                <a style="float:right;" href="<?php echo e(URL::to('vendor-report-gorup-by-month-year')); ?>" class="btn btn-info" target="_blank">Vendor Report</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">

@@ -8,6 +8,7 @@ use App\Helpers\UserHelper;
 use App\Helpers\RoleHelper;
 use App\Helpers\VendorHelper;
 use App\Helpers\ProductHelper;
+use App\Helpers\OrderItemDetailHelper;
 use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Models\Role;
 use DB;
@@ -130,6 +131,7 @@ class VendorController extends Controller{
 		return redirect()->back();
     }
 	public function importProductList(){
+        die;
         $users = DB::table('productlist4')->get();
         $vendorList = VendorHelper::getByTypePluck();
         echo "<pre>"; \print_r($vendorList);
@@ -138,5 +140,18 @@ class VendorController extends Controller{
             $insertArray = array("name"=>$user->title,"product_type"=>"Product","sku"=>$user->sku,"vendor_id"=>$vendorList[$user->vender]);
             ProductHelper::insert($insertArray);
         }
+    }
+    public function reportByMonthYearGroupBy(){
+        $reports = OrderItemDetailHelper::getVendorReportByMonthGroup();
+        $data['lists'] = $reports['finalarray'];
+        $data['finalVendorTotal'] = $reports['finalVendorTotal'];
+        $data['finalTotal'] = $reports['finalTotal'];
+        //echo "<pre>"; print_r($data); die;
+        return view('vendor.report-by-month-group',$data);
+    }
+    public function reportByMonthYear($id,$year,$month){
+        $sdate = $month.'/01/'.$year;
+        $edate = date("m/t/Y", strtotime($sdate));
+        return redirect('product-order-by-vendor-date?vendor_id='.$id.'&date='.$sdate.'-'.$edate);
     }
 }

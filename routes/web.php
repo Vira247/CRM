@@ -31,10 +31,15 @@ Route::get('/master/delete/{id}', 'MasterController@delete');
 Route::resource('vendor', 'VendorController');
 Route::get('importProductList', 'VendorController@importProductList');
 Route::get('/vendor/delete/{id}', 'VendorController@delete');
+Route::get('vendor-report-gorup-by-month-year', 'VendorController@reportByMonthYearGroupBy');
+Route::get('vender-order-by-month/{id}/{year}/{month}', 'VendorController@reportByMonthYear');
+
 Route::resource('product', 'ProductController');
 Route::get('/product/delete/{id}', 'ProductController@delete');
 Route::get('/product/list/{vendor}/{producttyp}', 'ProductController@getProductListByVendorType');
 Route::get('/product/list-by-vendor/{vendor}', 'ProductController@getProductListByVendor');
+Route::get('product-order-by-vendor-date','ProductController@productOrderByVendorDate');
+
 Route::get('importSample', 'ProductController@importSample');
 Route::resource('order', 'OrderController');
 Route::get('/order/delete/{id}', 'OrderController@delete');
