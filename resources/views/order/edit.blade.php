@@ -36,7 +36,7 @@
             <!-- /.card-header -->
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Site<span style="color:red;">*</span></label>
                             <select  class="form-control " id="site"  name="site" >
@@ -49,7 +49,7 @@
                             <span style="color:red;" id="site_error"></span>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Platform<span style="color:red;">*</span></label>
                             <select  class="form-control " id="platform"  name="platform" >
@@ -62,6 +62,24 @@
                             <span style="color:red;" id="platform_error"></span>
                         </div>
                     </div>
+                    <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Flag</label>
+                                <select  class="form-control " id="flag"  name="flag" >
+                                <option value="">Select Flag</option>
+                                <option value="Green" @if($orderDetail->flag == "Green") selected @endif>Green</option>
+                                <option value="Red" @if($orderDetail->flag == "Red") selected @endif>Red</option>
+                                <option value="Blue" @if($orderDetail->flag == "Blue") selected @endif>Blue</option>
+                                <option value="Orange" @if($orderDetail->flag == "Orange") selected @endif>Orange</option>
+                                <option value="Yellow" @if($orderDetail->flag == "Yellow") selected @endif>Yellow</option>
+                                <option value="Pink" @if($orderDetail->flag == "Pink") selected @endif>Pink</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                        <label for="exampleInputEmail1">Extra Note</label>
+                        <textarea class="form-control" name="extranote">{{$orderDetail->extranote}}</textarea>
+                        </div>
                 </div> 
             </div>
             <!-- /.card-body -->
@@ -157,7 +175,7 @@
                                 <td>{{$list->producttype}}<input type="hidden" name="producttypeid[]" value="{{$list->producttype}}"></td>
                                 <td>{{$list->productname}}<input type="hidden" name="productid[]" value="{{$list->product_id}}"></td>
                                 <td>{{$list->itemunit}}<input type="hidden" name="itemunit[]" value="{{$list->itemunit}}"></td>
-                                <td>{{$list->amount}}<input type="hidden" name="amount[]" value="{{$list->amount}}"></td>
+                                <td>{{$list->quantity}}<input type="hidden" name="quantity[]" value="{{$list->quantity}}"></td>
                                 <td>{{$list->price}}<input type="hidden" name="price[]" value="{{$list->price}}"><input type="hidden" name="amount[]" value="{{$list->amount}}"> </td>
                                 <td  class="allamount">{{$list->amount}}</td>
                                 <td><a href="#" title="Delete" onclick="removeItem({{$itemcount}})"><i class="fa fa-trash"></i></a></td>
@@ -1023,7 +1041,6 @@ function change_claim_against(){
         $("#shipping_claim_amount_div").show();
         $("#claim_status_div").show();
     }
-    alert('hiii');
 }
 function removeItem(countid){
     $('#itemtr'+countid).remove();

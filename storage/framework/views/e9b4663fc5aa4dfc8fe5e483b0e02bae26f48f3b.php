@@ -17,6 +17,7 @@
 			</div>
 		</div><!-- /.container-fluid -->
 	</div>
+	
 	<section class="content">
 		<div class="container-fluid">
 			<!-- Timelime example  -->
@@ -53,6 +54,32 @@
 
 							</h6>
 						</div>
+						<?php if(count($productList)): ?>
+						<div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="ion ion-clipboard mr-1"></i>
+                  Product List
+                </h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <ul class="todo-list" data-widget="todo-list">
+				<?php $__currentLoopData = $productList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <li>
+                    <!-- drag handle -->
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                    <!-- todo text -->
+                    <span class="text"><?php echo e($list->name); ?></span>
+                  </li>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </ul>
+              </div>
+            </div>
+			<?php endif; ?>
 					</div>
 				</div>
 				<div class="col-md-12">
@@ -92,6 +119,7 @@
 					</div>
 				</div>
 				<!-- /.col -->
+				
 			</div>
 		</div>
 		<!-- /.timeline -->

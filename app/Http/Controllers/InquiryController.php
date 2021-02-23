@@ -10,6 +10,7 @@ use App\Helpers\InquiryHelper;
 use App\Helpers\VendorHelper;
 use App\Helpers\ProductHelper;
 use App\Helpers\InquiryDataHelper;
+use App\Helpers\InquiryProductHelper;
 use App\InquiryData;
 use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Models\Role;
@@ -56,6 +57,7 @@ class InquiryController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
+        $products = $request->input('productid');
 		$this->validate($request, [
             'name' => 'required',
             'phone' => 'required',
@@ -74,6 +76,14 @@ class InquiryController extends Controller{
             'description'=>request('note'),
             'follow_up_date'=>request('follow_up_date'));
             InquiryDataHelper::insert($insertArray);
+            if( isset($products) && count($products) > 0){
+                foreach($products as $product){
+                    $insertArray = array("inquiry_id"=>$insert,
+                    "product_id"=>$product);
+                    InquiryProductHelper::insert($insertArray);
+                }
+            }
+            
 			Session::flash('success', 'Master inserted successfully.');
 			return redirect('inquiry/'.$insert);
 		}else{
@@ -95,6 +105,7 @@ class InquiryController extends Controller{
                 $data['productDetail'] = ProductHelper::getByid($data['detail']->product_id);
             }
             $data['inquirList'] = InquiryDataHelper::getDataListByiInqueryd($id);
+            $data['productList'] = InquiryProductHelper::getProductByInquiryId($id);
             return view('inquiry.show',$data);
         }
         

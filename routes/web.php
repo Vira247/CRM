@@ -40,6 +40,10 @@ Route::get('/product/list/{vendor}/{producttyp}', 'ProductController@getProductL
 Route::get('/product/list-by-vendor/{vendor}', 'ProductController@getProductListByVendor');
 Route::get('product-order-by-vendor-date','ProductController@productOrderByVendorDate');
 
+Route::get('sample-vs-product-report','ReportController@sampleVSProduct');
+Route::get('report-product-list-by-date','ReportController@reportProductListByDate');
+
+
 Route::get('importSample', 'ProductController@importSample');
 Route::resource('order', 'OrderController');
 Route::get('/order/delete/{id}', 'OrderController@delete');

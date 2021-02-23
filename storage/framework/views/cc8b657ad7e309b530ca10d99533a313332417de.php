@@ -44,6 +44,17 @@
                     </select>
                   </div>
                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Product Type</label>
+                    <select class="form-control" name="product_type">
+                      <option value="">Select Vendor</option>
+                      <?php $__currentLoopData = $masterList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $master): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                          <?php if($master->type == 'Product Type'): ?>
+                          <option value="<?php echo e($master->value); ?>" <?php if($product_type == $master->value): ?> selected <?php endif; ?>><?php echo e($master->value); ?></option>
+                          <?php endif; ?>
+                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                      </select>
+                  </div>
+                  <div class="col-md-2">
                     <label for="exampleInputEmail1">Date</label>
                     <input type="text" class="form-control" id="date" name="date" placeholder="Date" value="<?php echo e($date); ?>">
                   </div>
@@ -55,7 +66,7 @@
               </div>
               <div class="card-footer clearfix">
                 <input type="submit" name="submit" value="Search" class="btn btn-primary">
-                
+                <input type="submit" name="export" value="Export" class="btn btn-primary">
               </div>
             </form>
           </div>
@@ -70,6 +81,7 @@
                 <tr>
                   <th>No</th>
                   <th>Name</th>
+                  <th>Product Type</th>
                   <th>Percentage</th>
                   <th>Amount</th>
                 </tr>
@@ -85,7 +97,8 @@
                 ?>
                 <tr>
                 <td><?php echo e($i++); ?></td>
-                <td><?php echo e($list->name); ?></td>
+                <td><a href="<?php echo e(URL::to('report-product-list-by-date?product_id='.$list->id.'&date='.$date)); ?>" target="_blank"> <?php echo e($list->name); ?> </a></td>
+                <td><?php echo e($list->product_type); ?></td>
                 <td><?php echo e(number_format($pre,2)); ?>%</td>
                 <td><?php echo e(number_format($list->amount,2)); ?></td>
                 </tr>

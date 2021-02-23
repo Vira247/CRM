@@ -56,7 +56,7 @@
                       <td><?php echo ++$cnt; ?></th>
                       <td style="background:linear-gradient(90deg, rgba(45, 246, 8) 0%, rgba(255, 214, 214) <?= $pre ?>%, rgba(255,255,255,1) <?= $pre ?>%)">
                         <?php if ($key != "") { ?>
-                          <a href="<?php echo URL::to('vender-order-by-month/' . $listmonth['id'] . '/' . $year . '/' . $month) ?>">
+                          <a href="<?php echo URL::to('vender-order-by-month/' . $listmonth['id'] . '/' . $year . '/' . $month) ?>" target="_blank">
                           <?php } ?>
                           <?php echo $year . ' ' . $monthlist[$month]; ?> (<?= $pre ?>)
                           <?php if ($key != "") { ?>

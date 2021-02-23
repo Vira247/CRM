@@ -17,6 +17,7 @@
 			</div>
 		</div><!-- /.container-fluid -->
 	</div>
+	
 	<section class="content">
 		<div class="container-fluid">
 			<!-- Timelime example  -->
@@ -53,6 +54,32 @@
 
 							</h6>
 						</div>
+						@if(count($productList))
+						<div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="ion ion-clipboard mr-1"></i>
+                  Product List
+                </h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <ul class="todo-list" data-widget="todo-list">
+				@foreach($productList as $list)
+                  <li>
+                    <!-- drag handle -->
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                    <!-- todo text -->
+                    <span class="text">{{$list->name}}</span>
+                  </li>
+                  @endforeach
+                </ul>
+              </div>
+            </div>
+			@endif
 					</div>
 				</div>
 				<div class="col-md-12">
@@ -91,6 +118,7 @@
 					</div>
 				</div>
 				<!-- /.col -->
+				
 			</div>
 		</div>
 		<!-- /.timeline -->

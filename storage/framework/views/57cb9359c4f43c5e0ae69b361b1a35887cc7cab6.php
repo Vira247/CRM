@@ -83,6 +83,10 @@
                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </select>
                   </div>
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Order Id</label>
+                    <input type="text" class="form-control" id="order_id" name="order_id" placeholder="Order ID" value="<?php echo e($order_id); ?>">
+                  </div>
                 </div>
               </div>
               <div class="card-footer clearfix">
@@ -123,7 +127,7 @@
                       }
                       foreach ($table_list as $key) {
                     ?>
-                        <tr>
+                        <tr <?php if($key->flag != ""): ?> style="background-color:<?php echo e($key->flag); ?>" <?php endif; ?>>
                           <td><?= $cnt++ ?></td>
                           <td><?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('order-show')): ?><a href="order/<?php echo e($key->id); ?>" target="_blank"><?php endif; ?><?php echo e($key->order_id); ?><?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('order-show')): ?></a><?php endif; ?></td>
                           <td><?php echo e($master_list[$key->order_status]); ?></td>
@@ -131,7 +135,7 @@
                           <td><?php if($key->order_date != ""): ?><?php echo e(date('m/d/Y',strtotime($key->order_date))); ?><?php endif; ?></td>
                           <td>
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('vendor-edit')): ?>
-                            <a href="<?php echo URL::to('/'); ?>/order/<?php echo $key->id; ?>/edit" title="Edit"><i class="fa fa-edit"></i></a>
+                            <a href="<?php echo URL::to('/'); ?>/order/<?php echo $key->id; ?>/edit" target="_blank" title="Edit"><i class="fa fa-edit"></i></a>
                             <?php endif; ?>
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('vendor-delete')): ?>
                             <a href="<?php echo URL::to('/'); ?>/order/delete/<?php echo $key->id; ?>" title="Delete" onclick="return confirm('Are you sure remove this record?')"><i class="fa fa-trash"></i></a>

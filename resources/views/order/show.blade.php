@@ -102,6 +102,22 @@
                             {{$master_list[$orderDetail->platform]}}
 							</div>
 						  </div>
+						  @if($orderDetail->flag != "")
+						  <div class="form-group row">
+							<label for="inputName" class="col-sm-2">Site</label>
+							<div class="col-sm-10">
+							  {{$orderDetail->flag}}
+							</div>
+						  </div>
+						  @endif
+						  @if($orderDetail->extranote != "")
+						  <div class="form-group row">
+							<label for="inputEmail" class="col-sm-2">Platform</label>
+							<div class="col-sm-10">
+                            {{$orderDetail->extranote}}
+							</div>
+						  </div>
+						  @endif
 					</div>
 					<div class=" tab-pane" id="orderdetails">
                         <div class="form-group row">
@@ -456,7 +472,9 @@
 						  <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Shipping Company</label>
 							<div class="col-sm-10">
+							@if(isset($master_list[$orderDetail->shipping_claim]))
                             {{$master_list[$orderDetail->shipping_claim]}}
+							@endif
 							</div>
 						  </div>
 						  @endif

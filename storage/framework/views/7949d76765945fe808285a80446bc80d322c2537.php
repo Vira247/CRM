@@ -105,6 +105,24 @@
 
 							</div>
 						  </div>
+						  <?php if($orderDetail->flag != ""): ?>
+						  <div class="form-group row">
+							<label for="inputName" class="col-sm-2">Site</label>
+							<div class="col-sm-10">
+							  <?php echo e($orderDetail->flag); ?>
+
+							</div>
+						  </div>
+						  <?php endif; ?>
+						  <?php if($orderDetail->extranote != ""): ?>
+						  <div class="form-group row">
+							<label for="inputEmail" class="col-sm-2">Platform</label>
+							<div class="col-sm-10">
+                            <?php echo e($orderDetail->extranote); ?>
+
+							</div>
+						  </div>
+						  <?php endif; ?>
 					</div>
 					<div class=" tab-pane" id="orderdetails">
                         <div class="form-group row">
@@ -142,7 +160,7 @@
 							</div>
 						</div>
                         <div class="form-group row">
-							<label for="inputEmail" class="col-sm-2">VAT Tax Amount</label>
+							<label for="inputEmail" class="col-sm-2">Sales Tax</label>
 							<div class="col-sm-10">
                                 <?php echo e($orderDetail->vat_tax_amount); ?>
 
@@ -577,11 +595,11 @@
 								</tr>
 								<tr class="red">
 									<td><b>Discount</b></td>
-									<td><?php echo e($orderDetail->discount); ?></td>
+									<td>+<?php echo e($orderDetail->discount); ?></td>
 								</tr>
 								<tr class="red">
 									<td><b>Sales Tax</b></td>
-									<td><?php echo e($orderDetail->vat_tax_amount); ?></td>
+									<td>+<?php echo e($orderDetail->vat_tax_amount); ?></td>
 								</tr>
 								<tr  class="green">
 									<td><b>Total</b></td>
@@ -589,11 +607,11 @@
 								</tr>
 								<tr class="red">
 									<td><b>Comission/Other Charges</b></td>
-									<td><?php echo e($orderDetail->comission_other_charges); ?></td>
+									<td>-<?php echo e($orderDetail->comission_other_charges); ?></td>
 								</tr>
 								<tr class="red">
 									<td><b>Sales Tax</b></td>
-									<td><?php echo e($orderDetail->vat_tax_amount); ?></td>
+									<td>-<?php echo e($orderDetail->vat_tax_amount); ?></td>
 								</tr>
 								<tr class="green">
 									<td><b>Total Net Revenue</b></td>
@@ -604,14 +622,14 @@
 								
 								<tr class="red">
 									<td><b>Vendor Invoice Amount (Inc. Sales tax)</b></td>
-									<td><?php echo e($vedoramount); ?></td>
-								</tr>
-								<tr class="red">
-									<td><b>Sales tax charged by Vendor</b></td>
-									<td><?php echo e($shipin_Amount); ?></td>
+									<td>-<?php echo e($vedoramount); ?></td>
 								</tr>
 								<tr class="red">
 									<td><b>Shipping Cost</b></td>
+									<td>-<?php echo e($shipin_Amount); ?></td>
+								</tr>
+								<tr class="red">
+									<td><b>Sales tax charged by Vendor</b></td>
 									<td><?php echo e($vendor_vat); ?></td>
 								</tr>
 

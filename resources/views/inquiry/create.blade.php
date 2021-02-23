@@ -38,21 +38,21 @@
 										<span style="color:red" id="nerror"><?php echo $errors->first('name'); ?></span>
 									</div>
 								</div>
-								<div class="col-md-3">
+								<div class="col-md-4">
 									<div class="form-group">
 										<label>Phone <span style="color:red;">*</span></label>
 										<input type="text" name="phone" id="phone" class="form-control" value="<?php echo old('phone'); ?>" placeholder="Phone" required >
 										<span style="color:red" id="nerror"><?php echo $errors->first('phone'); ?></span>
 									</div>
 								</div>
-								<div class="col-md-3">
+								<div class="col-md-4">
 									<div class="form-group">
 										<label>Email <span style="color:red;">*</span></label>
 										<input type="text" name="email" id="email" class="form-control" value="<?php echo old('email'); ?>" placeholder="Email" required >
 										<span style="color:red" id="nerror"><?php echo $errors->first('email'); ?></span>
 									</div>
 								</div>
-								<div class="col-md-2">
+								<div class="col-md-4">
 									<div class="form-group">
 										<label>Inquiry Type<span style="color:red;">*</span></label>
 										<select name="inquiry_type" id="inquiry_type" class="form-control" required >
@@ -65,7 +65,7 @@
 										</select>
 									</div>
 								</div>
-								<div class="col-md-2">
+								<div class="col-md-4">
 									<div class="form-group">
 										<label>Assign To</label>
 										<select name="assign_to" id="assign_to" class="form-control" >
@@ -76,32 +76,14 @@
 										</select>
 									</div>
 								</div>
-								<div class="col-md-2">
+								<div class="col-md-4">
 									<div class="form-group">
 										<label>Next Follow Up Date <span style="color:red;">*</span></label>
 										<input type="date" name="follow_up_date" id="follow_up_date" class="form-control" value="<?php echo old('follow_up_date'); ?>" placeholder="Email" required >
 										<span style="color:red" id="nerror"><?php echo $errors->first('follow_up_date'); ?></span>
 									</div>
 								</div>
-								<div class="col-md-2">
-									<div class="form-group">
-										<label>Vendor </label>
-										<select class="form-control" id="selectvendor"  onchange="getProductList()">
-											<option value="">Select</option>
-											@foreach ($vendorList as $vendor)
-												<option value="{{$vendor->id}}">{{$vendor->name}}</option>
-											@endforeach
-										</select>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label>Product</label>
-										<select class="form-control select2" id="selectproduct" name="product_id">
-											<option value="">Select</option>
-										</select>
-									</div>
-								</div>
+								
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Inquiry Subject </label>
@@ -119,6 +101,50 @@
 								</div>
 							</div>
 						</div>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<label>Vendor </label>
+										<select class="form-control" id="selectvendor"  onchange="getProductList()">
+											<option value="">Select</option>
+											@foreach ($vendorList as $vendor)
+												<option value="{{$vendor->id}}">{{$vendor->name}}</option>
+											@endforeach
+										</select>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<div class="form-group">
+										<label>Product</label>
+										<select class="form-control select2" id="selectproduct" name="">
+											<option value="">Select</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-1">
+									<div class="form-group">
+										<input type="button" class="btn-primary" value="Add" name="Add" onclick="addproduct()">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+                        <div class="col-xs-12 table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Vendor</th>
+                                        <th>Product Name</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="productlist">
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+						</div>
 						<!-- /.box-body -->
 						<div class="card-footer">
 							<button type="submit" class="btn btn-primary" onclick="return submit_validation();">Submit</button>
@@ -133,6 +159,22 @@
 @include('layouts.footer')
 <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <script>
+var itemcount = 0;
+function removeItem(countid){
+    $('#itemtr'+countid).remove();
+}
+function addproduct(){
+	var id = $("#selectproduct").val();
+	var vendor = $("#selectvendor").val();
+	if(id != "" && vendor != ""){
+		var text = $("#selectproduct option:selected").text();
+		var vendortext = $("#selectvendor option:selected").text();
+		var producttypetext = $("#selectproducttype option:selected").text();
+        itemcount++;
+		var html = '<tr id="itemtr'+itemcount+'"><td>'+vendortext+'<input type="hidden" name="vendorid[]" value="'+vendor+'"></td><td>'+text+'<input type="hidden" name="productid[]" value="'+id+'"></td><td><a href="#" onclick="removeItem('+itemcount+')"><i class="fa fa-trash"></i></td></tr>';
+		$("#productlist").append(html);
+	}
+}
 $(function () {
     $('.select2').select2()
   });

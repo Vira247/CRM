@@ -125,7 +125,7 @@
                       }
                       foreach ($table_list as $key) {
                     ?>
-                        <tr>
+                        <tr @if($key->flag != "") style="background-color:{{$key->flag}}" @endif>
                           <td><?= $cnt++ ?></td>
                           <td>@can('order-show')<a href="order/{{$key->id}}" target="_blank">@endcan{{$key->order_id}}@can('order-show')</a>@endcan</td>
                           <td>{{$master_list[$key->order_status]}}</td>
@@ -172,7 +172,7 @@
 <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
 <script>
   $(function() {
-    var start = moment().subtract(1, 'days');
+    var start = moment().subtract(29, 'days');
     var end = moment();
     $('#date').daterangepicker({
       startDate: start,

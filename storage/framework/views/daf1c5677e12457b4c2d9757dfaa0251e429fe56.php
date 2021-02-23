@@ -36,7 +36,7 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Site<span style="color:red;">*</span></label>
                                 <select  class="form-control " id="site"  name="site" >
@@ -49,7 +49,7 @@
                                 <span style="color:red;" id="site_error"></span>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Platform<span style="color:red;">*</span></label>
                                 <select  class="form-control " id="platform"  name="platform" >
@@ -61,6 +61,24 @@
                                 </select>
                                 <span style="color:red;" id="platform_error"></span>
                             </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Flag</label>
+                                <select  class="form-control " id="flag"  name="flag" >
+                                <option value="">Select Flag</option>
+                                <option value="Green">Green</option>
+                                <option value="Red">Red</option>
+                                <option value="Blue">Blue</option>
+                                <option value="Orange">Orange</option>
+                                <option value="Yellow">Yellow</option>
+                                <option value="Pink">Pink</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                        <label for="exampleInputEmail1">Extra Note</label>
+                        <textarea class="form-control" name="extranote"></textarea>
                         </div>
                     </div> 
                 </div>
@@ -666,6 +684,7 @@
                                     <option value="">Select</option>
                                     <option value="Replacement">Replacement</option>
                                     <option value="Refund">Refund</option>
+                                    <option value="Compensation">Compensation</option>
                                 </select>
                             </div>
                         </div>

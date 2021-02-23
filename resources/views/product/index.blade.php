@@ -76,6 +76,7 @@
                 <div class="card-footer clearfix">
                   <input type="submit" name="submit" value="Search" class="btn btn-primary">
                   <input type="button" name="button" value="Clear" class="btn btn-default" onclick="window.location.href='<?php echo URL::to('/'); ?>/product'">
+                  <a target="_blank" href="{{ URL::to('sample-vs-product-report') }}" class="btn btn-success">Sample VS Product</a>
                   @can('product-create')
                   <a href="{{ route('product.create') }}" class="btn btn-success">Add New Product</a>
                   @endcan

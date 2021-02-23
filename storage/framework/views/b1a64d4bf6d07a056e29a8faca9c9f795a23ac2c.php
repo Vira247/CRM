@@ -37,7 +37,7 @@
             <!-- /.card-header -->
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Site<span style="color:red;">*</span></label>
                             <select  class="form-control " id="site"  name="site" >
@@ -50,7 +50,7 @@
                             <span style="color:red;" id="site_error"></span>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Platform<span style="color:red;">*</span></label>
                             <select  class="form-control " id="platform"  name="platform" >
@@ -63,6 +63,24 @@
                             <span style="color:red;" id="platform_error"></span>
                         </div>
                     </div>
+                    <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Flag</label>
+                                <select  class="form-control " id="flag"  name="flag" >
+                                <option value="">Select Flag</option>
+                                <option value="Green" <?php if($orderDetail->flag == "Green"): ?> selected <?php endif; ?>>Green</option>
+                                <option value="Red" <?php if($orderDetail->flag == "Red"): ?> selected <?php endif; ?>>Red</option>
+                                <option value="Blue" <?php if($orderDetail->flag == "Blue"): ?> selected <?php endif; ?>>Blue</option>
+                                <option value="Orange" <?php if($orderDetail->flag == "Orange"): ?> selected <?php endif; ?>>Orange</option>
+                                <option value="Yellow" <?php if($orderDetail->flag == "Yellow"): ?> selected <?php endif; ?>>Yellow</option>
+                                <option value="Pink" <?php if($orderDetail->flag == "Pink"): ?> selected <?php endif; ?>>Pink</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                        <label for="exampleInputEmail1">Extra Note</label>
+                        <textarea class="form-control" name="extranote"><?php echo e($orderDetail->extranote); ?></textarea>
+                        </div>
                 </div> 
             </div>
             <!-- /.card-body -->
@@ -91,7 +109,7 @@
                                 <th width="45%">Product</th>
                                 <th width="10%">Unit</th>
                                 <th width="10%">Quantity</th>
-                                <th width="10%">Price</th>
+                                <th width="10%">Price</th>                                                                                                                                                                                                      
                                 <th width="5%">Amount</th>
                             </tr>
                             </thead>
@@ -170,7 +188,7 @@
                     </div>
                     <!-- /.col -->
                 </div>
-                <div class="row">
+                <div class="row"  style="display:none">
                     <!-- accepted payments column -->
                     <div class="col-md-9">
                     </div>
@@ -699,6 +717,7 @@
                                     <option value="">Select</option>
                                     <option value="Replacement"  <?php if('Replacement' == $orderDetail->claim_refund): ?> selected <?php endif; ?>>Replacement</option>
                                     <option value="Refund"  <?php if('Refund' == $orderDetail->claim_refund): ?> selected <?php endif; ?>>Refund</option>
+                                    <option value="Compensation"  <?php if('Compensation' == $orderDetail->claim_refund): ?> selected <?php endif; ?>>Compensation</option>
                                 </select>
                             </div>
                         </div>

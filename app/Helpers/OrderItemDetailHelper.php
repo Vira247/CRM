@@ -93,8 +93,28 @@ class OrderItemDetailHelper{
 		}
 		return array("finalTotal"=>$finalTotal,"finalVendorTotal"=>$finalVendorTotal,"finalarray"=>$finalarray);
 	} 
-	public static function productOrderByVendorDate($vendorId,$sdate,$edate,$name){
-		$query = OrderItemDetail::selectRaw("product.id,product.name,product.product_type,SUM(order_item_detail.amount) AS amount")
+	public static function productOrderByVendorDate($vendorId,$sdate,$edate,$name,$product_type){
+		$query = OrderItemDetail::selectRaw("product.id,product.name,product.product_type,SUM(order_item_detail.amount) AS amount,product.product_type")
+		->leftjoin('order_master','order_master.id','order_item_detail.order_id')
+		->leftjoin('product','product.id','order_item_detail.product_id')
+		->where('order_item_detail.delete_flag','N')
+		->where('order_master.delete_flag','N')
+		->where('product.delete_flag','N')
+		->where('order_master.order_date','>=',$sdate)
+		->where('order_master.order_date','<=',$edate);
+		if($product_type != ''){
+			$query->where('product.product_type',$product_type);
+		}
+		if($vendorId != ''){
+			$query->where('product.vendor_id',$vendorId);
+		}
+		if($name != ''){
+			$query->where('product.name','LIKE','%'.$name.'%');
+		}
+		return $query->groupBy('product.id')->get();
+	}
+	public static function SampleVSProductByVendorDate($vendorId,$sdate,$edate,$name,$product_type){
+		$query = OrderItemDetail::selectRaw("count(order_item_detail.id) as ordercount,product.vendor_id,product.id,product.name,product.product_type,product.product_type")
 		->leftjoin('order_master','order_master.id','order_item_detail.order_id')
 		->leftjoin('product','product.id','order_item_detail.product_id')
 		->where('order_item_detail.delete_flag','N')
@@ -105,9 +125,38 @@ class OrderItemDetailHelper{
 		if($vendorId != ''){
 			$query->where('product.vendor_id',$vendorId);
 		}
+		if($product_type != ''){
+			$query->where('product.product_type',$product_type);
+		}
 		if($name != ''){
 			$query->where('product.name','LIKE','%'.$name.'%');
 		}
-		return $query->groupBy('product.id')->get();
+		$products =  $query->groupBy('product.id')->get();
+		$vendors = VendorHelper::getByTypePluckName();
+		$finalarray = array();
+		$finalTotal = 0;
+		$finalVendorTotal = array();
+		foreach($vendors as $key=>$value){
+			$finalarray[$key] = array();
+			foreach($products as $queryvalue){
+				if($queryvalue->vendor_id == $value){
+					$finalarray[$key][] = $queryvalue;
+				}
+			}
+		}
+		return $finalarray;
+	}
+	public static function reportProductListByDate($sdate,$edate,$product_id){
+		$query = OrderItemDetail::selectRaw("order_master.order_id as orders,order_item_detail.*")
+		->leftjoin('order_master','order_master.id','order_item_detail.order_id')
+		->leftjoin('product','product.id','order_item_detail.product_id')
+		->where('order_item_detail.delete_flag','N')
+		->where('order_master.delete_flag','N')
+		->where('product.delete_flag','N')
+		->where('product.id',$product_id)
+		->where('order_master.order_date','>=',$sdate)
+		->where('order_master.order_date','<=',$edate);
+		$products =  $query->groupBy('order_master.id')->get();
+		return $products;
 	}
 }
