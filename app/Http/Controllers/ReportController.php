@@ -81,4 +81,40 @@ class ReportController extends Controller
         //echo "<pre>"; print_r($data['list']); die;
         return view('report.report-product-list-by-date', $data);
     }
+    public function sampleVSProductReport(Request $request){
+        $date = $data['date'] = $request->input('date');
+        if ($date == "") {
+            $date = date('m/d/Y') . '-' . date('m/d/Y');
+        }
+        $data['date'] = $date;
+        $dates = explode("-", $date);
+        $sdates = explode("/", $dates[0]);
+        $edates = explode("/", $dates[1]);
+        $sdate = $sdates[2] . '-' . $sdates[0] . '-' . $sdates[1];
+        $edate = $edates[2] . '-' . $edates[0] . '-' . $edates[1];
+        $data['vendorList'] = VendorHelper::getList();
+        foreach($data['vendorList'] as $vendor){
+            $vendor->sample = OrderItemDetailHelper::getSampleCountByDateVendor($sdate,$edate,$vendor->id);
+            $vendor->product = OrderItemDetailHelper::getProductCountByDateVendor($sdate,$edate,$vendor->id);
+            $vendor->accessory = OrderItemDetailHelper::getaccessoryCountByDateVendor($sdate,$edate,$vendor->id);
+        }
+        return view('report.sample-vs-product-report',$data);
+    }
+    
+    public function sampleVSProductReportDetail(Request $request){
+        $date = $data['date'] = $request->input('date');
+        $product_type = $data['product_type'] = $request->input('product_type');
+        $vendor_id = $data['vendor_id'] = $request->input('vendor_id');
+        if ($date == "") {
+            $date = date('m/d/Y') . '-' . date('m/d/Y');
+        }
+        $data['date'] = $date;
+        $dates = explode("-", $date);
+        $sdates = explode("/", $dates[0]);
+        $edates = explode("/", $dates[1]);
+        $sdate = $sdates[2] . '-' . $sdates[0] . '-' . $sdates[1];
+        $edate = $edates[2] . '-' . $edates[0] . '-' . $edates[1];
+        $data['list'] = OrderItemDetailHelper::getCountByDateVendorOrder($sdate,$edate,$vendor_id,$product_type);
+        return view('report.sample-vs-product-list',$data);
+    }
 }

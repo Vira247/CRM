@@ -14,7 +14,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="<?php echo URL::to('/'); ?>/home">Home</a></li>
-            <li class="breadcrumb-item active">Sample VS Product</li>
+            <li class="breadcrumb-item active">Sample VS Product List</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -39,7 +39,8 @@
                   <label for="exampleInputEmail1">Date</label>
                   <input type="text" class="form-control" id="date" name="date" placeholder="Date" value="<?php echo e($date); ?>">
                 </div>
-                  <input type="hidden" class="form-control" id="name" name="product_id" placeholder="Product Name" value="<?php echo e($product_id); ?>">
+                  <input type="hidden" class="form-control" id="name" name="vendor_id" placeholder="Product Name" value="<?php echo e($vendor_id); ?>">
+                  <input type="hidden" class="form-control" id="name" name="product_type" placeholder="Product Name" value="<?php echo e($product_type); ?>">
                 
               </div>
             </div>
@@ -131,4 +132,4 @@
     }
   });
 </script>
-<?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xamppnew\htdocs\laravel_demo\resources\views/report/report-product-list-by-date.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xamppnew\htdocs\laravel_demo\resources\views/report/sample-vs-product-list.blade.php ENDPATH**/ ?>

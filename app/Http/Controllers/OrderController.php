@@ -40,12 +40,14 @@ class OrderController extends Controller{
             $dates =  explode("-",$request->input('date'));
             $sdate = date('Y-m-d',strtotime($dates[0]));
             $edate = date('Y-m-d',strtotime($dates[1]));
+            $data['sdate'] = date('m/d/Y',strtotime($sdate));
+            $data['edate'] = date('m/d/Y',strtotime($edate));
         }else{
-            $sdate = date('Y-m-d');
-            $edate = date('Y-m-d');
+            $sdate = '';
+            $edate = '';
+            $data['sdate'] = '';
+            $data['edate'] = '';
         }
-        $data['sdate'] = date('m/d/Y',strtotime($sdate));
-        $data['edate'] = date('m/d/Y',strtotime($edate));
         $data['master_list'] = MasterListHelper::getByTypePluck();
         $data['table_list'] = OrderHelper::getPaginateData($sdate,$edate,$data['site'],$data['platform'],$data['status'],$data['order_id']);
         $data['masterList'] = MasterListHelper::getByMultipleTypes(array('Site','Platform','Order Status'));
@@ -384,7 +386,7 @@ class OrderController extends Controller{
 	public function delete($id){
         $update_array = array('delete_flag'=>'Y');
 		$where = array('id'=>$id);
-		$delete = ProductHelper::softDelete($update_array,$where);
+		$delete = OrderHelper::softDelete($update_array,$where);
 		if($delete){
 			Session::flash('success', 'Product deleted successfully.');
 		}else{

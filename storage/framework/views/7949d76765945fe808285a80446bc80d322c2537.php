@@ -523,8 +523,10 @@
 						  <div class="form-group row">
 							<label for="inputEmail" class="col-sm-2">Shipping Company</label>
 							<div class="col-sm-10">
+							<?php if(isset($master_list[$orderDetail->shipping_claim])): ?>
                             <?php echo e($master_list[$orderDetail->shipping_claim]); ?>
 
+							<?php endif; ?>
 							</div>
 						  </div>
 						  <?php endif; ?>

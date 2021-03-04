@@ -94,7 +94,6 @@
                 <?php $__currentLoopData = $list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $deatail): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
                   <td><?php echo e($i++); ?></td>
-                  
                   <td><?php echo e($deatail->name); ?></td>
                   <td><?php echo e($deatail->product_type); ?></td>
                   <td><?php echo e($deatail->ordercount); ?></td>

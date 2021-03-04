@@ -1,7 +1,7 @@
-<?php echo $__env->make('layouts.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<link rel="stylesheet" href="<?php echo e(asset('plugins/daterangepicker/daterangepicker.css')); ?>">
-<link rel="stylesheet" href="<?php echo e(asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')); ?>">
-<link rel="stylesheet" href="<?php echo e(asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')); ?>">
+@include('layouts.header')
+<link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -14,7 +14,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="<?php echo URL::to('/'); ?>/home">Home</a></li>
-            <li class="breadcrumb-item active">Sample VS Product</li>
+            <li class="breadcrumb-item active">Sample VS Product List</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -37,9 +37,10 @@
                 
                 <div class="col-md-2">
                   <label for="exampleInputEmail1">Date</label>
-                  <input type="text" class="form-control" id="date" name="date" placeholder="Date" value="<?php echo e($date); ?>">
+                  <input type="text" class="form-control" id="date" name="date" placeholder="Date" value="{{$date}}">
                 </div>
-                  <input type="hidden" class="form-control" id="name" name="product_id" placeholder="Product Name" value="<?php echo e($product_id); ?>">
+                  <input type="hidden" class="form-control" id="name" name="vendor_id" placeholder="Product Name" value="{{$vendor_id}}">
+                  <input type="hidden" class="form-control" id="name" name="product_type" placeholder="Product Name" value="{{$product_type}}">
                 
               </div>
             </div>
@@ -62,15 +63,15 @@
               </thead>
               <tbody>
               <?php $i = 1; ?>
-                <?php $__currentLoopData = $list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $deatail): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                @foreach($list as $deatail)
                 <tr>
-                  <td><a href="<?php echo e(URL::to('order/'.$deatail->order_id)); ?>" target="_blank"><?php echo e($deatail->orders); ?></a></td>
-                  <td><?php echo e($deatail->producttype); ?></td>
-                  <td><?php echo e($deatail->quantity); ?></td>
-                  <td><?php echo e($deatail->price); ?></td>
-                  <td><?php echo e($deatail->amount); ?></td>
+                  <td><a href="{{URL::to('order/'.$deatail->order_id)}}" target="_blank">{{$deatail->orders}}</a></td>
+                  <td>{{$deatail->producttype}}</td>
+                  <td>{{$deatail->quantity}}</td>
+                  <td>{{$deatail->price}}</td>
+                  <td>{{$deatail->amount}}</td>
                 </tr>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                @endforeach
 
               </tbody>
 
@@ -86,13 +87,13 @@
   </section>
 </div>
 <!-- /.content-wrapper -->
-<script src="<?php echo e(asset('plugins/moment/moment.min.js')); ?>"></script>
-<script src="<?php echo e(asset('plugins/daterangepicker/daterangepicker.js')); ?>"></script>
+<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
 <!-- DataTables -->
-<script src="<?php echo e(asset('plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
-<script src="<?php echo e(asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')); ?>"></script>
-<script src="<?php echo e(asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')); ?>"></script>
-<script src="<?php echo e(asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')); ?>"></script>
+<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <script>
   $(function() {
     $("#example1").DataTable({
@@ -131,4 +132,4 @@
     }
   });
 </script>
-<?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xamppnew\htdocs\laravel_demo\resources\views/report/report-product-list-by-date.blade.php ENDPATH**/ ?>
+@include('layouts.footer')

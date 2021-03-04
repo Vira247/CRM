@@ -159,4 +159,56 @@ class OrderItemDetailHelper{
 		$products =  $query->groupBy('order_master.id')->get();
 		return $products;
 	}
+	public static function getSampleCountByDateVendor($sdate,$edate,$vendorIid){
+		$query = OrderItemDetail::selectRaw("count(order_item_detail.quantity) as noorders,sum(order_item_detail.amount) as amountorders")
+		->leftjoin('order_master','order_master.id','order_item_detail.order_id')
+		->leftjoin('product','product.id','order_item_detail.product_id')
+		->where('order_item_detail.delete_flag','N')
+		->where('order_master.delete_flag','N')
+		->where('product.product_type','Sample')
+		->where('order_item_detail.vendor_id',$vendorIid)
+		->where('order_master.order_date','>=',$sdate)
+		->where('order_master.order_date','<=',$edate);
+		$products =  $query->first();
+		return $products;
+	}
+	public static function getProductCountByDateVendor($sdate,$edate,$vendorIid){
+		$query = OrderItemDetail::selectRaw("count(order_item_detail.id) as noorders,sum(order_item_detail.amount) as amountorders")
+		->leftjoin('order_master','order_master.id','order_item_detail.order_id')
+		->leftjoin('product','product.id','order_item_detail.product_id')
+		->where('order_item_detail.delete_flag','N')
+		->where('order_master.delete_flag','N')
+		->where('product.product_type','Product')
+		->where('order_item_detail.vendor_id',$vendorIid)
+		->where('order_master.order_date','>=',$sdate)
+		->where('order_master.order_date','<=',$edate);
+		$products =  $query->first();
+		return $products;
+	}
+	public static function getaccessoryCountByDateVendor($sdate,$edate,$vendorIid){
+		$query = OrderItemDetail::selectRaw("sum(order_item_detail.quantity) as noorders,sum(order_item_detail.amount) as amountorders")
+		->leftjoin('order_master','order_master.id','order_item_detail.order_id')
+		->leftjoin('product','product.id','order_item_detail.product_id')
+		->where('order_item_detail.delete_flag','N')
+		->where('order_master.delete_flag','N')
+		->where('product.product_type','Accessory')
+		->where('order_item_detail.vendor_id',$vendorIid)
+		->where('order_master.order_date','>=',$sdate)
+		->where('order_master.order_date','<=',$edate);
+		$products =  $query->first();
+		return $products;
+	}
+	public static function getCountByDateVendorOrder($sdate,$edate,$vendorIid,$productType){
+		$query = OrderItemDetail::selectRaw("order_master.order_id as orders,order_item_detail.*")
+		->leftjoin('order_master','order_master.id','order_item_detail.order_id')
+		->leftjoin('product','product.id','order_item_detail.product_id')
+		->where('order_item_detail.delete_flag','N')
+		->where('order_master.delete_flag','N')
+		->where('product.product_type',$productType)
+		->where('order_item_detail.vendor_id',$vendorIid)
+		->where('order_master.order_date','>=',$sdate)
+		->where('order_master.order_date','<=',$edate);
+		$products =  $query->get();
+		return $products;
+	}
 }

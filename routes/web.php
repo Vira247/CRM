@@ -42,6 +42,8 @@ Route::get('product-order-by-vendor-date','ProductController@productOrderByVendo
 
 Route::get('sample-vs-product-report','ReportController@sampleVSProduct');
 Route::get('report-product-list-by-date','ReportController@reportProductListByDate');
+Route::get('sample-vs-product','ReportController@sampleVSProductReport');
+Route::get('report/sample-vs-product','ReportController@sampleVSProductReportDetail');
 
 
 Route::get('importSample', 'ProductController@importSample');

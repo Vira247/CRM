@@ -46,7 +46,7 @@
                 <div class="row">
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Date</label>
-                    <input type="text" class="form-control" id="date" name="date" placeholder="Date" value="{{$sdate}}-{{$edate}}">
+                    <input type="text" class="form-control" id="date" name="date" placeholder="Date" value="@if($sdate!='') {{$sdate}}-{{$edate}} @endif">
                   </div>
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Site</label>
@@ -172,7 +172,7 @@
 <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
 <script>
   $(function() {
-    var start = moment().subtract(29, 'days');
+    var start = moment().subtract(1, 'days');
     var end = moment();
     $('#date').daterangepicker({
       startDate: start,

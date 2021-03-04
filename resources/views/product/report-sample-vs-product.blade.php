@@ -94,7 +94,7 @@
                 @foreach($list as $deatail)
                 <tr>
                   <td>{{$i++}}</td>
-                  <td>{{$deatail->name}}</td>
+                  <td><a href="{{URL::to('report-product-list-by-date?product_id='.$deatail->id.'&date='.$date)}}" target="_blank">{{$deatail->name}}</a></td>
                   <td>{{$deatail->product_type}}</td>
                   <td>{{$deatail->ordercount}}</td>
                 </tr>
