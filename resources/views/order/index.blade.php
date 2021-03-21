@@ -1,5 +1,6 @@
 @include('layouts.header')
 <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/bootstrap-slider/css/bootstrap-slider.min.css?time='.time())}}">
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -85,6 +86,41 @@
                     <label for="exampleInputEmail1">Order Id</label>
                     <input type="text" class="form-control" id="order_id" name="order_id" placeholder="Order ID" value="{{$order_id}}">
                   </div>
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Vendor</label>
+                    <select class="form-control" name="vendor">
+                      <option value="">Select Platform</option>
+                      @foreach ($vendorList as $vendors)
+                      <option value="{{$vendors->id}}" @if($vendor==$vendors->id) selected @endif >{{$vendors->name}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Product Type</label>
+                    <select class="form-control" name="product_type">
+                      <option value="">Select Platform</option>
+                      @foreach ($masterList as $master)
+                      @if($master->type == 'Product Type')
+                      <option value="{{$master->value}}" @if($product_type == $master->value) selected @endif>{{$master->value}}</option>
+                      @endif
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Net Margin</label>
+                    <div class="slider-red">
+                      <input type="text" name="net_margin" value="" class="slider form-control" data-slider-min="-500" data-slider-max="25000" data-slider-step="5" data-slider-value="[{{$net_margin}}]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label>Order Amount</label>
+                    <div class="slider-red">
+                      <input type="text" name="order_amount" value="" class="slider form-control" data-slider-min="0" data-slider-max="50000" data-slider-step="5" data-slider-value="[{{$order_amount}}]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show">
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="card-footer clearfix">
@@ -99,7 +135,9 @@
           <div class="card">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Order List ({{$table_list->toArray()['total']}})</h3>
+                <h3 class="card-title">No. of Orders ({{$table_list->toArray()['total']}})<br>
+                  Order Amount {{number_format($table_count->order_amount,2)}}<br>
+                  Net Margin {{number_format($table_count->profit,2)}}</h3>
 
               </div>
               <!-- /.card-header -->
@@ -110,8 +148,9 @@
                       <th style="width: 10px">#</th>
                       <th>Order ID</th>
                       <th>Order Status</th>
-                      <th>Order Amount</th>
                       <th>Order Date</th>
+                      <th>Order Amount</th>
+                      <th>Net Margin</th>
                       <th style="width: 40px">Action</th>
                     </tr>
                   </thead>
@@ -129,8 +168,9 @@
                           <td><?= $cnt++ ?></td>
                           <td>@can('order-show')<a href="order/{{$key->id}}" target="_blank">@endcan{{$key->order_id}}@can('order-show')</a>@endcan</td>
                           <td>{{$master_list[$key->order_status]}}</td>
-                          <td>{{$key->order_amount}}</td>
                           <td>@if($key->order_date != ""){{date('m/d/Y',strtotime($key->order_date))}}@endif</td>
+                          <td>{{$key->order_amount}}</td>
+                          <td>{{$key->profit}}</td>
                           <td>
                             @can('vendor-edit')
                             <a href="<?php echo URL::to('/'); ?>/order/<?php echo $key->id; ?>/edit" target="_blank" title="Edit"><i class="fa fa-edit"></i></a>
@@ -196,3 +236,14 @@
   });
 </script>
 @include('layouts.footer')
+<!-- Ion Slider -->
+<script src="{{ asset('plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
+<!-- Bootstrap slider -->
+<script src="{{ asset('plugins/bootstrap-slider/bootstrap-slider.min.js')}}"></script>
+<script>
+  $(function() {
+    /* BOOTSTRAP SLIDER */
+    $('.slider').bootstrapSlider()
+
+  })
+</script>

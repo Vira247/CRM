@@ -105,6 +105,24 @@
 
 							</div>
 						  </div>
+						  
+						  <div class="form-group row">
+							<label for="inputName" class="col-sm-2">Primary Agent</label>
+							<div class="col-sm-10">
+							  <?php echo e($primary_agent); ?>
+
+							</div>
+						  </div>
+						  <div class="form-group row">
+							<label for="inputEmail" class="col-sm-2">Secondary Agent</label>
+							<div class="col-sm-10">
+                            <?php echo e($secondary_agent); ?>
+
+							</div>
+						  </div>
+						  
+
+
 						  <?php if($orderDetail->flag != ""): ?>
 						  <div class="form-group row">
 							<label for="inputName" class="col-sm-2">Site</label>

@@ -211,4 +211,16 @@ class OrderItemDetailHelper{
 		$products =  $query->get();
 		return $products;
 	}
+	public static function sampleProductReportSummury($type){
+		$query = OrderItemDetail::selectRaw("count(order_item_detail.id) as numorder, product.product_type as producttype,DATE_FORMAT(order_master.order_date,'%m') as month,DATE_FORMAT(order_master.order_date,'%Y') as year")
+		->leftjoin('order_master','order_master.id','order_item_detail.order_id')
+		->leftjoin('product','product.id','order_item_detail.product_id')
+		->where('order_item_detail.delete_flag','N')
+		->where('order_master.delete_flag','N')
+		->where('product.product_type',$type)
+		->groupByRaw("DATE_FORMAT(order_master.order_date,'%m'),DATE_FORMAT(order_master.order_date,'%Y')")
+		->orderByRaw("DATE_FORMAT(order_master.order_date,'%Y'),DATE_FORMAT(order_master.order_date,'%m')")
+		->get();
+		return $query;
+	}
 }

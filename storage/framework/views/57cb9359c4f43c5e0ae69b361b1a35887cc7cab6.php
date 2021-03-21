@@ -1,5 +1,6 @@
 <?php echo $__env->make('layouts.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <link rel="stylesheet" href="<?php echo e(asset('plugins/daterangepicker/daterangepicker.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('plugins/bootstrap-slider/css/bootstrap-slider.min.css?time='.time())); ?>">
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -87,6 +88,41 @@
                     <label for="exampleInputEmail1">Order Id</label>
                     <input type="text" class="form-control" id="order_id" name="order_id" placeholder="Order ID" value="<?php echo e($order_id); ?>">
                   </div>
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Vendor</label>
+                    <select class="form-control" name="vendor">
+                      <option value="">Select Platform</option>
+                      <?php $__currentLoopData = $vendorList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vendors): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <option value="<?php echo e($vendors->id); ?>" <?php if($vendor==$vendors->id): ?> selected <?php endif; ?> ><?php echo e($vendors->name); ?></option>
+                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Product Type</label>
+                    <select class="form-control" name="product_type">
+                      <option value="">Select Platform</option>
+                      <?php $__currentLoopData = $masterList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $master): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <?php if($master->type == 'Product Type'): ?>
+                      <option value="<?php echo e($master->value); ?>" <?php if($product_type == $master->value): ?> selected <?php endif; ?>><?php echo e($master->value); ?></option>
+                      <?php endif; ?>
+                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Net Margin</label>
+                    <div class="slider-red">
+                      <input type="text" name="net_margin" value="" class="slider form-control" data-slider-min="-500" data-slider-max="25000" data-slider-step="5" data-slider-value="[<?php echo e($net_margin); ?>]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label>Order Amount</label>
+                    <div class="slider-red">
+                      <input type="text" name="order_amount" value="" class="slider form-control" data-slider-min="0" data-slider-max="50000" data-slider-step="5" data-slider-value="[<?php echo e($order_amount); ?>]" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show">
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="card-footer clearfix">
@@ -101,7 +137,9 @@
           <div class="card">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Order List (<?php echo e($table_list->toArray()['total']); ?>)</h3>
+                <h3 class="card-title">No. of Orders (<?php echo e($table_list->toArray()['total']); ?>)<br>
+                  Order Amount <?php echo e(number_format($table_count->order_amount,2)); ?><br>
+                  Net Margin <?php echo e(number_format($table_count->profit,2)); ?></h3>
 
               </div>
               <!-- /.card-header -->
@@ -112,8 +150,9 @@
                       <th style="width: 10px">#</th>
                       <th>Order ID</th>
                       <th>Order Status</th>
-                      <th>Order Amount</th>
                       <th>Order Date</th>
+                      <th>Order Amount</th>
+                      <th>Net Margin</th>
                       <th style="width: 40px">Action</th>
                     </tr>
                   </thead>
@@ -131,8 +170,9 @@
                           <td><?= $cnt++ ?></td>
                           <td><?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('order-show')): ?><a href="order/<?php echo e($key->id); ?>" target="_blank"><?php endif; ?><?php echo e($key->order_id); ?><?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('order-show')): ?></a><?php endif; ?></td>
                           <td><?php echo e($master_list[$key->order_status]); ?></td>
-                          <td><?php echo e($key->order_amount); ?></td>
                           <td><?php if($key->order_date != ""): ?><?php echo e(date('m/d/Y',strtotime($key->order_date))); ?><?php endif; ?></td>
+                          <td><?php echo e($key->order_amount); ?></td>
+                          <td><?php echo e($key->profit); ?></td>
                           <td>
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('vendor-edit')): ?>
                             <a href="<?php echo URL::to('/'); ?>/order/<?php echo $key->id; ?>/edit" target="_blank" title="Edit"><i class="fa fa-edit"></i></a>
@@ -197,4 +237,15 @@
     }
   });
 </script>
-<?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xamppnew\htdocs\laravel_demo\resources\views/order/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<!-- Ion Slider -->
+<script src="<?php echo e(asset('plugins/ion-rangeslider/js/ion.rangeSlider.min.js')); ?>"></script>
+<!-- Bootstrap slider -->
+<script src="<?php echo e(asset('plugins/bootstrap-slider/bootstrap-slider.min.js')); ?>"></script>
+<script>
+  $(function() {
+    /* BOOTSTRAP SLIDER */
+    $('.slider').bootstrapSlider()
+
+  })
+</script><?php /**PATH C:\xamppnew\htdocs\laravel_demo\resources\views/order/index.blade.php ENDPATH**/ ?>

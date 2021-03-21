@@ -81,7 +81,6 @@
                 <tr>
                   <th>No</th>
                   <th>Name</th>
-                  <th>Product Type</th>
                   <th>Percentage</th>
                   <th>Amount</th>
                 </tr>
@@ -98,7 +97,6 @@
                 <tr>
                 <td>{{$i++}}</td>
                 <td><a href="{{URL::to('report-product-list-by-date?product_id='.$list->id.'&date='.$date)}}" target="_blank"> {{$list->name}} </a></td>
-                <td>{{$list->product_type}}</td>
                 <td>{{number_format($pre,2)}}%</td>
                 <td>{{number_format($list->amount,2)}}</td>
                 </tr>

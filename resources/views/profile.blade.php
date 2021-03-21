@@ -91,7 +91,6 @@
                   <!-- /.tab-pane -->
                  
                   <!-- /.tab-pane -->
-
 					<div class="active tab-pane" id="settings">
 						  <div class="form-group row">
 							<label for="inputName" class="col-sm-2">Name</label>
@@ -129,7 +128,20 @@
 							</div>
 						  </div>
 						  <?php } ?>
-						
+              <div class="form-group row">
+							<label for="inputEmail" class="col-sm-2">Profile</label>
+							<div class="col-sm-10">
+              @if($session['profilepic'] != "")
+              <img src="{{asset($session['profilepic'])}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              @else
+              <img src="{{asset('dist/img/user1-128x128.jpg')}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              @endif
+							<form action="{{URL::to('upload-profile-pic')}}" id="fileform" method="POST" enctype="multipart/form-data">
+              @csrf
+              <input type="file" name="file" onchange="$('#fileform').submit();">
+              </form>
+							</div>
+						  </div>
 					</div>
 					<div class=" tab-pane" id="change_pass">
 						<form class="form-horizontal" method="post" action="<?php echo URL::to('/');?>/profile/change-password" enctype="multipart/form-data">

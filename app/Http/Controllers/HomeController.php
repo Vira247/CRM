@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Helpers\OrderHelper;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+		$data['grphdata'] = OrderHelper::getHomepagegraphdata();
+		$data['top10Product'] = OrderHelper::getTop10Product();
+		return view('home',$data);
     }
 }

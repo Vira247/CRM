@@ -83,7 +83,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Report</a>
               <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                 <li><a href="<?php echo e(URL::to('vendor-report-gorup-by-month-year')); ?>" target="_blank" class="dropdown-item">Vendor Report </a></li>
-                <li><a href="<?php echo e(URL::to('sample-vs-product')); ?>" target="_blank" class="dropdown-item">Vendor Sample VS Product Report </a></li>
+                <li><a href="<?php echo e(URL::to('sample-vs-product')); ?>" target="_blank" class="dropdown-item">Sample VS Product Report (By Vendor)</a></li>
+                <li><a href="<?php echo e(URL::to('report/sample-vs-product-summury')); ?>" target="_blank" class="dropdown-item">Sample VS Product Report (By Month)</a></li>
                 <?php /*
                 <li class="dropdown-divider"></li>
 
@@ -257,13 +258,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            <?php if(auth()->user()->profilepic != ""): ?>
+                <img src="<?php echo e(asset(auth()->user()->profilepic)); ?>" alt="User Image" class="user-image img-circle elevation-2">
+            <?php else: ?>
               <img src="<?php echo e(asset('dist/img/user2-160x160.jpg')); ?>" alt="User Image" class="user-image img-circle elevation-2">
+            <?php endif; ?>
               <span class="d-none d-md-inline"><?php echo e(auth()->user()->name); ?></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
               <!-- User image -->
               <li class="user-header bg-primary">
+              <?php if(auth()->user()->profilepic != ""): ?>
+                <img src="<?php echo e(asset(auth()->user()->profilepic)); ?>" alt="User Image" class="img-circle elevation-2">
+              <?php else: ?>
                 <img src="<?php echo e(asset('dist/img/user2-160x160.jpg')); ?>" alt="User Image" class="img-circle elevation-2">
+              <?php endif; ?>
                 <p>
                   <?php echo e(auth()->user()->name); ?>
 

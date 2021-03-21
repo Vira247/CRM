@@ -117,4 +117,20 @@ class ReportController extends Controller
         $data['list'] = OrderItemDetailHelper::getCountByDateVendorOrder($sdate,$edate,$vendor_id,$product_type);
         return view('report.sample-vs-product-list',$data);
     }
+    public function sampleVSProductReportSummury(){
+        $productList = OrderItemDetailHelper::sampleProductReportSummury('Product');
+        $sampleList = OrderItemDetailHelper::sampleProductReportSummury('Sample');
+        $accessoryList = OrderItemDetailHelper::sampleProductReportSummury('Accessory');
+        $data['finalArray'] = array();
+        foreach($productList as $list){
+            $data['finalArray'][$list->year][$list->month][$list->producttype] = $list->numorder;
+        }
+        foreach($sampleList as $list){
+            $data['finalArray'][$list->year][$list->month][$list->producttype] = $list->numorder;
+        }
+        foreach($accessoryList as $list){
+            $data['finalArray'][$list->year][$list->month][$list->producttype] = $list->numorder;
+        }
+        return view('report.report-sample-product-count',$data);
+    }
 }

@@ -78,12 +78,12 @@
                 <tr>
                   <th>Id</th>
                   <th>Vendor</th>
-                  <th>Sample(Count)</th>
-                  <th>Sample(Amount)</th>
-                  <th>Product(Count)</th>
-                  <th>Product(Amount)</th>
-                  <th>Accessory(Count)</th>
-                  <th>Accessory(Amount)</th>
+                  <th>No. of Samples</th>
+                  <th>Total Sample Order Value ($)</th>
+                  <th>No. of Product Orders</th>
+                  <th>Total Product Order Value ($)</th>
+                  <th>No. of Accessory Orders</th>
+                  <th>Total Accessory Order Value ($)</th>
                 </tr>
               </thead>
               <tbody>

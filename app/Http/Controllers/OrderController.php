@@ -36,6 +36,28 @@ class OrderController extends Controller{
         $data['status'] = $request->input('status');
         $data['platform'] = $request->input('platform');
         $data['order_id'] = $request->input('order_id');
+        $data['net_margin'] = $request->input('net_margin');
+        $data['order_amount'] = $request->input('order_amount');
+        $data['vendor'] = $request->input('vendor');
+        $data['product_type'] = $request->input('product_type');
+        $snetmargin = -500;
+        $enetmargin = 25000;
+        $samount = 0;
+        $eamount = 50000;
+        if($data['net_margin'] != ""){
+            $netmargin = explode(",",$data['net_margin']);
+            $snetmargin = $netmargin[0];
+            $enetmargin = $netmargin[1];
+        }else{
+            $data['net_margin'] = '-500,25000';
+        }
+        if($data['order_amount'] != ""){
+            $netmargin = explode(",",$data['order_amount']);
+            $samount = $netmargin[0];
+            $eamount = $netmargin[1];
+        }else{
+            $data['order_amount'] = '0,50000';
+        }
         if($data['date'] != ""){
             $dates =  explode("-",$request->input('date'));
             $sdate = date('Y-m-d',strtotime($dates[0]));
@@ -49,8 +71,11 @@ class OrderController extends Controller{
             $data['edate'] = '';
         }
         $data['master_list'] = MasterListHelper::getByTypePluck();
-        $data['table_list'] = OrderHelper::getPaginateData($sdate,$edate,$data['site'],$data['platform'],$data['status'],$data['order_id']);
-        $data['masterList'] = MasterListHelper::getByMultipleTypes(array('Site','Platform','Order Status'));
+        $data['table_list'] = OrderHelper::getPaginateData($sdate,$edate,$data['site'],$data['platform'],$data['status'],$data['order_id'],$snetmargin,$enetmargin,$samount,$eamount,$data['vendor'],$data['product_type']);
+        $data['table_count'] = OrderHelper::getPaginateDataCount($sdate,$edate,$data['site'],$data['platform'],$data['status'],$data['order_id'],$snetmargin,$enetmargin,$samount,$eamount,$data['vendor'],$data['product_type']);
+        //echo "<pre>"; print_r($data['table_list']); die;
+        $data['vendorList'] = VendorHelper::getList();
+        $data['masterList'] = MasterListHelper::getByMultipleTypes(array('Site','Platform','Order Status','Product Type'));
         return view('order.index',$data);
     }
     /**
@@ -61,6 +86,7 @@ class OrderController extends Controller{
     public function create(){
         $data['vendorList'] = VendorHelper::getList();
         $data['masterList'] = MasterListHelper::getByMultipleTypes(array('Site','Platform','Order Status','Payment Method','Broker','Carrier','Product Type'));
+        $data['userList'] = User::orderBy('name','ASC')->get();
         return view('order.create',$data);
     }
     /**
@@ -132,6 +158,8 @@ class OrderController extends Controller{
             "claim_status"=>$request->input('claim_status'),
             "flag"=>$request->input('flag'),
             "extranote"=>$request->input('extranote'),
+            "primary_agent"=>$request->input('primary_agent'),
+            "secondary_agent"=>$request->input('secondary_agent'),
         );
 //        echo "<pre>"; \print_r($insert_array); die;
 		$insert = OrderHelper::insert($insert_array);
@@ -189,9 +217,9 @@ class OrderController extends Controller{
                     OrderItemDetailHelper::insert($inserArray);
                 }
             }
-            
+            Self::profiteCalculate($insert);
 			Session::flash('success', 'Order inserted successfully.');
-			return redirect('order');
+			return redirect('order/'.$insert);
 		}else{
 			Session::flash('error', 'Sorry, something went wrong. Please try again.');
 			return redirect()->back();
@@ -206,6 +234,20 @@ class OrderController extends Controller{
     public function show($id){
         $data['vendorList'] = VendorHelper::getByTypePluck();
         $data['orderDetail'] = OrderHelper::getByid($id);
+        $data['primary_agent'] = '';
+        $data['secondary_agent'] = '';
+        if($data['orderDetail']->primary_agent){
+            $primaryAgent = User::where('id',$data['orderDetail']->primary_agent)->first();
+            if($primaryAgent){
+               $data['primary_agent'] = $primaryAgent->name;
+            }
+        }
+        if($data['orderDetail']->secondary_agent){
+            $secondaryAgent = User::where('id',$data['orderDetail']->secondary_agent)->first();
+            if($secondaryAgent){
+               $data['secondary_agent'] = $secondaryAgent->name;
+            }
+        }
         $data['orderVendorDetail'] = OrderVendorDetailHelper::getByOrderid($id);
         $data['orderItemDetail'] = OrderItemDetailHelper::getByOrderid($id);
         //echo "<pre>"; print_r($data['orderItemDetail']); die;
@@ -229,6 +271,7 @@ class OrderController extends Controller{
         $data['orderDetail'] = OrderHelper::getByid($id);
         $data['orderVendorDetail'] = OrderVendorDetailHelper::getByOrderid($id);
         $data['orderItemDetail'] = OrderItemDetailHelper::getByOrderid($id);
+        $data['userList'] = User::orderBy('name','ASC')->get();
         return view('order.edit',$data);
 	}
     /**
@@ -317,6 +360,8 @@ class OrderController extends Controller{
             "claim_status"=>$request->input('claim_status'),
             "flag"=>$request->input('flag'),
             "extranote"=>$request->input('extranote'),
+            "primary_agent"=>$request->input('primary_agent'),
+            "secondary_agent"=>$request->input('secondary_agent'),
         );
         $where = array('id'=>$id);
         $update = OrderHelper::updateById($update_array,$id);
@@ -376,8 +421,9 @@ class OrderController extends Controller{
                     OrderItemDetailHelper::insert($inserArray);
                 }
             }
+			Self::profiteCalculate($id);
 			Session::flash('success', 'Order updated successfully.');
-			return redirect('order');
+			return redirect('order/'.$id);
 		}else{
 			Session::flash('error', 'Sorry, something went wrong. Please try again.');
 			return redirect()->back();
@@ -393,5 +439,24 @@ class OrderController extends Controller{
 			Session::flash('error', 'Sorry, something went wrong. Please try again.');
 		}
 		return redirect()->back();
+    }
+    public function getAll(){
+        $allOrders = OrderHelper::getAllOrder();
+        foreach($allOrders as $order){
+            Self::profiteCalculate($order->id);
+        }
+    }
+    public function profiteCalculate($id){
+        $orderDetail = OrderHelper::getByid($id);
+        $orderVendorDetail = OrderVendorDetailHelper::getByOrderid($id);
+        $orderItemDetail = OrderItemDetailHelper::getByOrderid($id);
+        $totalrevenue = $orderDetail->order_amount - $orderDetail->vat_tax_amount - $orderDetail->comission_other_charges;
+        $orderSubTotal = $orderDetail->order_amount + $orderDetail->discount - $orderDetail->vat_tax_amount;
+        $vedoramount = 0;
+        $shipin_Amount = 0;
+        $vendor_vat=0;
+        foreach($orderVendorDetail as $vendor){ $vendor_vat = $vendor_vat + $vendor->vendor_sales_tax_amount; $shipin_Amount = $shipin_Amount + $vendor->shipping_cost; $vedoramount = $vedoramount + $vendor->vendor_invoice_amount; } 
+        $profite = ($orderDetail->order_amount+$vendor_vat)-($orderDetail->comission_other_charges+$orderDetail->vat_tax_amount+$vedoramount+$shipin_Amount+$orderDetail->refund_amount); 
+        OrderHelper::updateById(array("profit"=>$profite),$id);
     }
 }

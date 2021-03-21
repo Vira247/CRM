@@ -106,4 +106,19 @@ class ProfileController extends Controller
 		}
 		
 	}
+	public function uploadProfile(Request $request){
+		if ($request->hasfile('file')) {
+			$update_array = array();
+			$file = $request->file('file');
+			$name = $file->getClientOriginalName();
+			$name = str_replace(" ", "", time() . $name);
+			$file->move(public_path() . '/upload/', $name);
+			$users = auth()->user();
+			$update_array['profilepic'] = '/upload/'.$name;
+			$user = User::findOrFail($users->id);
+			User::where('id',$users->id)->update($update_array);
+			$request->session()->flash('success', 'Profile changed successfully');
+			return redirect()->back();
+		}
+	}
 }

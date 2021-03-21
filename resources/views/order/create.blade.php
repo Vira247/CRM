@@ -76,6 +76,29 @@
                                 </select>
                             </div>
                         </div>
+                        
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Primary Agent<span style="color:red;">*</span></label>
+                                <select  class="form-control " id="primary_agent"  name="primary_agent" >
+                                @foreach ($userList as $user)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                 @endforeach
+                                </select>
+                                <span style="color:red;" id="site_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Secondary Agent<span style="color:red;">*</span></label>
+                                <select  class="form-control " id="secondary_agent"  name="secondary_agent" >
+                                @foreach ($userList as $user)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                 @endforeach
+                                </select>
+                                <span style="color:red;" id="site_error"></span>
+                            </div>
+                        </div>
                         <div class="col-md-12">
                         <label for="exampleInputEmail1">Extra Note</label>
                         <textarea class="form-control" name="extranote"></textarea>
@@ -106,9 +129,9 @@
                                         <th width="10%">Product Type</th>
                                         <th width="45%">Product</th>
                                         <th width="10%">Unit</th>
-                                        <th width="10%">Quantity</th>
+                                        <th width="5%">Quantity</th>
+                                        <th width="10%">Amount</th>
                                         <th width="10%">Price</th>
-                                        <th width="5%">Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -833,10 +856,10 @@ function addproduct(){
 		var vendortext = $("#selectvendor option:selected").text();
 		var producttypetext = $("#selectproducttype option:selected").text();
 		var itemunit = $("#itemunit option:selected").text();
-		var amount = parseFloat(quantity)*parseFloat(price);
+		var amount = parseFloat(price)/parseFloat(quantity);
         amount = amount.toFixed(2);
         itemcount++;
-		var html = '<tr id="itemtr'+itemcount+'"><td>'+vendortext+'<input type="hidden" name="vendorid[]" value="'+vendor+'"></td><td>'+producttypetext+'<input type="hidden" name="producttypeid[]" value="'+producttype+'"></td><td>'+text+'<input type="hidden" name="productid[]" value="'+id+'"></td><td><input type="hidden" name="itemunit[]" value="'+itemunit+'">'+itemunit+'</td><td><input type="hidden" name="quantity[]" value="'+quantity+'">'+quantity+'</td><td><input type="hidden" name="price[]" value="'+price+'">'+price+'<input type="hidden" name="amount[]" value="'+amount+'"></td><td class="allamount">'+amount+'</td><td><a href="#" onclick="removeItem('+itemcount+')"><i class="fa fa-trash"></i></td></tr>';
+		var html = '<tr id="itemtr'+itemcount+'"><td>'+vendortext+'<input type="hidden" name="vendorid[]" value="'+vendor+'"></td><td>'+producttypetext+'<input type="hidden" name="producttypeid[]" value="'+producttype+'"></td><td>'+text+'<input type="hidden" name="productid[]" value="'+id+'"></td><td><input type="hidden" name="itemunit[]" value="'+itemunit+'">'+itemunit+'</td><td><input type="hidden" name="quantity[]" value="'+quantity+'">'+quantity+'</td><td><input type="hidden" name="price[]" value="'+amount+'">'+amount+'<input type="hidden" name="amount[]" value="'+price+'"></td><td class="allamount">'+price+'</td><td><a href="#" onclick="removeItem('+itemcount+')"><i class="fa fa-trash"></i></td></tr>';
 		$("#productlist").append(html);
 		$("#selectproduct").val('');
 		$("#quantity").val('');

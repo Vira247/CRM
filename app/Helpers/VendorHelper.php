@@ -123,7 +123,7 @@ class VendorHelper {
 		return $getData;
 	}
 	public static function getByTypePluckName(){
-		$getData = Vendor::where('delete_flag','N')->orderBy('name')->pluck('id','name')->all();
+		$getData = Vendor::where('delete_flag','N')->pluck('id','name')->all();
 		return $getData;
 	}
 }

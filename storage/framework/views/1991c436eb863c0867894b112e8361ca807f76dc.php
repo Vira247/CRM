@@ -165,7 +165,7 @@
       labels  : [<?php $__currentLoopData = $vendorList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> '<?php echo e($list->name); ?>', <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>],
       datasets: [
         {
-          label               : 'Digital Goods',
+          label               : 'Samaple',
           backgroundColor     : 'rgba(60,141,188,0.9)',
           borderColor         : 'rgba(60,141,188,0.8)',
           pointRadius          : false,
@@ -173,10 +173,10 @@
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [<?php $__currentLoopData = $vendorList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e(number_format($list->sample->amountorders,2)); ?>, <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>]
+          data                : [<?php $__currentLoopData = $vendorList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e(number_format($list->sample->noorders,2)); ?>, <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>]
         },
         {
-          label               : 'Electronics',
+          label               : 'Product',
           backgroundColor     : 'rgba(210, 214, 222, 1)',
           borderColor         : 'rgba(210, 214, 222, 1)',
           pointRadius         : false,
@@ -184,7 +184,7 @@
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [<?php $__currentLoopData = $vendorList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e(number_format($list->product->amountorders,2)); ?>, <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>]
+          data                : [<?php $__currentLoopData = $vendorList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e(number_format($list->product->noorders,2)); ?>, <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>]
         },
       ]
     }
