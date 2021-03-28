@@ -9,7 +9,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Vendor </h1>
+          <h1 class="m-0 text-dark">Order Item Report </h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -46,7 +46,7 @@
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Product Type</label>
                     <select class="form-control" name="product_type">
-                      <option value="">Select Vendor</option>
+                      <option value="">Select Type</option>
                       @foreach ($masterList as $master)
                           @if($master->type == 'Product Type')
                           <option value="{{$master->value}}" @if($product_type == $master->value) selected @endif>{{$master->value}}</option>

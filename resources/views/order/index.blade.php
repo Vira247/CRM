@@ -89,7 +89,7 @@
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Vendor</label>
                     <select class="form-control" name="vendor">
-                      <option value="">Select Platform</option>
+                      <option value="">Select Vendor</option>
                       @foreach ($vendorList as $vendors)
                       <option value="{{$vendors->id}}" @if($vendor==$vendors->id) selected @endif >{{$vendors->name}}</option>
                       @endforeach
@@ -98,7 +98,7 @@
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Product Type</label>
                     <select class="form-control" name="product_type">
-                      <option value="">Select Platform</option>
+                      <option value="">Select Product Type</option>
                       @foreach ($masterList as $master)
                       @if($master->type == 'Product Type')
                       <option value="{{$master->value}}" @if($product_type == $master->value) selected @endif>{{$master->value}}</option>
@@ -135,9 +135,9 @@
           <div class="card">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">No. of Orders ({{$table_list->toArray()['total']}})<br>
-                  Order Amount {{number_format($table_count->order_amount,2)}}<br>
-                  Net Margin {{number_format($table_count->profit,2)}}</h3>
+                <h3 class="card-title">No. of Orders (@if(isset($table_list->toArray()['total'])) {{$table_list->toArray()['total']}} @endif)<br>
+                  Order Amount @if(isset($table_count->order_amount)) {{number_format($table_count->order_amount,2)}} @endif<br>
+                  Net Margin @if(isset($table_count->profit)) {{number_format($table_count->profit,2)}} @endif</h3>
 
               </div>
               <!-- /.card-header -->

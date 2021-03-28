@@ -115,4 +115,4 @@ unset($__errorArgs, $__bag); ?>
 
 </body>
 </html>
-<?php /**PATH C:\xamppnew\htdocs\laravel_demo\resources\views/auth/login.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xamppnew\htdocs\CRM\resources\views/auth/login.blade.php ENDPATH**/ ?>

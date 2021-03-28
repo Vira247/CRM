@@ -108,7 +108,13 @@ class VendorController extends Controller{
         $this->validate($request, [
            'name' => 'required'
         ]);
-		$update_array = array('name'=>request('name'));
+		$update_array = array(
+            'name'=>request('name'),
+            'contact_person_name'=>request('contact_person_name'),
+            'contact_email_address'=>request('contact_email_address'),
+            'head_office_address'=>request('head_office_address'),
+            'warehouse_address'=>request('warehouse_address'),
+        );
 		$where = array('id'=>$id);
         $update = VendorHelper::update($update_array,$where);
 		if($update){

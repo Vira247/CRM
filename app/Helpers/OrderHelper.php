@@ -99,6 +99,7 @@ class OrderHelper{
 		$query = Order::selectRaw('SUM(order_master.order_amount) as order_amount,SUM(order_master.profit) as profit')
 		->leftjoin('order_item_detail','order_item_detail.order_id','order_master.id')
 		->where('order_master.delete_flag','N')
+		->where('order_item_detail.delete_flag','N')
 		->where('order_master.order_status','!=','16');
 		if($order_id != ""){
 			$query->where('order_master.order_id',$order_id);

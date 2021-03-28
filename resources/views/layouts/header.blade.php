@@ -85,6 +85,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li><a href="{{URL::to('vendor-report-gorup-by-month-year')}}" target="_blank" class="dropdown-item">Vendor Report </a></li>
                 <li><a href="{{URL::to('sample-vs-product')}}" target="_blank" class="dropdown-item">Sample VS Product Report (By Vendor)</a></li>
                 <li><a href="{{URL::to('report/sample-vs-product-summury')}}" target="_blank" class="dropdown-item">Sample VS Product Report (By Month)</a></li>
+                <li><a href="{{URL::to('product-order-by-vendor-date')}}" target="_blank" class="dropdown-item">Order Item Report</a></li>
                 <?php /*
                 <li class="dropdown-divider"></li>
 

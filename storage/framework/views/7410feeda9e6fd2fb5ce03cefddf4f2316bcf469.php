@@ -98,4 +98,4 @@
         </div>
     </body>
 </html>
-<?php /**PATH C:\xamppnew\htdocs\laravel_demo\resources\views/welcome.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xamppnew\htdocs\CRM\resources\views/welcome.blade.php ENDPATH**/ ?>
