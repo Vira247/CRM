@@ -1,4 +1,4 @@
-@include('layouts.header')
+<?php echo $__env->make('layouts.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -46,7 +46,7 @@
               <div class="card-tools">
                   <ul class="nav nav-pills ml-auto">
                     <li class="nav-item">
-                      <a class="nav-link active" href="{{URL::to('google-page-view-list')}}" target="_blank">All</a>
+                      <a class="nav-link active" href="<?php echo e(URL::to('google-page-view-list')); ?>" target="_blank">All</a>
                     </li>
                   </ul>
                 </div>
@@ -63,15 +63,15 @@
                     </tr>
                   </thead>
                   <tbody><?php $cnt = 1; ?>
-                    @foreach($top10Product as $product)
+                    <?php $__currentLoopData = $top10Product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                      <td>{{$cnt++}}</td>
-                      <td><a href="https://www.villohome.com/{{$product->name}}" target="_blank">{{$product->name}}</a></td>
+                      <td><?php echo e($cnt++); ?></td>
+                      <td><a href="https://www.villohome.com/<?php echo e($product->name); ?>" target="_blank"><?php echo e($product->name); ?></a></td>
                       <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">{{$product->amount}}</div>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20"><?php echo e($product->amount); ?></div>
                       </td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </tbody>
                 </table>
               </div>
@@ -94,9 +94,9 @@
   </section>
   <!-- /.content -->
 </div>
-<script src="{{ asset('plugins/chart.js/Chart.min.js')}}"></script>
-<script src="{{ asset('dist/js/demo.js')}}"></script>
-@include('layouts.footer')
+<script src="<?php echo e(asset('plugins/chart.js/Chart.min.js')); ?>"></script>
+<script src="<?php echo e(asset('dist/js/demo.js')); ?>"></script>
+<?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <script>
   $(function() {
     /* ChartJS
@@ -112,8 +112,8 @@
     var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
 
     var areaChartData = {
-      labels: [@foreach($grphdata as $key => $value)
-        '{{$key}}', @endforeach
+      labels: [<?php $__currentLoopData = $grphdata; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        '<?php echo e($key); ?>', <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       ],
       datasets: [{
         label: 'Views',
@@ -124,7 +124,7 @@
         pointStrokeColor: 'rgba(60,141,188,1)',
         pointHighlightFill: '#fff',
         pointHighlightStroke: 'rgba(60,141,188,1)',
-        data: [@foreach($grphdata as $key => $value) {{$value}}, @endforeach]
+        data: [<?php $__currentLoopData = $grphdata; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e($value); ?>, <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>]
       }, ]
     }
 
@@ -166,4 +166,4 @@
 
 
   })
-</script>
+</script><?php /**PATH C:\xamppnew\htdocs\CRM\resources\views/google/home.blade.php ENDPATH**/ ?>
